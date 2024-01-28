@@ -67,10 +67,9 @@ Convert from excel to CSV file
 - Transpose from row to column
 - Convert the data from Text to Column by Delimited
 
-  Combine the three dataset together
+Combine the three dataset together
 
-  2. Handling Missing data
-  3. 
+Handling Missing data
 
 ### Exploratory Data Analysis
 - 	How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
