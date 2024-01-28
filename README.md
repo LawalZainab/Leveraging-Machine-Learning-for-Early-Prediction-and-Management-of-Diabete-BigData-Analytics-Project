@@ -38,7 +38,10 @@ In the initial data preparation phase, the following tasks was performed:
 - Filter the dataset by Country of Citzenship exclude 'Total', 'Blanks'
 - Transpose data from row to column
 - Convert the data from Text to Column by Delimited
-Combine Prepared Asylum OffieType-prov data and Asylum Top 25 CITZ-prov-last-month 
+
+Combine Prepared Asylum OfficeType-prov data and Asylum Top 25 CITZ-prov-last-month into 'Asylum Claimant by OfficeType, Twenty Five Countries of Citizenship and Claim Year Jan 2015 - Nov 2023'
+
+Convert from excel to CSV file
 
 
 ### Exploratory Data Analysis
@@ -46,7 +49,8 @@ Combine Prepared Asylum OffieType-prov data and Asylum Top 25 CITZ-prov-last-mon
 - 	How does the demographic group relate to the choice of province or office claim type for lodging an asylum claim? 
 -   How have the demographics of asylum seekers changed over time, and are there any seasonal patterns in asylum applications? Can we predict future trends in asylum seeker numbers based on historical data? 
 
-2. Missing data
+2. Handling Missing data
+3. 
 
 
 
