@@ -68,14 +68,16 @@ Convert from excel to CSV file
 - Convert the data from Text to Column by Delimited
 
   Combine the three dataset together
-  
-#### Exploratory Data Analysis
+
+  2. Handling Missing data
+  3. 
+
+### Exploratory Data Analysis
 - 	How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
 - 	How does the demographic group relate to the choice of province or office claim type for lodging an asylum claim? 
 -   How have the demographics of asylum seekers changed over time, and are there any seasonal patterns in asylum applications? Can we predict future trends in asylum seeker numbers based on historical data? 
 
-2. Handling Missing data
-3. 
+
 
 
 
