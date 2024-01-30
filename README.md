@@ -30,52 +30,37 @@ Temporary residents in the humanitarian population who request refugee protectio
 In the initial data preparation phase, the following tasks was performed:
 1.  Data Downloading and inspection.
 
-#### Asylum-OfficeType_Prov
--  Filter the dataset according to office claim( Airport, Border, Inland, Other Offices), exclude 'Total' and 'Blanks'
--  Create a new sheet
--  Transpose the data from row to column, fill the rest of the years into the new sheet
--  Convert the data from Text to Column by Delimited
-
-#### Asylum-Top_25_CITZ_prov_last_month
-- Filter the dataset by Country of Citzenship exclude 'Total', 'Blanks'
-- Create a new sheet
-- Transpose data from row to column into the new sheet
-- Convert the data from Text to Column by Delimited
-
-Combine Prepared Asylum OfficeType-prov data and Asylum Top 25 CITZ-prov-last-month into 'Asylum Claimant by OfficeType, Twenty Five Countries of Citizenship and Claim Year Jan 2015 - Nov 2023'
-
-Convert from excel to CSV file
-
-#### Asylum-PT_Age
-- Filter dataset by Province
-- Create a new sheet
-- Copy total Age Group per year by Province
-- Transpose from row to column
-- Convert the data from Text to Column by Delimited
-
-#### Asylum-PT_Gender
-- Filter dataset by Province
-- Create a new sheet
-- Copy total Gender per year by Province
-- Transpose from row to column
-- Convert the data from Text to Column by Delimited
-
-#### Asylum-Top_25_CITZ_Office_Type_last_month
-- Filter dataset by Province
-- Create a new sheet
-- Copy total Countries of Citizenship by Province
-- Transpose from row to column
-- Convert the data from Text to Column by Delimited
-
-Combine the three dataset together
-
-2. Handling Missing data
-3. Data Cleaning and Formatting
+Inspection:
    
+- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset or EN_ODP-Asylum-PT_Gender datasets provides Total Monthly Asylum Seekers by Territory/Province
+- Applying filters and transposing EN_ODP-Asylum-Top_25_CITZ_Office_Type_last_month and Asylum-Top_25_CITZ_prov_last_month = provides Total Monthly Asylum Seekers by country of Citizenship
+- Applying filters and transposing EN_ODP-Asylum-OfficeType_Prov datasets provides Total Monthly Asylum Seekers by Claim Office Type
+
+
+2. Data cleaning and formatting
+   
+Asylum Seekers by Claim Office Type (Jan 2015- Nov 2023)
+- 	Filtering Asylum-OfficeType_Prov dataset by office claim (Airport, Border, Inland, Other Offices), excluding 'Total' and 'Blanks'.
+- 	Transposing the data from row to column in a new sheet.
+- 	Clean the dataset: delete the Total each year (e.g. 2015 Total) and add the year to each month to make it consistent.
+-	The clean dataset provides Asylum Seekers by Claim Office Type.
+
+Asylum Seekers by Country of Citizenship (Jan 2015- Nov 2023)
+-	Filtering Asylum-Top_25_CITZ_prov_last_month dataset by Country of Citizenship (Mexico, Nigeria, India ….) excluding 'Total’, and 'Blanks'
+-	Transposing data from row to column into a new sheet.
+-	Clean the dataset: the Total each year (e.g., 2015 Total), the year added to each month, and the numbering on the country of citizenship deleted.
+-	The clean dataset provides Asylum Seekers by Country of Citizenship.
+
+Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
+-	Filtering Asylum-PT_Gender dataset by Province/Territory excluding 'Total’, and 'Blanks'.
+-	Transposing data from row to column into a new sheet.
+-	Clean the dataset: deleting Quarters(column), Total by Quarters(row), Total by Years, and adding the year to the months.
+-	The clean dataset provides Asylum Seekers by Province/Territory.
 
 ### Exploratory Data Analysis
+
 - Handling Missing data
-- Data cleaning and formatgting
+- 
 -
 - 	How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
 - 	How does the demographic group relate to the choice of province or office claim type for lodging an asylum claim? 
