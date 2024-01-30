@@ -59,6 +59,25 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 
 ### Exploratory Data Analysis
 
+importing  data into Jupyter notebook
+viewing dataset with 
+checking type of datasets, we have int64, object and datetime64
+Note: we should have datetime64 and int64 since all dataset are in numbers and date, there is need to investigate the object data type
+checking for missing values: non was detected because “--“ was not read as missing values
+Note: when dataset was downloaded, it was noted on the website 'Please note that in these datasets, the figures have been suppressed or rounded to prevent the identification of individuals when the datasets are compiled and compared with other publicly available statistics. Values between 0 and 5 are shown as “--“ and all other values are rounded to the nearest multiple of 5'
+“--“ is consider missing values which will need to be cleaned, columns with “--“  were read as datatype object
+replacing “--“  with NaN- changed the datatype into floats so it can identify all missing values on the datasets
+data was checked again for missing value, it detected all
+summary of the data to know the minimum,maximum, mean and the percentiles(25%, 50%, and 75%) of the datasets
+number of row and column on teh datasets was checked
+
+``` Python
+
+import pandas as pd
+pip install ydata-profiling
+conda install -c conda-forge ydata-profiling
+from ydata_profiling import ProfileReport
+```
 - Handling Missing data
 - 
 -
