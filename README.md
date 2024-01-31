@@ -81,9 +81,11 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 8. Run ydata prfilig on the datasets
 
 ### Results
-24 Varibales types were unsupported
+- 24 Variables types were unsupported and were excluded from the Exploratory Data Analysis
+- 20 Variables are all highly correlated
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/cff2c31c-131d-4166-b8b0-420586a6e3a8)
 
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/a781c9ba-bc5f-41e8-8ae7-4665163c3633)
 
 
 
