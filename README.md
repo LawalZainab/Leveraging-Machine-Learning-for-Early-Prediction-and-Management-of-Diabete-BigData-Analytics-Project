@@ -68,30 +68,30 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 - “--“is considered missing values.
 5.  Convert data type and Replace missing values
 - Replace “--“with NaN, convert the datatype from ‘object’ into ‘floats’ 
-6.  Check for missing values again: columns with missing values and number of missing values identified.
+6.  Check for missing values again: columns with missing values identified.
 7. Handling Missing values
-- Replace missing values with the median
+- Replace missing values with the median, numbers are between  0 and 5
 8.  Summary of data provides minimum, maximum, mean, and the percentiles (25%, 50%, and 75%) of the datasets
-
-
-- 
-“--“ was noted to be numbers between 0 and 5, it will be input the median values to replace the msissing values 
 
 ``` Python
 
 import pandas as pd
+data = pd.read_excel(r"C:\Users\LawalZa2\OneDrive - Government of Ontario\Documents\school project\Asylum_by_ClaimOfficetype.xlsx") # Asylum datasets by Claim Office types
+data.head()
+data.isnull().sum()# no missing values detected
+data_new = data.replace('--',np.NaN) ## replacing the sting'--' with NaN'
+data_new.head()
+data_new.isnull().sum() # missing values detected: Other Offices have 59 missing values
+df = data_new.fillna(data_new.median()) ## replacing all missing values with the median between 0 and 5
+df
+df.describe() ## summary of data
+df.shape
 pip install ydata-profiling
 conda install -c conda-forge ydata-profiling
 from ydata_profiling import ProfileReport
+profile_ClaimOfficetype = ProfileReport(df)
+profile_ClaimOfficetype
 ```
-
-
--
-- 	How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
-- 	How does the demographic group relate to the choice of province or office claim type for lodging an asylum claim? 
--  How have the demographics of asylum seekers changed over time, and are there any seasonal patterns in asylum applications? Can we predict future trends in asylum seeker numbers based on historical data? 
-
-
 
 ### Previous Research
 -	There is no previous research where Machine Models were applied to Asylum datasets but there was a Standing Committee on Citizenship and Immigration CIMM - Asylum Trend Data- November 18, 2022, on the Government of Canada website with the following key message.
