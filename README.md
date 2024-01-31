@@ -81,6 +81,7 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 8. Run ydata prfilig on the datasets
 
 ### Results
+24 Varibales types were unsupported
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/cff2c31c-131d-4166-b8b0-420586a6e3a8)
 
 
