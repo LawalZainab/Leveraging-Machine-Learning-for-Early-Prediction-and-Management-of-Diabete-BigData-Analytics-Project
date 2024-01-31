@@ -95,6 +95,8 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/09861377-47dc-4d66-8e82-e314d54f0bf2)
 
 
+### From the result, 24 important varaibles excluded
+
 
 ``` Python
 
