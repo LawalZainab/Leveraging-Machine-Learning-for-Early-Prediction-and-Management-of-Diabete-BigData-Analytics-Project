@@ -59,21 +59,22 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 
 ### Exploratory Data Analysis
 
-- Import dataset into Jupyter notebook.
-- View datasets and check number of rows and columns
-- Check datatype, we have ‘int64’, ‘object’, and ‘datetime64’
+1. Import dataset into Jupyter notebook.
+2.  View datasets and check number of rows and columns
+3.  Check datatype, we have ‘int64’, ‘object’, and ‘datetime64’
 - Note: datatype should be ‘datetime64’ and ‘int64’ when inspected, Columns with ‘object’ datatype contain numbers and strings (“--“).
-- Check for missing values: none were detected. 
+4. Check for missing values: none were detected. 
 - Note: The Open Government website states 'Please note that in these datasets, the figures have been suppressed or rounded to prevent the identification of individuals when the datasets are compiled and compared with other publicly available statistics. Values between 0 and 5 are shown as “--“ and all other values are rounded to the nearest multiple of 5'
 - “--“is considered missing values.
-- Convert data type and Replace missing values
+5.  Convert data type and Replace missing values
 - Replace “--“with NaN, convert the datatype from ‘object’ into ‘floats’ 
-- Check for missing values again: columns with missing values and number of missing values identified.
+6.  Check for missing values again: columns with missing values and number of missing values identified.
+7. Handling Missing values
 - Replace missing values with the median
-- Summary of data provides minimum, maximum, mean, and the percentiles (25%, 50%, and 75%) of the datasets
+8.  Summary of data provides minimum, maximum, mean, and the percentiles (25%, 50%, and 75%) of the datasets
 
 
-- Handling Missing values
+- 
 “--“ was noted to be numbers between 0 and 5, it will be input the median values to replace the msissing values 
 
 ``` Python
