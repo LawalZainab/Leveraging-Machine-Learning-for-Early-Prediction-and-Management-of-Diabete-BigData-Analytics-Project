@@ -64,7 +64,9 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 -	Clean the dataset: deleting Quarters(column), Total by Quarters(row), Total by Years, and adding the year to the months.
 -	Format the dataset: add the year to the month to make it consistent.
 
-Combine the three datasets( Asylum Seekers by Claim Office Type, Asylum Seekers by Country of Citizenship and Asylum Seekers by Province/Territory ) into a single working datasets =  Asylum_Seekers_inCanada_Jan2015-Nov2015.
+### Working Datasets
+
+- Combine the three datasets( Asylum Seekers by Claim Office Type, Asylum Seekers by Country of Citizenship and Asylum Seekers by Province/Territory ) into a single working datasets =  Asylum_Seekers_inCanada_Jan2015-Nov2015.
 
 
 ### Exploratory Data Analysis
