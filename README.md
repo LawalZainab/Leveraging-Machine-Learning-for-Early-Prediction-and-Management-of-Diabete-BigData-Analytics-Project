@@ -30,7 +30,12 @@ Dataset is between Jan 2015 - Nov 2023
 
 In the initial data preparation phase, the following tasks was performed:
 1.  Data Downloading and inspection.
- Downloading datasets Asylum-PT_Age, Asylum-PT_Gender, Asylum-OfficeType_Prov, Top_25_CITZ_Office_Type_last_month,  and Asylum-Top_25_CITZ_prov_last_month
+ Downloading datasets:
+- Asylum-PT_Age;
+- Asylum-PT_Gender;
+- Asylum-OfficeType_Prov;
+- Top_25_CITZ_Office_Type_last_month; 
+- Asylum-Top_25_CITZ_prov_last_month.
 
 Inspection:
    
