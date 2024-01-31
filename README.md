@@ -81,12 +81,18 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 8. Run ydata prfilig on the datasets
 
 ### Results
-- 24 Unsupported Variables types were rejected 
-- 20 Numeric Variables used were all highly correlated and skewed to the right
-- 
+1. 24 Unsupported Variables types were rejected 
+2. 20 Numeric Variables are :
+- Highly correlated
+- Positively Skewed:  
+- Slightly Skewed = Quebec,pakistan, China, Other Countries  with Skewness valesss within he range of  0.5 and 1
+- Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
+
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/cff2c31c-131d-4166-b8b0-420586a6e3a8)
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/a781c9ba-bc5f-41e8-8ae7-4665163c3633)
+
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/09861377-47dc-4d66-8e82-e314d54f0bf2)
 
 
 
