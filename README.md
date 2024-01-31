@@ -91,6 +91,29 @@ conda install -c conda-forge ydata-profiling
 from ydata_profiling import ProfileReport
 profile_ClaimOfficetype = ProfileReport(df)
 profile_ClaimOfficetype
+
+
+data1 = pd.read_excel(r"C:\Users\LawalZa2\OneDrive - Government of Ontario\Documents\school project\Asylum_by_countries_of_citizenship.xlsx") # Asylum datasets by ountries of citizenship
+dat1a.head()
+data1.isnull().sum()# no missing values detected
+data1_new = data1.replace('--',np.NaN) ## replacing the sting'--' with NaN'
+data1_new.head()
+data1_new.isnull().sum() # missing values detected: 
+dff = data_new1.fillna(data_new.median()) ## replacing all missing values with the median between 0 and 5
+dff
+dff.describe() ## summary of data
+dff.shape
+profile_Countries = ProfileReport(dff)
+profile_Countries
+
+data2 = pd.read_excel(r"C:\Users\LawalZa2\OneDrive - Government of Ontario\Documents\school project\Asylum_by_Prov.xlsx") # Asylum datasets by Province/Territory
+data2.head()
+data_new2 = data2.replace('--',np.NaN) ## replacing the sting'--' with NaN'
+dfff = data_new2.fillna(data_new2.median()) ## replacing all missing values with the median between 0 and 5
+dfff
+dfff.describe()
+profile_Province = ProfileReport(dfff)
+profile_Province
 ```
 
 ### Previous Research
