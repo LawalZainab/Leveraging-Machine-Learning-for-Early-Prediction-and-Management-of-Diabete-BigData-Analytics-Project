@@ -34,35 +34,38 @@ In the initial data preparation phase, the following tasks was performed:
 - Asylum-PT_Age;
 - Asylum-PT_Gender;
 - Asylum-OfficeType_Prov;
-- Top_25_CITZ_Office_Type_last_month; 
+- Asylum_Top_25_CITZ_Office_Type_last_month; 
 - Asylum-Top_25_CITZ_prov_last_month.
 
 Inspection:
    
-- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset or EN_ODP-Asylum-PT_Gender datasets = provides Total Monthly Asylum Seekers by Territory/Province
-- Applying filters and transposing EN_ODP-Asylum-Top_25_CITZ_Office_Type_last_month and Asylum-Top_25_CITZ_prov_last_month = provides Total Monthly Asylum Seekers by country of Citizenship
 - Applying filters and transposing EN_ODP-Asylum-OfficeType_Prov datasets = provides Total Monthly Asylum Seekers by Claim Office Type
-
+- Applying filters and transposing EN_ODP-Asylum-Top_25_CITZ_Office_Type_last_month and Asylum-Top_25_CITZ_prov_last_month = provides Total Monthly Asylum Seekers by country of Citizenship
+- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset or EN_ODP-Asylum-PT_Gender datasets = provides Total Monthly Asylum Seekers by Territory/Province
 
 2. Data cleaning and formatting
    
 Asylum Seekers by Claim Office Type (Jan 2015- Nov 2023)
 - 	Filtering Asylum-OfficeType_Prov dataset by office claim (Airport, Border, Inland, Other Offices), excluding 'Total' and 'Blanks'.
 - 	Transposing the data from row to column in a new sheet.
-- 	Clean the dataset: delete the Total each year (e.g. 2015 Total) and add the year to each month to make it consistent.
--	The clean dataset provides Asylum Seekers by Claim Office Type.
+-  Clean the dataset: delete the Total each year (e.g. 2015 Total), descriptive notes above and below datasets
+-  Format the dataset: add the year to the month to make it consistent.
+  
 
 Asylum Seekers by Country of Citizenship (Jan 2015- Nov 2023)
 -	Filtering Asylum-Top_25_CITZ_prov_last_month dataset by Country of Citizenship (Mexico, Nigeria, India ….) excluding 'Total’, and 'Blanks'
 -	Transposing data from row to column into a new sheet.
--	Clean the dataset: the Total each year (e.g., 2015 Total), the year added to each month, and the numbering on the country of citizenship deleted.
--	The clean dataset provides Asylum Seekers by Country of Citizenship.
-
+-	Clean the dataset:delete the Total each year (e.g., 2015 Total), delete non the country of citizenship, and add to each month.
+-	Format the dataset: add the year to the month to make it consistent.
+  
 Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 -	Filtering Asylum-PT_Gender dataset by Province/Territory excluding 'Total’, and 'Blanks'.
 -	Transposing data from row to column into a new sheet.
 -	Clean the dataset: deleting Quarters(column), Total by Quarters(row), Total by Years, and adding the year to the months.
--	The clean dataset provides Asylum Seekers by Province/Territory.
+-	Format the dataset: add the year to the month to make it consistent.
+
+Combine the three datasets( Asylum Seekers by Claim Office Type, Asylum Seekers by Country of Citizenship and Asylum Seekers by Province/Territory ) into a single working datasets =  Asylum_Seekers_inCanada_Jan2015-Nov2015.
+
 
 ### Exploratory Data Analysis
 
