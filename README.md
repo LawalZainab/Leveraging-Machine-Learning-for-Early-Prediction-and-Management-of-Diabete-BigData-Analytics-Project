@@ -62,7 +62,7 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 1. Import dataset into Jupyter notebook.
 2.  View datasets and check number of rows and columns
 3.  Check datatype, we have ‘int64’, ‘object’, and ‘datetime64’
-- Note: datatype should be ‘datetime64’ and ‘int64’ when inspected, Columns with ‘object’ datatype contain numbers and strings (“--“).
+- Note: datatype should be ‘datetime64’ and ‘int64’ when dataset was inspected, but we now have Columns with ‘object’ datatype contain numbers and strings (“--“).
 4. Check for missing values: none were detected. 
 - Note: The Open Government website states 'Please note that in these datasets, the figures have been suppressed or rounded to prevent the identification of individuals when the datasets are compiled and compared with other publicly available statistics. Values between 0 and 5 are shown as “--“ and all other values are rounded to the nearest multiple of 5'
 - “--“is considered missing values.
