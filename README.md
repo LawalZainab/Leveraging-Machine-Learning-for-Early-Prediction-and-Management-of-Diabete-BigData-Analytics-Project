@@ -84,7 +84,7 @@ conda install -c conda-forge ydata-profiling
 from ydata_profiling import ProfileReport
 ```
 
-- 
+
 -
 - 	How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
 - 	How does the demographic group relate to the choice of province or office claim type for lodging an asylum claim? 
@@ -92,6 +92,21 @@ from ydata_profiling import ProfileReport
 
 
 
+### Previous Research
+-	There is no previous research where Machine Models were applied to Asylum datasets but there was a Standing Committee on Citizenship and Immigration CIMM - Asylum Trend Data- November 18, 2022, on the Government of Canada website with the following key message.
+-Key Messages
+-The top three source countries for irregular claimants are Haiti, Turkey, and Colombia.
+-In 2022, irregular claimants make up the top method of entry for asylum claimants, whereas, in the past four years, inland claims have represented the highest volumes.
+-For the second year in a row, Mexico has been the top source country for all asylum claimants.
+-Seasonal increases in asylum claimants occur
+-At land borders: July and August
+-At airports: May, September and December
+-Inland: August to November
+-Between the ports: July and August
 
-
-
+### Research
+- This research focuses on datasets from Jan 2015- Nov 2023
+- Check the demographic groups that contribute more to asylum seekers, interaction 
+- How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
+- How does the demographic group relate to the choice of province or office claim type for lodging an asylum claim? 
+- How have the demographics of asylum seekers changed over time, and are there any seasonal patterns in asylum applications? Can we predict future trends in asylum seeker numbers based on historical data? 
