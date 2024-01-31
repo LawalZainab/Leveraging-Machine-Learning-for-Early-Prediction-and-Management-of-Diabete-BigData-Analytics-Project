@@ -71,61 +71,33 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 
 ### Exploratory Data Analysis
 
-1. Import dataset into Jupyter notebook.
-2.  View datasets and check number of rows and columns
-3.  Check datatype, we have ‘int64’, ‘object’, and ‘datetime64’
-- Note: datatype should be ‘datetime64’ and ‘int64’ when dataset was inspected, but we now have Columns with ‘object’ datatype contain numbers and strings (“--“).
-4. Check for missing values: none were detected. 
-- Note: The Open Government website states 'Please note that in these datasets, the figures have been suppressed or rounded to prevent the identification of individuals when the datasets are compiled and compared with other publicly available statistics. Values between 0 and 5 are shown as “--“ and all other values are rounded to the nearest multiple of 5'
-- “--“is considered missing values.
-5.  Convert data type and Replace missing values
-- Replace “--“with NaN, convert the datatype from ‘object’ into ‘floats’ 
-6.  Check for missing values again: columns with missing values identified.
-7. Handling Missing values
-- Replace missing values with the median, numbers are between  0 and 5
-8.  Summary of data provides minimum, maximum, mean, and the percentiles (25%, 50%, and 75%) of the datasets
+1. Install and Import the required packaged into Jupyter notebook
+2. Read Asylum_Seekers_inCanada_Jan2015-Nov2015 dataset into Jupyter notebook. Note: data is in xlsx
+3. View datasets
+4. check data shape i.e. numbers of rows and columns (107, 45)
+5. Check datatypes : datatypes were 'datetime', 'int54' and 'object'
+6. Check for missing values : none were detected
+7. Check data summary: Minimum, maximum, mean, and the percentiles (25%, 50%, and 75%) of the datasets
+8. Run ydata prfilig on the datasets
+
+### Results
+
 
 ``` Python
 
-import pandas as pd
-data = pd.read_excel(r"C:\Users\LawalZa2\OneDrive - Government of Ontario\Documents\school project\Asylum_by_ClaimOfficetype.xlsx") # Asylum datasets by Claim Office types
-data.head()
-data.isnull().sum()# no missing values detected
-data_new = data.replace('--',np.NaN) ## replacing the sting'--' with NaN'
-data_new.head()
-data_new.isnull().sum() # missing values detected: Other Offices have 59 missing values
-df = data_new.fillna(data_new.median()) ## replacing all missing values with the median between 0 and 5
-df
-df.describe() ## summary of data
-df.shape
 pip install ydata-profiling
 conda install -c conda-forge ydata-profiling
 from ydata_profiling import ProfileReport
-profile_ClaimOfficetype = ProfileReport(df)
-profile_ClaimOfficetype
+import pandas as pd
+data = pd.read_excel(r"C:\Users\LawalZa2\Documents\school project\Asylum_Seeker_in Canada_Jan2015-Nov2023.xlsx") # Asylum datasets by Claim Office types
+data
+data.shape
+data.info()
+data.isnull().sum()
+data.describe()
+profile_data = ProfileReport(data)
+profile_data
 
-
-data1 = pd.read_excel(r"C:\Users\LawalZa2\OneDrive - Government of Ontario\Documents\school project\Asylum_by_countries_of_citizenship.xlsx") # Asylum datasets by ountries of citizenship
-dat1a.head()
-data1.isnull().sum()# no missing values detected
-data1_new = data1.replace('--',np.NaN) ## replacing the sting'--' with NaN'
-data1_new.head()
-data1_new.isnull().sum() # missing values detected: 
-dff = data_new1.fillna(data_new.median()) ## replacing all missing values with the median between 0 and 5
-dff
-dff.describe() ## summary of data
-dff.shape
-profile_Countries = ProfileReport(dff)
-profile_Countries
-
-data2 = pd.read_excel(r"C:\Users\LawalZa2\OneDrive - Government of Ontario\Documents\school project\Asylum_by_Prov.xlsx") # Asylum datasets by Province/Territory
-data2.head()
-data_new2 = data2.replace('--',np.NaN) ## replacing the sting'--' with NaN'
-dfff = data_new2.fillna(data_new2.median()) ## replacing all missing values with the median between 0 and 5
-dfff
-dfff.describe()
-profile_Province = ProfileReport(dfff)
-profile_Province
 ```
 
 ### Previous Research
