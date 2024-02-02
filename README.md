@@ -108,7 +108,7 @@ profile_data
   
   Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
 
-3. Kurtosis
+-  Kurtosis
   
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/cff2c31c-131d-4166-b8b0-420586a6e3a8)
@@ -123,6 +123,26 @@ profile_data
 
 After investigation, the unsupported variable types were 'Object',  due to the  strings ('--') in the datasets.  This were used to represent values between 0 and 5.
 From the Open Government website states 'Please note that in these datasets, the figures have been suppressed or rounded to prevent the identification of individuals when the datasets are compiled and compared with other publicly available statistics. Values between 0 and 5 are shown as “--“ and all other values are rounded to the nearest multiple of 5'
+
+```
+import numpy as np
+data_new = data.replace('--',np.NaN) ## replacing the sting'--' with NaN'
+data_new
+data_new.info() # checking datatypes
+profile_data_new = ProfileReport(data_new)
+profile_data_new
+
+```
+
+
+### Results from Ydata profile reiterate
+
+
+
+
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/fd7788c2-21b1-4792-85d6-3980382f662f)
+
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/ae7f2e43-70b3-46fe-978c-62c50bb9087c)
 
 
 
