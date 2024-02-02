@@ -101,14 +101,14 @@ profile_data
 ### Results
 1. 24 Unsupported variable types were rejected.
 2. 20 Numeric variable types used were:
-- Highly correlated
+- Highly correlated positively i.e. the variables have a strong relationship with each other 
 - Positively Skewed:
   
   Slightly Skewed = Quebec, Iran, China, Other Countries  with Skewness valesss within the range of  0.5 and 1.
   
   Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
 
-  
+3. Kurtosis
   
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/cff2c31c-131d-4166-b8b0-420586a6e3a8)
@@ -119,7 +119,11 @@ profile_data
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/e4341467-fea2-4da2-a078-57683cff8e8f)
 
-### From the result, 24 important varaibles excluded
+### From the Result: 24 important varaibles excluded( Unsupported)
+
+After investigation, the unsupported variable types were 'Object',  due to the  strings ('--'). used to represent numbers between 0 and 5
+
+
 ### Previous Research
 -	There is no previous research where Machine Models were applied to Asylum datasets but there was a Standing Committee on Citizenship and Immigration CIMM - Asylum Trend Data- November 18, 2022, on the Government of Canada website with the following key message.
 -Key Messages
