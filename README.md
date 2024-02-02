@@ -40,9 +40,9 @@ In the initial data preparation phase, the following tasks was performed:
 
 Inspection:
    
-- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset or EN_ODP-Asylum-PT_Gender datasets = provides Total Monthly Asylum Seekers by Territory/Province
-- Applying filters and transposing EN_ODP-Asylum-OfficeType_Prov datasets = provides Total Monthly Asylum Seekers by Claim Office Type
-- Applying filters and transposing EN_ODP-Asylum-Top_25_CITZ_Office_Type_last_month and Asylum-Top_25_CITZ_prov_last_month = provides Total Monthly Asylum Seekers by country of Citizenship
+- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset OR EN_ODP-Asylum-PT_Gender datasets = provides Total Monthly Asylum Seekers by Territory/Province.
+- Applying filters and transposing EN_ODP-Asylum-OfficeType_Prov datasets = provides Total Monthly Asylum Seekers by Claim Office Type.
+- Applying filters and transposing EN_ODP-Asylum-Top_25_CITZ_Office_Type_last_month OR Asylum-Top_25_CITZ_prov_last_month = provides Total Monthly Asylum Seekers by country of Citizenship.
 
 2. Data cleaning and formatting
    
