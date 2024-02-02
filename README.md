@@ -13,7 +13,7 @@ The purpose of the research is to investigate the patterns, variation, and relat
 Asylum Claimants- Monthly IRCC Updates- Open Government
 
 Temporary residents in the humanitarian population who request refugee protection upon or after arrival in Canada.
-Dataset is between Jan 2015 - Nov 2023
+Dataset is between Jan 2015 - Nov 2023.
 
 - 	https://www.ircc.canada.ca/opendata-donneesouvertes/data/EN_ODP-Asylum-PT_Age.xlsx
 - 	https://www.ircc.canada.ca/opendata-donneesouvertes/data/EN_ODP-Asylum-PT_Gender.xlsx
@@ -72,14 +72,14 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 
 ### Exploratory Data Analysis
 
-1. Install and Import the required packaged into Jupyter notebook
-2. Read Asylum_Seekers_inCanada_Jan2015-Nov2015 dataset into Jupyter notebook. Note: data is in xlsx
-3. View datasets
-4. check data shape i.e. numbers of rows and columns (107, 45)
-5. Check datatypes : datatypes were 'datetime', 'int54' and 'object'
-6. Check for missing values : none were detected
-7. Check data summary: Minimum, maximum, mean, and the percentiles (25%, 50%, and 75%) of the datasets
-8. Run ydata prfilig on the datasets
+1. Install and Import the required packaged into Jupyter notebook.
+2. Read Asylum_Seekers_inCanada_Jan2015-Nov2015 dataset into Jupyter notebook. Note: data is in xlsx.
+3. View datasets.
+4. check data shape i.e. numbers of rows and columns (107, 45).
+5. Check datatypes : datatypes were 'datetime', 'int54' and 'object'.
+6. Check for missing values : none were detected.
+7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
+8. Run ydata profilig on the datasetso
 
 ``` Python
 
