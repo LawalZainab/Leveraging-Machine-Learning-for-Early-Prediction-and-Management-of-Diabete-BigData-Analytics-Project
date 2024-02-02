@@ -82,7 +82,6 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 8. Run ydata profilig on the datasetso
 
 ``` Python
-
 pip install ydata-profiling
 conda install -c conda-forge ydata-profiling
 from ydata_profiling import ProfileReport
@@ -109,8 +108,8 @@ profile_data
   
   Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
 
--  Kurtosis
-  
+
+
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/cff2c31c-131d-4166-b8b0-420586a6e3a8)
 
