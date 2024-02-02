@@ -49,14 +49,14 @@ Inspection:
 Asylum Seekers by Claim Office Type (Jan 2015- Nov 2023)
 - 	Filtering Asylum-OfficeType_Prov dataset by office claim (Airport, Border, Inland, Other Offices), excluding 'Total' and 'Blanks'.
 - 	Transposing the data from row to column in a new sheet.
--  Clean the dataset: delete the Total each year (e.g. 2015 Total), descriptive notes above and below datasets
+-  Clean the dataset: delete the Total each year (e.g. 2015 Total), descriptive notes above and below datasets.
 -  Format the dataset: add the year to the month to make it consistent.
   
 
 Asylum Seekers by Country of Citizenship (Jan 2015- Nov 2023)
 -	Filtering Asylum-Top_25_CITZ_prov_last_month dataset by Country of Citizenship (Mexico, Nigeria, India ….) excluding 'Total’, and 'Blanks'
 -	Transposing data from row to column into a new sheet.
--	Clean the dataset:delete the Total each year (e.g., 2015 Total), delete non the country of citizenship, and add to each month.
+-	Clean the dataset:delete the Total each year (e.g., 2015 Total), delete numbering besides each countires, and add to each month.
 -	Format the dataset: add the year to the month to make it consistent.
   
 Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
