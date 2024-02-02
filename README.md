@@ -101,8 +101,8 @@ profile_data
 ### Results
 1. 24 Unsupported variable types were rejected.
 2. 20 Numeric variable types used were:
-- Highly correlated positively i.e. the variables have a strong relationship with each other 
-- Positively Skewed:
+- Highly positively correlated i.e. the variables have a strong relationship with each other.
+- Positively Skewed Data Distribution:
   
   Slightly Skewed = Quebec, Iran, China, Other Countries  with Skewness valesss within the range of  0.5 and 1.
   
