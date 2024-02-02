@@ -104,7 +104,7 @@ profile_data
 - Highly positively correlated i.e. the variables have a strong relationship with each other.
 - Positively Skewed Data Distribution:
   
-  Slightly Skewed = Quebec, Iran, China, Other Countries  with Skewness valesss within the range of  0.5 and 1.
+  Slightly Skewed = Quebec, Iran, China, Other Countries  with Skewness values within the range of  0.5 and 1.
   
   Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
 
