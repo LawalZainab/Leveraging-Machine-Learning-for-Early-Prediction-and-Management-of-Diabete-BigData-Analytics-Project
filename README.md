@@ -115,6 +115,8 @@ profile_data
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/a781c9ba-bc5f-41e8-8ae7-4665163c3633)
 
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/69919524-a75e-4f79-b146-0dbd09cb6402)
+
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/09861377-47dc-4d66-8e82-e314d54f0bf2)
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/e4341467-fea2-4da2-a078-57683cff8e8f)
