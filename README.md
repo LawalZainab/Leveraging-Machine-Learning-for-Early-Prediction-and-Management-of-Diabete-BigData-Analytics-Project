@@ -43,6 +43,7 @@ Inspection:
 - Applying filters and transposing EN_ODP-Asylum-PT_Age dataset OR EN_ODP-Asylum-PT_Gender datasets = provides Total Monthly Asylum Seekers by Territory/Province.
 - Applying filters and transposing EN_ODP-Asylum-OfficeType_Prov datasets = provides Total Monthly Asylum Seekers by Claim Office Type.
 - Applying filters and transposing EN_ODP-Asylum-Top_25_CITZ_Office_Type_last_month OR Asylum-Top_25_CITZ_prov_last_month = provides Total Monthly Asylum Seekers by Countries of Citizenship.
+- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset by Age groups = provides total monthly age group 
 
 2. Data cleaning and formatting
    
@@ -167,9 +168,9 @@ https://www.canada.ca/en/immigration-refugees-citizenship/corporate/transparency
 -Inland: August to November
 -Between the ports: July and August
 
-- Asylum Climants( Just the Fact)
+- Asylum Climants( Just the Fact) by Statistics Canada
 https://www150.statcan.gc.ca/n1/pub/89-28-0001/2018001/article/00013-eng.htm
-
+Ke
 ### Research Questions
 - This research focuses on datasets from Jan 2015- Nov 2023
 - Check the demographic groups that contribute more to asylum seekers, interaction 
