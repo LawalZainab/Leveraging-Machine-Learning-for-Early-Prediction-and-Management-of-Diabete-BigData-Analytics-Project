@@ -22,7 +22,7 @@ Dataset is between Jan 2015 - Nov 2023
 - 	https://www.ircc.canada.ca/opendata-donneesouvertes/data/EN_ODP-Asylum-Top_25_CITZ_prov_last_month.xlsx
 
 ### Tools
-- Excel- Data Cleaning 
+- Excel- Data Cleaning/Formatting
 - Python - Data Analysis
 - Tableau, or Excel or Python for a visual representation of the datasets - To create a report
 
