@@ -157,12 +157,11 @@ Highly Skewed = New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwa
 
 
 ### Previous Research
--	There is no previous research where Machine Models were applied to Asylum datasets but there was a Standing Committee on Citizenship and Immigration CIMM - Asylum Trend Data- November 18, 2022, on the Government of Canada website with the following key message.
--Key Messages
--The top three source countries for irregular claimants are Haiti, Turkey, and Colombia.
--In 2022, irregular claimants make up the top method of entry for asylum claimants, whereas, in the past four years, inland claims have represented the highest volumes.
--For the second year in a row, Mexico has been the top source country for all asylum claimants.
--Seasonal increases in asylum claimants occur
+- CIMM - Asylum Trend Data- November 18, 2022, on the Government of Canada website with the following key message.
+1. The top three source countries for irregular claimants are Haiti, Turkey, and Colombia.
+2. In 2022, irregular claimants make up the top method of entry for asylum claimants, whereas, in the past four years, inland claims have represented the highest volumes.
+3. For the second year in a row, Mexico has been the top source country for all asylum claimants.
+4. Seasonal increases in asylum claimants occur
 -At land borders: July and August
 -At airports: May, September and December
 -Inland: August to November
