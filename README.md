@@ -104,9 +104,8 @@ profile_data
 - Highly correlated
 - Positively Skewed:
   
-     Slightly Skewed = Quebec, Pakistan, China, Other Countries  with Skewness valesss within the range of  0.5 and 1.
-  
-      Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
+  Slightly Skewed = Quebec, Pakistan, China, Other Countries  with Skewness valesss within the range of  0.5 and 1.
+  Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
 
   
   
