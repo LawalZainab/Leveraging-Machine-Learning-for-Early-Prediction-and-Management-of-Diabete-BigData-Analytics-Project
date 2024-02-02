@@ -99,12 +99,12 @@ profile_data
 ```
 
 ### Results
-1. 24 Unsupported variables types were rejected.
-2. 20 Numeric variables used were:
+1. 24 Unsupported variable types were rejected.
+2. 20 Numeric variable types used were:
 - Highly correlated
 - Positively Skewed:  
-- Slightly Skewed = Quebec, Pakistan, China, Other Countries  with Skewness valesss within the range of  0.5 and 1.
-- Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
+1. Slightly Skewed = Quebec, Pakistan, China, Other Countries  with Skewness valesss within the range of  0.5 and 1.
+2. Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/cff2c31c-131d-4166-b8b0-420586a6e3a8)
 
