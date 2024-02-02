@@ -99,8 +99,9 @@ profile_data
 ```
 
 ### Results
-1. 24 Unsupported variable types were rejected.
-2. 20 Numeric variable types used were:
+1. Zer0(0) missing cells identified
+2. 24 Unsupported variable types were rejected.
+3. 20 Numeric variable types used were:
 - Highly positively correlated i.e. the variables have a strong relationship with each other.
 - Positively Skewed Data Distribution:
   
@@ -136,10 +137,16 @@ profile_data_new
 
 ```
 
-
 ### Results from Ydata profile reiterate
+1. 427 missing cells
+2. 7 Categorical Varaible types: Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island,  Other Offices, Newfoundland and Labrador; the values on the variables were '0' and NaN
+3. 37 Numeric variable types used were:
+- Highly positively correlated i.e. the variables have a strong relationship with each other.
+- Positively Skewed Data Distribution
 
+Slightly Skewed = Nova Scotia, Quebec, Iran, China, Other Countries  with Skewness values within the range of  0.5 and 1.
 
+Highly Skewed = New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwanda, Romania, Ethiopia, Chad, Burundi, Algeria, Senegal , Syria, Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1.
 
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/fd7788c2-21b1-4792-85d6-3980382f662f)
@@ -161,7 +168,7 @@ profile_data_new
 -Inland: August to November
 -Between the ports: July and August
 
-### Research
+### Research Questions
 - This research focuses on datasets from Jan 2015- Nov 2023
 - Check the demographic groups that contribute more to asylum seekers, interaction 
 - How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
