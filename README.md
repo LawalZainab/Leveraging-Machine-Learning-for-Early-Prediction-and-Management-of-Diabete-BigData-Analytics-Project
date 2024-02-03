@@ -43,7 +43,8 @@ Inspection:
 - Applying filters and transposing EN_ODP-Asylum-PT_Age dataset OR EN_ODP-Asylum-PT_Gender datasets = provides Total Monthly Asylum Seekers by Territory/Province.
 - Applying filters and transposing EN_ODP-Asylum-OfficeType_Prov datasets = provides Total Monthly Asylum Seekers by Claim Office Type.
 - Applying filters and transposing EN_ODP-Asylum-Top_25_CITZ_Office_Type_last_month OR Asylum-Top_25_CITZ_prov_last_month = provides Total Monthly Asylum Seekers by Countries of Citizenship.
-- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset by Age groups = provides total monthly age group 
+- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset by Age groups = provides Total Monthly Asylum Seekers by Age Group
+- Applying filters and tranposing to EN_ODP-Asylum-PT_Gender.xlsx by gender  = provides Total Monthly Asylum Seekers by Gender
 
 2. Data cleaning and formatting
    
@@ -65,6 +66,19 @@ Asylum Seekers by Province/Territory (Jan 2015- Nov 2023)
 -	Transposing data from row to column into a new sheet.
 -	Clean the dataset: deleting Quarters(column), Total by Quarters(row), Total by Years, and adding the year to the months.
 -	Format the dataset: add the year to the month to make it consistent.
+
+Asylum Seekers by Gender (Jan 2015- Nov 2023)
+- Filtering Asylum-PT_Gender dataset by Gender excluding 'Total’, and 'Blanks'.
+-	Transposing data from row to column into a new sheet.
+-	Clean the dataset: deleting Quarters(column), Total by Quarters(row), Total by Years, and adding the year to the months.
+-	Format the dataset: add the year to the month to make it consistent.
+
+Asylum Seekers by Age Group (Jan 2015- Nov 2023)
+- Filtering Asylum-PT_Gender dataset by Province/Territory excluding 'Total’, and 'Blanks'.
+-	Transposing data from row to column into a new sheet.
+-	Clean the dataset: deleting Quarters(column), Total by Quarters(row), Total by Years, and adding the year to the months.
+-	Format the dataset: add the year to the month to make it consistent.
+
 
 ### Working Datasets
 
@@ -100,8 +114,9 @@ profile_data
 
 ### Results
 1. Zer0(0) missing cells identified
-2. 24 Unsupported variable types were rejected.
-3. 20 Numeric variable types used were:
+2. 2 Categorical variable types
+3. 25 Unsupported variable types were rejected.
+4. 28 Numeric variable types used were:
 - Highly positively correlated i.e. the variables have a strong relationship with each other.
 - Positively Skewed Data Distribution:
   
@@ -109,18 +124,9 @@ profile_data
   
   Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1
 
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/dc40ef18-2c1d-47ea-9dcf-5d49c67e072b)
 
 
-
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/cff2c31c-131d-4166-b8b0-420586a6e3a8)
-
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/a781c9ba-bc5f-41e8-8ae7-4665163c3633)
-
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/69919524-a75e-4f79-b146-0dbd09cb6402)
-
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/09861377-47dc-4d66-8e82-e314d54f0bf2)
-
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/e4341467-fea2-4da2-a078-57683cff8e8f)
 
 ### From the Result: 24 important variables were excluded( Unsupported)
 
