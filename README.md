@@ -130,11 +130,16 @@ profile_data
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/fd5d6c7a-60a4-42ee-ac6e-b12d4dc1f340)
 
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/e483d5b2-97f3-4eaf-816a-9c80727d723d)
 
-### From the Result: 24 important variables were excluded( Unsupported)
+
+### From the Result: 25 important variables were excluded( Unsupported)
 
 After investigation, the unsupported variable types were 'Object',  due to the  strings ('--') in the datasets.  This were used to represent values between 0 and 5.
 From the Open Government website states 'Please note that in these datasets, the figures have been suppressed or rounded to prevent the identification of individuals when the datasets are compiled and compared with other publicly available statistics. Values between 0 and 5 are shown as “--“ and all other values are rounded to the nearest multiple of 5'
+
+Replacing the strings ('--') in the dataset with NaN(Not a Number)  is a special floating point value this is used to represent the undefined values 
+
 
 ```
 import numpy as np
