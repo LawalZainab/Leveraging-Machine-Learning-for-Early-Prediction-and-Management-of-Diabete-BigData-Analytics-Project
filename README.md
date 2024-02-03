@@ -160,13 +160,7 @@ Slightly Skewed = Nova Scotia, Quebec, Iran, China, Other Countries  with Skewne
 
 Highly Skewed = New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwanda, Romania, Ethiopia, Chad, Burundi, Algeria, Senegal , Syria, Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1.
 
-
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/fd7788c2-21b1-4792-85d6-3980382f662f)
-
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/ae7f2e43-70b3-46fe-978c-62c50bb9087c)
-
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/debd397b-4b8c-485a-b256-e10159101a05)
-
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/ad430598-62b5-4b0e-9e30-6de252e9a85f)
 
 ### Previous Research
 - CIMM - Asylum Trend Data- November 18, 2022, on the Government of Canada website with the following key message.
