@@ -125,12 +125,11 @@ profile_data
   
   Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years   with skewness greater than 1
 
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/dc40ef18-2c1d-47ea-9dcf-5d49c67e072b)
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/ea2dfc67-fdbe-446e-9ddf-306fda163745)
 
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/fd5d6c7a-60a4-42ee-ac6e-b12d4dc1f340)
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/9fab9a22-a05e-40d2-9892-839f20ce6ce4)
 
-![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/e483d5b2-97f3-4eaf-816a-9c80727d723d)
-
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/799ea84b-8761-4f6a-b801-a9c024405cf5)
 
 ### From the Result: 25 important variables were excluded( Unsupported)
 
