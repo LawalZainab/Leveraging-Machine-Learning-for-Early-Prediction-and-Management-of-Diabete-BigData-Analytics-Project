@@ -82,7 +82,7 @@ Asylum Seekers by Age Group (Jan 2015- Nov 2023)
 
 ### Working Datasets
 
-- Combine the three datasets( Asylum Seekers by Claim Office Type, Asylum Seekers by Country of Citizenship and Asylum Seekers by Province/Territory ) into a single working datasets =  Asylum_Seekers_inCanada_Jan2015-Nov2015.
+- Combine the five datasets( Asylum Seekers by Claim Office Type, Asylum Seekers by Country of Citizenship, Asylum Seekers by Province/Territory, Asylum Seekers by Gender and Asylum Seekers by Age Group ) into a single working datasets =  Asylum_Seekers_inCanada_Jan2015-Nov2015.
 
 
 ### Exploratory Data Analysis
