@@ -82,7 +82,7 @@ Asylum Seekers by Age Group (Jan 2015- Nov 2023)
 
 ### Working Datasets
 
-- Combine the five datasets( Asylum Seekers by Claim Office Type, Asylum Seekers by Country of Citizenship, Asylum Seekers by Province/Territory, Asylum Seekers by Gender and Asylum Seekers by Age Group ) into a single working datasets =  Asylum_Seekers_inCanada_Jan2015-Nov2015.
+- Combine the five datasets( Asylum Seekers by Claim Office Type, Asylum Seekers by Country of Citizenship, Asylum Seekers by Province/Territory, Asylum Seekers by Gender and Asylum Seekers by Age Group ) into a single working datasets =  Asylum_Seekers_Canada_Jan2015_Nov2015.
 
 
 ### Exploratory Data Analysis
@@ -97,11 +97,12 @@ Asylum Seekers by Age Group (Jan 2015- Nov 2023)
 8. Run ydata profilig on the datasetso
 
 ``` Python
-pip install ydata-profiling
-conda install -c conda-forge ydata-profiling
+!pip install ydata-profiling
 from ydata_profiling import ProfileReport
 import pandas as pd
-data = pd.read_excel(r"C:\Users\LawalZa2\Documents\school project\Asylum_Seeker_in Canada_Jan2015-Nov2023.xlsx") # Asylum datasets by Claim Office types
+from google.colab import files
+Asylum_Seekers = files.upload()
+data = pd.read_excel(r"Asylum_Seeker_Canada_Jan2015_Nov2023.xlsx")
 data
 data.shape
 data.info()
@@ -138,7 +139,7 @@ profile_data
 After investigation, the unsupported variable types were 'Object',  due to the  strings ('--') in the datasets.  This were used to represent values between 0 and 5.
 From the Open Government website states 'Please note that in these datasets, the figures have been suppressed or rounded to prevent the identification of individuals when the datasets are compiled and compared with other publicly available statistics. Values between 0 and 5 are shown as “--“ and all other values are rounded to the nearest multiple of 5'
 
-Replacing the strings ('--') in the dataset with NaN(Not a Number)  is a special floating point value this is used to represent the undefined values 
+Replacing the strings ('--') in the dataset with NaN(Not a Number) is a special floating point value this is used to represent the undefined values.
 
 
 ```
@@ -184,10 +185,11 @@ https://www.canada.ca/en/immigration-refugees-citizenship/corporate/transparency
 
 - Asylum Climants( Just the Fact) by Statistics Canada
 https://www150.statcan.gc.ca/n1/pub/89-28-0001/2018001/article/00013-eng.htm
-Ke
+
+
 ### Research Questions
 - This research focuses on datasets from Jan 2015- Nov 2023
-- Check the demographic groups that contribute more to asylum seekers, interaction 
-- How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
-- How does the demographic group relate to the choice of province or office claim type for lodging an asylum claim? 
-- How have the demographics of asylum seekers changed over time, and are there any seasonal patterns in asylum applications? Can we predict future trends in asylum seeker numbers based on historical data? 
+	- How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
+   - How does the demographic group relate to the choice of province or office claim type for lodging an asylum claim? 
+   - How have the demographics of asylum seekers changed over time, and are there any seasonal patterns in asylum applications? Can we predict future trends in asylum seeker numbers based on historical data? 
+
