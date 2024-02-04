@@ -110,7 +110,7 @@ data.isnull().sum()
 data.describe()
 profile_data = ProfileReport(data)
 profile_data
-
+profile_data.to_file('Asylum_Seekers_data.html')
 ```
 
 ### Results
@@ -146,12 +146,13 @@ data_new
 data_new.info() # checking datatypes
 profile_data_new = ProfileReport(data_new)
 profile_data_new
+profile_data_new.to_file('Asylum_Seekers_new.html')
 
 ```
 
 ### Results from Ydata profile reiterate
-1. 427 missing cells
-2. 7 Categorical Varaible types: Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island,  Other Offices, Newfoundland and Labrador; the values on the variables were '0' and NaN
+1. 432 missing cells
+2. 7 Categorical Variable types: Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island,  Other Offices, Newfoundland and Labrador; the values on the variables were '0' and NaN
 3. 37 Numeric variable types used were:
 - Highly positively correlated i.e. the variables have a strong relationship with each other.
 - Positively Skewed Data Distribution
