@@ -88,13 +88,13 @@ Asylum Seekers by Age Group (Jan 2015- Nov 2023)
 ### Exploratory Data Analysis
 
 1. Install and Import the required packaged into Jupyter notebook.
-2. Read Asylum_Seekers_inCanada_Jan2015-Nov2015 dataset into Jupyter notebook. Note: data is in xlsx.
+2. Read Asylum_Seekers_Canada_Jan2015_Nov2015 dataset into Jupyter notebook. Note: data is in xlsx.
 3. View datasets.
 4. check data shape i.e. numbers of rows and columns (107, 45).
 5. Check datatypes : datatypes were 'datetime', 'int54' and 'object'.
 6. Check for missing values : none were detected.
 7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
-8. Run ydata profilig on the datasetso
+8. Run ydata profiling on the dataset
 
 ``` Python
 !pip install ydata-profiling
