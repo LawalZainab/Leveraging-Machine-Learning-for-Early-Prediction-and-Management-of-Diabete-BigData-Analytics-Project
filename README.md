@@ -123,9 +123,9 @@ profile_data.to_file('Asylum_Seekers_data.html')
        - Highly positively correlated i.e. the variables have a strong relationship with each other.
        - Positively Skewed Data Distribution:
   
-           -  Slightly Skewed = Quebec, Iran, China, Other Countries, 0 to 14 years of age,  with Skewness values within the range of  0.5 and 1.
+       -  Slightly Skewed = Quebec, Iran, China, Other Countries, 0 to 14 years of age,  with Skewness values within the range of  0.5 and 1.
   
-           -  Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years   with skewness greater than 1.
+       -  Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years   with skewness greater than 1.
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/ea2dfc67-fdbe-446e-9ddf-306fda163745)
 
