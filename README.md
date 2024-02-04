@@ -56,7 +56,7 @@ Asylum Seekers by Claim Office Type (Jan 2015- Nov 2023)
   
 
 Asylum Seekers by Country of Citizenship (Jan 2015- Nov 2023)
--	Filtering Asylum-Top_25_CITZ_prov_last_month dataset by Country of Citizenship (Mexico, Nigeria, India ….) excluding 'Total’, and 'Blanks'
+-	Filtering Asylum-Top_25_CITZ_prov_last_month dataset by Country of Citizenship (Mexico, Nigeria, India ….) excluding 'Total’, and 'Blanks'.
 -	Transposing data from row to column into a new sheet.
 -	Clean the dataset:delete the Total each year (e.g., 2015 Total), delete numbering besides each countires, and add to each month.
 -	Format the dataset: add the year to the month to make it consistent.
@@ -94,7 +94,7 @@ Asylum Seekers by Age Group (Jan 2015- Nov 2023)
 5. Check datatypes : datatypes were 'datetime', 'int64' and 'object'.
 6. Check for missing values : none were detected.
 7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
-8. Run ydata profiling on the dataset
+8. Run ydata profiling on the dataset.
 
 ``` Python
 
@@ -117,15 +117,15 @@ profile_data.to_file('Asylum_Seekers_data.html')
 
 ### Results
 1. - Zer0(0) missing cells identified
-2. - 2 Categorical variable types ( Gender not stated = 0, 5, 20 ;  Another gender = 0, 5)- these variables were read as categorical because it only has 2 or 3 values
-3. - 25 Unsupported variable types were rejected.These variables have data type 'Object'
+2. - 2 Categorical variable types ( Gender not stated = 0, 5, 20 ;  Another gender = 0, 5)- these variables were read as categorical because it only has 2 or 3 values.
+3. - 25 Unsupported variable types were rejected.These variables have data type 'Object'.
 4. - 28 Numeric variable types were:
        - Highly positively correlated i.e. the variables have a strong relationship with each other.
        - Positively Skewed Data Distribution:
   
            -  Slightly Skewed = Quebec, Iran, China, Other Countries, 0 to 14 years of age,  with Skewness values within the range of  0.5 and 1.
   
-           -  Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years   with skewness greater than 1
+           -  Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years   with skewness greater than 1.
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/ea2dfc67-fdbe-446e-9ddf-306fda163745)
 
@@ -153,15 +153,15 @@ profile_data_new.to_file('Asylum_Seekers_new.html')
 ```
 
 ### Results from Ydata profile reiterate
-1. 432 missing cells
+1. 432 missing cells.
 2. 7 Categorical Variable types: Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island,  Other Offices, Newfoundland and Labrador; the values on the variables were '0' and NaN
 3. 37 Numeric variable types were:
 - Highly positively correlated i.e. the variables have a strong relationship with each other.
-- Positively Skewed Data Distribution
+- Positively Skewed Data Distribution.
 
 Slightly Skewed = uebec, Iran, China, Other Countries, 0 to 14 years of age, Nova Scotia, Quebec, Iran, China, Other Countries  with Skewness values within the range of  0.5 and 1.
 
-Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years, New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwanda, Romania, Ethiopia, Chad, Burundi, Algeria, Senegal , Syria, Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1.
+Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years, New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwanda, Romania, Ethiopia, Chad, Burundi, Algeria, Senegal, Syria, Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1.
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/ad430598-62b5-4b0e-9e30-6de252e9a85f)
 
