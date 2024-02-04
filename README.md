@@ -91,12 +91,13 @@ Asylum Seekers by Age Group (Jan 2015- Nov 2023)
 2. Read Asylum_Seekers_Canada_Jan2015_Nov2015 dataset into Jupyter notebook. Note: data is in xlsx.
 3. View datasets.
 4. check data shape i.e. numbers of rows and columns (107, 45).
-5. Check datatypes : datatypes were 'datetime', 'int54' and 'object'.
+5. Check datatypes : datatypes were 'datetime', 'int64' and 'object'.
 6. Check for missing values : none were detected.
 7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
 8. Run ydata profiling on the dataset
 
 ``` Python
+
 !pip install ydata-profiling
 from ydata_profiling import ProfileReport
 import pandas as pd
@@ -111,6 +112,7 @@ data.describe()
 profile_data = ProfileReport(data)
 profile_data
 profile_data.to_file('Asylum_Seekers_data.html')
+
 ```
 
 ### Results
@@ -134,7 +136,7 @@ profile_data.to_file('Asylum_Seekers_data.html')
 ### From the Results: 25 important variables were excluded( Unsupported)
 
 After investigation, the unsupported variable types were 'Object',  due to the  strings ('--') in the datasets.  This were used to represent values between 0 and 5.
-From the Open Government website states 'Please note that in these datasets, the figures have been suppressed or rounded to prevent the identification of individuals when the datasets are compiled and compared with other publicly available statistics. Values between 0 and 5 are shown as “--“ and all other values are rounded to the nearest multiple of 5'
+From the Open Government website states 'Please note that in these datasets, the figures have been suppressed or rounded to prevent the identification of individuals when the datasets are compiled and compared with other publicly available statistics. Values between 0 and 5 are shown as “--“ and all other values are rounded to the nearest multiple of 5'.
 
 Replacing the strings ('--') in the dataset with NaN(Not a Number) is a special floating point value this is used to represent the undefined values.
 
@@ -153,7 +155,7 @@ profile_data_new.to_file('Asylum_Seekers_new.html')
 ### Results from Ydata profile reiterate
 1. 432 missing cells
 2. 7 Categorical Variable types: Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island,  Other Offices, Newfoundland and Labrador; the values on the variables were '0' and NaN
-3. 37 Numeric variable types used were:
+3. 37 Numeric variable types were:
 - Highly positively correlated i.e. the variables have a strong relationship with each other.
 - Positively Skewed Data Distribution
 
@@ -185,7 +187,7 @@ https://www150.statcan.gc.ca/n1/pub/89-28-0001/2018001/article/00013-eng.htm
 
 ### Research Questions
 - This research focuses on datasets from Jan 2015- Nov 2023
-	- How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
+   - How do the demographic characteristics vary across different provinces of claim or claim office types? Are there specific demographic groups that are more likely to seek asylum in certain provinces or claim office types?
    - How does the demographic group relate to the choice of province or office claim type for lodging an asylum claim? 
    - How have the demographics of asylum seekers changed over time, and are there any seasonal patterns in asylum applications? Can we predict future trends in asylum seeker numbers based on historical data? 
 
