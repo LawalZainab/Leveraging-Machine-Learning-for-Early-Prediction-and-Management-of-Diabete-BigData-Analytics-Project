@@ -161,7 +161,7 @@ profile_data_new.to_file('Asylum_Seekers_new.html')
 
            - Slightly Skewed = Quebec, Iran, China, Other Countries, 0 to 14 years of age, Nova Scotia, Quebec, Iran, China, Other Countries  with Skewness values within the range of  0.5 and 1.
 
-           - Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years, New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwanda, Romania, Ethiopia, Chad, Burundi, Algeria, Senegal, Syria, Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1.
+           - Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwanda, Romania, Ethiopia, Chad, Burundi, Algeria, Senegal, Syria, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years with skewness greater than 1.
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/ad430598-62b5-4b0e-9e30-6de252e9a85f)
 
