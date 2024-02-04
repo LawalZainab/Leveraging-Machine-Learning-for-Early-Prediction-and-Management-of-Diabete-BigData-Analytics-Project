@@ -153,11 +153,11 @@ profile_data_new.to_file('Asylum_Seekers_new.html')
 ```
 
 ### Results from Ydata profile reiterate
-1. 432 missing cells.
-2. 7 Categorical Variable types: Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island,  Other Offices, Newfoundland and Labrador; the values on the variables were '0' and NaN
-3. 37 Numeric variable types were:
-- Highly positively correlated i.e. the variables have a strong relationship with each other.
-- Positively Skewed Data Distribution:
+1. - 432 missing cells.
+2. - 7 Categorical Variable types: Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island,  Other Offices, Newfoundland and Labrador; the values on the variables were '0' and NaN
+3. - 37 Numeric variable types were:
+       - Highly positively correlated i.e. the variables have a strong relationship with each other.
+       - Positively Skewed Data Distribution:
 
    - Slightly Skewed = Quebec, Iran, China, Other Countries, 0 to 14 years of age, Nova Scotia, Quebec, Iran, China, Other Countries  with Skewness values within the range of  0.5 and 1.
 
