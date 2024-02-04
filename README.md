@@ -164,6 +164,8 @@ Highly Skewed = New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwa
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/b9c20f06-74ff-4d6c-992b-f1817741e2dd)
 
+![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/4b3833e9-3626-4252-822d-0591caa9996f)
+
 ### Previous Research
 - CIMM - Asylum Trend Data- November 18, 2022, on the Government of Canada website with the following key message.
 https://www.canada.ca/en/immigration-refugees-citizenship/corporate/transparency/committees/cimm-nov-18-2022/asylum-trend-data.html
