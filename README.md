@@ -115,9 +115,9 @@ profile_data.to_file('Asylum_Seekers_data.html')
 
 ### Results
 1. - Zer0(0) missing cells identified
-2. - 2 Categorical variable types ( Gender not stated, Another gender)
-3. - 25 Unsupported variable types were rejected.
-4. - 28 Numeric variable types used were:
+2. - 2 Categorical variable types ( Gender not stated = 0, 5, 20 ;  Another gender = 0, 5)- these variables were read as categorical because it only has 2 or 3 values
+3. - 25 Unsupported variable types were rejected.These variables have data type 'Object'
+4. - 28 Numeric variable types were:
        - Highly positively correlated i.e. the variables have a strong relationship with each other.
        - Positively Skewed Data Distribution:
   
