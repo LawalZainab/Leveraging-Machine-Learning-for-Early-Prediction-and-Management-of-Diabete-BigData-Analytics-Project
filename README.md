@@ -43,8 +43,8 @@ Inspection:
 - Applying filters and transposing EN_ODP-Asylum-PT_Age dataset OR EN_ODP-Asylum-PT_Gender datasets = provides Total Monthly Asylum Seekers by Territory/Province.
 - Applying filters and transposing EN_ODP-Asylum-OfficeType_Prov datasets = provides Total Monthly Asylum Seekers by Claim Office Type.
 - Applying filters and transposing EN_ODP-Asylum-Top_25_CITZ_Office_Type_last_month OR Asylum-Top_25_CITZ_prov_last_month = provides Total Monthly Asylum Seekers by Countries of Citizenship.
-- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset by Age groups = provides Total Monthly Asylum Seekers by Age Group
-- Applying filters and tranposing to EN_ODP-Asylum-PT_Gender.xlsx by gender  = provides Total Monthly Asylum Seekers by Gender
+- Applying filters and transposing EN_ODP-Asylum-PT_Age dataset by Age groups = provides Total Monthly Asylum Seekers by Age Group.`
+- Applying filters and tranposing to EN_ODP-Asylum-PT_Gender.xlsx by gender  = provides Total Monthly Asylum Seekers by Gender.
 
 2. Data cleaning and Formatting
    
@@ -154,12 +154,12 @@ profile_data_new.to_file('Asylum_Seekers_new.html')
 
 ### Results from Ydata profile reiterate
 1. - 432 missing cells.
-2. - 10 Categorical Variable types: Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island,  Other Offices, Newfoundland and Labrador; the values on the variables were '0' and 'NaN'
+2. - 10 Categorical Variable types: Other Offices, Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island, Newfoundland and Labrador; the values on the variables were '0' and 'NaN'
 3. - 45 Numeric variable types were:
        - Highly positively correlated i.e. the variables have a strong relationship with each other.
        - Positively Skewed Data Distribution:
 
-           - Slightly Skewed = Quebec, Iran, China, Other Countries, 0 to 14 years of age, Nova Scotia, Quebec, Iran, China, Other Countries  with Skewness values within the range of  0.5 and 1.
+           - Slightly Skewed = Other Countries, Quebec, Iran, China, 0 to 14 years of age, Nova Scotia, Quebec, Iran, China, Other Countries  with Skewness values within the range of  0.5 and 1.
 
            - Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwanda, Romania, Ethiopia, Chad, Burundi, Algeria, Senegal, Syria, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years with skewness greater than 1.
 
