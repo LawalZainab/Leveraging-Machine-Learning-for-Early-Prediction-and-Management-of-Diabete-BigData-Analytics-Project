@@ -90,7 +90,7 @@ Asylum Seekers by Age Group (Jan 2015- Nov 2023)
 1. Install and Import the required packaged into Jupyter notebook.
 2. Read Asylum_Seekers_Canada_Jan2015_Nov2015 dataset into Jupyter notebook. Note: data is in xlsx.
 3. View datasets.
-4. check data shape i.e. numbers of rows and columns (107, 45).
+4. check data shape i.e. numbers of rows and columns (107, 56).
 5. Check datatypes : datatypes were 'datetime', 'int64' and 'object'.
 6. Check for missing values : none were detected.
 7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
