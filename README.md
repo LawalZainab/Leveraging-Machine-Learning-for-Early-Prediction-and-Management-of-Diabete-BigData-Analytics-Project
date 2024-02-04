@@ -29,7 +29,7 @@ Dataset is between Jan 2015 - Nov 2023.
 ### Data Cleaning/Preparation
 
 In the initial data preparation phase, the following tasks was performed:
-1.  Data Downloading and inspection.
+1.  Data Downloading and Inspection.
    
  Downloading datasets:
 - Asylum-PT_Age;
@@ -46,7 +46,7 @@ Inspection:
 - Applying filters and transposing EN_ODP-Asylum-PT_Age dataset by Age groups = provides Total Monthly Asylum Seekers by Age Group
 - Applying filters and tranposing to EN_ODP-Asylum-PT_Gender.xlsx by gender  = provides Total Monthly Asylum Seekers by Gender
 
-2. Data cleaning and formatting
+2. Data cleaning and Formatting
    
 Asylum Seekers by Claim Office Type (Jan 2015- Nov 2023)
 - 	Filtering Asylum-OfficeType_Prov dataset by office claim (Airport, Border, Inland, Other Offices), excluding 'Total' and 'Blanks'.
@@ -94,7 +94,7 @@ Asylum Seekers by Age Group (Jan 2015- Nov 2023)
 5. Check datatypes : datatypes were 'datetime', 'int64' and 'object'.
 6. Check for missing values : none were detected.
 7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
-8. Run ydata profiling on the dataset.
+8. Run Ydata Profiling on the dataset.
 
 ``` Python
 
@@ -157,11 +157,11 @@ profile_data_new.to_file('Asylum_Seekers_new.html')
 2. 7 Categorical Variable types: Northwest Territories, Nunavut, Outside Canada, Yukon, Prince Edward Island,  Other Offices, Newfoundland and Labrador; the values on the variables were '0' and NaN
 3. 37 Numeric variable types were:
 - Highly positively correlated i.e. the variables have a strong relationship with each other.
-- Positively Skewed Data Distribution.
+- Positively Skewed Data Distribution:
 
-Slightly Skewed = uebec, Iran, China, Other Countries, 0 to 14 years of age, Nova Scotia, Quebec, Iran, China, Other Countries  with Skewness values within the range of  0.5 and 1.
+         Slightly Skewed = Quebec, Iran, China, Other Countries, 0 to 14 years of age, Nova Scotia, Quebec, Iran, China, Other Countries  with Skewness values within the range of  0.5 and 1.
 
-Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years, New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwanda, Romania, Ethiopia, Chad, Burundi, Algeria, Senegal, Syria, Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1.
+         Highly Skewed = Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan, Male, Female,  15 to 29 years of age, 30 to 44 years of age, 45 to 59, 60 to 74 years, 75 years, New Brunswick, Manitoba, Saskatchewan, Kenya, Uganda, Ghana, Rwanda, Romania, Ethiopia, Chad, Burundi, Algeria, Senegal, Syria, Airport, Border, Inland, Ontario, Alberta, Britsh Columbia, Mexico, Nigeria, India, Bangladesh, Pakistan, Haiti, Columbia, Turkey, Sri Lanka, Afganistan with skewness greater than 1.
 
 ![image](https://github.com/LawalZainab/Rate-of-Asylum-Seekers-in-Canada-Big-Data-Analytics-Project/assets/157916270/ad430598-62b5-4b0e-9e30-6de252e9a85f)
 
