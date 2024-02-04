@@ -94,7 +94,7 @@ Asylum Seekers by Age Group (Jan 2015- Nov 2023)
 5. Check datatypes : datatypes were 'datetime', 'int64' and 'object'.
 6. Check for missing values : none were detected.
 7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
-8. Run Ydata Profiling on the dataset.
+8. Run Ydata Profiling on the datasets.
 
 ``` Python
 
