@@ -6,7 +6,7 @@ Diabetes is a chronic metabolic disorder characterized by elevated blood sugar l
 This research explores the application of machine learning in predicting diabetes, focusing on enhancing early detection and management. The outcomes aim to empower healthcare professionals with actionable insights, contributing to proactive healthcare strategies and improved patient outcomes. 
 
 ### Theme: 
-Supervised learning Classification Algorithm
+Supervised Learning - Classification Algorithm
 
 ### Data Sources:
 The Diabetes Dataset of 1000 patients, covers three classes (Diabetic, Non-Diabetic, and Predicted-Diabetic).
