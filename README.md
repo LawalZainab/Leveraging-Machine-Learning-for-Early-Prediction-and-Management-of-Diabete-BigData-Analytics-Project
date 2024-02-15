@@ -66,7 +66,15 @@ profile_data.to_file('Diabetes_data.html')
 
 ```
 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/10895931-c78f-4d5a-9ea9-919678061204)
 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/147a6e42-4b91-497b-ab6e-24ab89d248be)
 
- 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c867802c-9238-4b6a-8323-23ab636dea64)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a321af0b-0ac6-45d7-9d69-50dfa0b3b518)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/758755a7-df02-4301-8466-07848a9b5bed)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/2d9af3de-fe08-4adb-b88d-9d5264246544)
 
