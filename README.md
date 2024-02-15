@@ -25,10 +25,7 @@ The data consists of medical information and laboratory analysis: No. of Patient
 - Python- for data analysis and visual representation of the datasets.
 
 
-#### 1- Data Cleaning/Preparation
-
-In the initial data preparation phase, the following tasks was performed:
-1.  Data Downloading and Inspection.
+#### 1- Data Downloading and Inspection
    
 Downloading datasets:
 [[Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)](https://data.mendeley.com/datasets/wj9rwkp9c2/1/files/2eb60cac-96b8-46ea-b971-6415e972afc9)
