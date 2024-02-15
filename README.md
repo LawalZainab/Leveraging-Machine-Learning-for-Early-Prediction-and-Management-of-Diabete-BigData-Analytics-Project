@@ -15,7 +15,12 @@ The Diabetes Dataset of 1000 patients, covers three classes (Diabetic, Non-Diabe
 
 The data consists of medical information and laboratory analysis: No. of Patient, Sugar Level Blood, Age, Gender, Creatinine ratio (Cr), Body Mass Index (BMI), Urea, Cholesterol (Chol), Fasting lipid profile, including total, LDL, VLDL, Triglycerides (TG), and HDL Cholesterol, HBA1C, Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Predict-Diabetic).
 
-
+### Research Questions
+- This research focuses on datasets from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital)
+   - Is there any relationship between the features?
+   - How can machine learning algorithms be optimized to accurately predict the onset of diabetes?
+   - What feature selection methods enhance the accuracy of diabetes prediction models using machine learning?
+     
 ### Techniques:
 - Heatmap/Correlations: To check for relationships/associations between the features.
 - Predictive models: Logistic regression, Decision tree, and Naive Bayes
@@ -62,11 +67,6 @@ profile_data.to_file('Diabetes_data.html')
 ```
 
 
-### Research Questions
-- This research focuses on datasets from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital)
-   - Is there any relationship between the features?
-   - How can machine learning algorithms be optimized to accurately predict the onset of diabetes?
-   - What feature selection methods enhance the accuracy of diabetes prediction models using machine learning?
-     
+
  
 
