@@ -8,7 +8,7 @@ This research explores the application of machine learning in predicting diabete
 ### Theme: 
 Supervised learning Classification Algorithm
 
-### Data Sources
+### Data Sources:
 The Diabetes Dataset of 1000 patients, covers three classes (Diabetic, Non-Diabetic, and Predicted-Diabetic).
 
 [Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)
@@ -16,11 +16,13 @@ The Diabetes Dataset of 1000 patients, covers three classes (Diabetic, Non-Diabe
 The data consists of medical information and laboratory analysis: No. of Patient, Sugar Level Blood, Age, Gender, Creatinine ratio (Cr), Body Mass Index (BMI), Urea, Cholesterol (Chol), Fasting lipid profile, including total, LDL, VLDL, Triglycerides (TG), and HDL Cholesterol, HBA1C, Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Predict-Diabetic).
 
 
-### Tools
+### Techniques:
 - Heatmap/Correlations: To check for relationships/associations between the features.
 - Predictive models: Logistic regression, Decision tree, and Naive Bayes
 - Chi-square statistics, Correlation Coefficient and Fisher’s score
 
+### Relevant tools:
+- Python- for data analysis and visual representation of the datasets.
 
 
 ### Data Cleaning/Preparation
