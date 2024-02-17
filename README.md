@@ -23,7 +23,7 @@ The data consists of medical information and laboratory analysis: No. of Patient
      
 ### Techniques:
 - Heatmap/Correlations: To check for relationships/associations between the features.
-- Predictive models: Logistic regression, Decision tree, and Naive Bayes
+- Predictive models: Logistic regression, Decision tree, Random Forest, and Naive Bayes
 - Chi-square statistics, Correlation Coefficient and Fisher’s score
 
 ### Relevant tools:
