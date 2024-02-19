@@ -9,21 +9,38 @@ This research explores the application of machine learning in predicting diabete
 Supervised Learning - Classification Algorithm
 
 ### Data Sources:
-The Diabetes Dataset of 1000 patients, covers three classes (Diabetic, Non-Diabetic, and Predicted-Diabetic).
+1- The Diabetes Dataset of 1000 Iraqi patients, multi-classification framework to predict diabetes in three classes: diabetic, non-diabetic, and prediabetes. 
 
-[Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)
+     [Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)
 
-The data consists of medical information and laboratory analysis: No. of Patient, Sugar Level Blood, Age, Gender, Creatinine ratio (Cr), Body Mass Index (BMI), Urea, Cholesterol (Chol), Fasting lipid profile, including total, LDL, VLDL, Triglycerides (TG), and HDL Cholesterol, HBA1C, Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Predict-Diabetic).
+       The data consists of medical information and laboratory analysis: No. of Patient, Sugar Level Blood, Age, Gender, Creatinine ratio (Cr), Body Mass Index (BMI), Urea, Cholesterol (Chol), Fasting lipid profile, including total, LDL(low-density lipoprotein), 
+       VLDL(very low density lipoprotein), Triglycerides (TG), HDL Cholesterol(high-density lipoprotein), HBA1C(hemoglobin A1c), Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Predict-Diabetic).
+       
+2- the Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia
 
+   The data consists of 19 variables on 390 subjects:  Chol(Cholesterol), stab.glu(Stabilized Glucose), hdl (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic 
+   blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure) waist, hip, time.ppn
+ 
+   ### Data Preperation:
+
+   Vanderbilt dataset diagnosis of diabetes was based on a glycohemoglobin:
+   Non-diabetes = below 5.7%
+   Pre-diabetes = 5.7 and 6.4%
+   diabetes = above 6.4%
+   
+   BMI was calculated 703 x weight (lbs)/ [height(inches]2
+   Weight- there were 2 sets of data for weight : Weight1 and Weigh2, We took the Avg Weight for the calculation of BMI
+
+   
 ### Research Questions
 - This research focuses on datasets from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital)
    - Is there any relationship between the features?
    - How can machine learning algorithms be optimized to accurately predict the onset of diabetes?
+   - How do various algorithm approaches impact the predicive performance  across these datasets
    - What feature selection methods enhance the accuracy of diabetes prediction models using machine learning?
      
 ### Techniques:
-- Heatmap/Correlations: To check for relationships/associations between the features.
-- Predictive models: Logistic regression, Decision tree, Random Forest, and Naive Bayes
+- Predictive models:  Decision tree, Random Forest, KNN, Naive Bayes, Random forest
 - Chi-square statistics, Correlation Coefficient and Fisher’s score
 
 ### Relevant tools:
@@ -66,13 +83,6 @@ profile_data.to_file('Diabetes_data.html')
 
 ```
 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/10895931-c78f-4d5a-9ea9-919678061204)
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/147a6e42-4b91-497b-ab6e-24ab89d248be)
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c867802c-9238-4b6a-8323-23ab636dea64)
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a321af0b-0ac6-45d7-9d69-50dfa0b3b518)
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/758755a7-df02-4301-8466-07848a9b5bed)
 
