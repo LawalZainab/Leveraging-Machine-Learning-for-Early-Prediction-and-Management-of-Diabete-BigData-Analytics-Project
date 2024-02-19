@@ -9,7 +9,9 @@ This research explores the application of machine learning in predicting diabete
 Supervised Learning - Classification Algorithm
 
 ### Data Sources:
-1- The Diabetes Dataset of 1000 Iraqi patients, multi-classification framework to predict diabetes in three classes: diabetic, non-diabetic, and prediabetes. 
+ This research paper mainly uses two datsets:
+ 
+1- The Diabetes Dataset of 1000 Iraqi patients, acquired from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital). 
 
  The data consists of 13 variables on 1000 subjects: No. of Patient, Sugar Level Blood, Age, Gender, Creatinine ratio (Cr), Body Mass Index (BMI), Urea, Cholesterol (Chol), Fasting lipid profile, including total, LDL(low-density lipoprotein), 
  VLDL(very low density lipoprotein), Triglycerides (TG), HDL Cholesterol(high-density lipoprotein), HBA1C(hemoglobin A1c), Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Predict-Diabetic).
@@ -36,10 +38,10 @@ Supervised Learning - Classification Algorithm
    
 ### Research Questions
 - This research focuses on datasets from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital)
-   - Is there any relationship between the features?
+   - How can machine learning models contribute to early detection and accurate prediction of diabetes, considering diverse patient populations and datasets? Comparing the predictive performance of different Algorithm for early diabetes prediction
+   - What features and variables are most influential in developing robust machine learning models for diabetes risk assessment
    - How can machine learning algorithms be optimized to accurately predict the onset of diabetes?
-   - How do various algorithm approaches impact the predicive performance  across these datasets
-   - What feature selection methods enhance the accuracy of diabetes prediction models using machine learning?
+   -
      
 ### Techniques:
 - Predictive models:  Decision tree, Random Forest, KNN, Naive Bayes, Random forest
@@ -56,6 +58,7 @@ Downloading datasets:
 
 
 #### 2- Exploratory Data Analysis
+
 
 1. Install and Import the required packaged into Jupyter notebook.
 2. Read and understanding  Dataset_of_Diabetes.csv 
@@ -86,7 +89,4 @@ profile_data.to_file('Diabetes_data.html')
 ```
 
 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/758755a7-df02-4301-8466-07848a9b5bed)
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/2d9af3de-fe08-4adb-b88d-9d5264246544)
 
