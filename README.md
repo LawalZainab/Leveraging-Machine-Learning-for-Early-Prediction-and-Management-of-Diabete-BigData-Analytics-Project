@@ -41,7 +41,7 @@ Supervised Learning - Classification Algorithm
    - How can machine learning models contribute to early detection and accurate prediction of diabetes, considering diverse patient populations and datasets? Comparing the predictive performance of different Algorithm for early diabetes prediction
    - What features and variables are most influential in developing robust machine learning models for diabetes risk assessment
    - How can machine learning algorithms be optimized to accurately predict the onset of diabetes?
-   -
+   
      
 ### Techniques:
 - Predictive models:  Decision tree, Random Forest, KNN, Naive Bayes, Random forest
@@ -76,7 +76,7 @@ from ydata_profiling import ProfileReport
 import pandas as pd
 from google.colab import files
 Dataset_of_Diabetes = files.upload()
-data = pd.read_csv(r"Dataset_of_Diabetes.csv")
+data = pd.read_csv(r"Dataset_of_Diabetes_Al-Kindy.csv")
 data
 data.shape
 data.info()
