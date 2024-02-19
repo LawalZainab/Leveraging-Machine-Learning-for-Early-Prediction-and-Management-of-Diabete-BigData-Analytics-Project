@@ -24,11 +24,13 @@ Supervised Learning - Classification Algorithm
 ### Data Preperation:
 
 - Vanderbilt dataset diagnosis of diabetes was based on a glycohemoglobin:
+  
        - Non-diabetes = below 5.7%
        - Pre-diabetes = 5.7 and 6.4%
        - Diabetes = above 6.4%
    
 - BMI was calculated 703 x weight (lbs)/ [height(inches]2
+  
       - Weight- there were 2 sets of data for weight : Weight1 and Weigh2, We took the Avg Weight for the calculation of BMI
 
    
@@ -41,7 +43,7 @@ Supervised Learning - Classification Algorithm
      
 ### Techniques:
 - Predictive models:  Decision tree, Random Forest, KNN, Naive Bayes, Random forest
-- Chi-square statistics, Correlation Coefficient and Fisher’s score
+  
 
 ### Relevant tools:
 - Python- for data analysis and visual representation of the datasets.
