@@ -61,9 +61,9 @@ Downloading datasets:
 
 #### 2- Exploratory Data Analysis
 
-
+Dataset 1
 1. Install and Import the required packaged into Jupyter notebook.
-2. Read and understanding  Dataset_of_Diabetes.csv 
+2. Read and understanding  Dataset_of_Diabetes_Al-Kindy.csv 
 3. View datasets
 4. check data shape 
 5. Check datatypes 
@@ -90,6 +90,16 @@ profile_data
 profile_data.to_file('Diabetes_data.html')
 
 ```
+Dataset 2
+1. Read and understanding  Vanderbilt_Diabetes_Dataset.csv 
+2.  View datasets
+3. Vheck data shape 
+4. Check datatypes 
+5. Check for missing values 
+6. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
+7. Run Ydata Profiling on the datasets.
+8. 
+
 
 ### Result 
 Dataset Al-Kindy Diabetes
