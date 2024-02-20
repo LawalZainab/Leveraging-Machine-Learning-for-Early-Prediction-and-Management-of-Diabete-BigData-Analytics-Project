@@ -87,12 +87,13 @@ data.isnull().sum()
 data.describe()
 profile_data = ProfileReport(data)
 profile_data
-profile_data.to_file('Diabetes_data.html')
-
+profile_data.to_file('Diabetes-Al_Kindy_Teaching_Hospital_data.html')
+analyze_report = sv.analyze(data)
+report_Al_Kindy_Diabetes = sv.analyze(data)
 ```
 Dataset 2
 1. Read and understanding  Vanderbilt_Diabetes_Dataset.csv 
-2.  View datasets
+2. View datasets
 3. Vheck data shape 
 4. Check datatypes 
 5. Check for missing values 
