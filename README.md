@@ -23,11 +23,11 @@ Supervised Learning - Classification Algorithm
    The data consists of 19 variables on 390 subjects:  Chol(Cholesterol), stab.glu(Stabilized Glucose), hdl (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic 
    blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure), waist, hip, time.ppn.
    
-   https://data.world/informatics-edu/diabetes-prediction   Diabetes Registry.CSV- Introduction to Biomedical Data Scinecne
+   https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
   
 ### Data Preperation:
 
-- Vanderbilt dataset diagnosis of diabetes was based on a glycohemoglobin:
+- Vanderbilt dataset diagnosis of diabetes was based on a glycohemoglobin. The diabetes class attribute used: 
   
        - Non-diabetes = below 5.7%
        - Pre-diabetes = 5.7 and 6.4%
@@ -90,5 +90,7 @@ profile_data.to_file('Diabetes_data.html')
 
 ```
 
-
+### Result
+From the initial Exploratory Analysis
+bp.2s( second systolic blood pressure) have 252 missing values and bp.2d (second diastolic blood pressure) have 252 missing values 
 
