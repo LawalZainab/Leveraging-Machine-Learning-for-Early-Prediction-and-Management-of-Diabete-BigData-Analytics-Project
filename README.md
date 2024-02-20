@@ -71,6 +71,7 @@ Downloading datasets:
 7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
 8. Run Ydata Profiling on the datasets.
 
+
 ``` Python
 
 !pip install ydata-profiling
@@ -90,7 +91,14 @@ profile_data.to_file('Diabetes_data.html')
 
 ```
 
-### Result
+### Result 
+Dataset Al-Kindy Diabetes
+Number of observation 1000, this consist of 565 Males and 435 Females between teh age range of 20-79years  
+diabetes classes:   844 are diabetes, 103  are Non-diabates and 53 are prediabetes i.e. datasets is highly imbalance
+
+Variables 14
+
+
 From the initial Exploratory Analysis
 bp.2s( second systolic blood pressure) have 252 missing values and bp.2d (second diastolic blood pressure) have 252 missing values 
 
