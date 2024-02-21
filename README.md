@@ -20,7 +20,7 @@ Supervised Learning - Classification Algorithm
        
 2- The Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
 
-   The data consists of 19 variables on 390 subjects:  Chol(Cholesterol), stab.glu(Stabilized Glucose), hdl (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic 
+   The data consists of 19 variables on 390 subjects:  Patient ID, Chol(Cholesterol), stab.glu(Stabilized Glucose), hdl (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic 
    blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure), waist, hip, time.ppn.
    
    https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
