@@ -114,6 +114,6 @@ Dataset 2 - Vanderbilt
 - Diabetes classes: 67 are Diabetes, 298 are Non-diabetes, and 25 are Pre-diabetes.  Dataset is highly imbalance.
 - Missing cells: Chol = 1, HDL = 1, Ratio =1, Height = 3, BMI = 3, Frame = 11, Waist = 2, Hip = 2, time.ppn = 3, bp.1s= 5, bp.1d= 5, bp.2s=252 and  bp.2d= 252
 
-From the initial Exploratory Analysis
-bp.2s( second systolic blood pressure) have 252 missing values and bp.2d (second diastolic blood pressure) have 252 missing values 
+Since there are 252 missing values  in bp.2s and bp.2d- we drop the variabls, as bp.1s and bp.1d provided the systolic blood pressure and  diastolic blood pressure needed for our analysis. 
+
 
