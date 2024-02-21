@@ -101,11 +101,16 @@ Dataset 2 - Vanderbilt
 
 
 ### Result 
-Dataset Al-Kindy Diabetes
-Number of observation 1000, this consist of 565 Males and 435 Females between the age range of 20-79years  
-diabetes classes:   844 are diabetes, 103  are Non-diabates and 53 are prediabetes i.e. datasets is highly imbalance
+#### Dataset Al-Kindy Diabetes
+Number of observation 1000 with no Missing value, this consist of 565 Males and 435 Females between the age range of 20-79years. 
+Diabetes classes:   844 are diabetes, 103  are Non-diabates and 53 are prediabetes- Dataset is highly imbalance. 
+Normaly distributed variables, i.e. with skewness values between -0.5 and 0.5 : HbA1c, BMI,
+Slightly Skewed variables, i.e with Skewness values within the range of -1 and -0.5 (negative skewed) or 0.5 and 1(positive skewed): Age, Chol, 
+Highly skewed vairables Skewed variables, i.e, skewness values less than -1 (negative skewed) or greater than 1 (positive skewed) : Urea, Cr, Tg, HDL, LDL, VLDL 
+Highly Correlated:  CLASS with BMI and hBA1c; TG with VDL; and Urea with Cr 
 
 Variables 14
+#### Vanderbilt Diabetes Datasets
 
 
 From the initial Exploratory Analysis
