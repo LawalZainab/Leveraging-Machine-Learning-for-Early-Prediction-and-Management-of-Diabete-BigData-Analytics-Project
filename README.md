@@ -13,20 +13,19 @@ Supervised Learning - Classification Algorithm
  
 1- The Diabetes Dataset of 1000 Iraqi patients, acquired from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital). 
 
- The data consists of 13 variables on 1000 subjects: No. of Patient, Sugar Level Blood, Age, Gender, Creatinine ratio (Cr), Body Mass Index (BMI), Urea, Cholesterol (Chol), Fasting lipid profile, including total, LDL(low-density lipoprotein), 
- VLDL(very low density lipoprotein), Triglycerides (TG), HDL Cholesterol(high-density lipoprotein), HBA1C(hemoglobin A1c), Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Pre-diabetic).
+ The data consists of 13 variables on 1000 subjects: No. of Patient, Age, Gender, Creatinine ratio (Cr), Body Mass Index (BMI), Urea, Cholesterol (Chol), LDL(low-density lipoprotein), VLDL(very low density lipoprotein), Triglycerides (TG), HDL Cholesterol(high-density lipoprotein), HBA1C(hemoglobin A1c), Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Pre-diabetic).
 
  [Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)
        
 2- The Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
 
-   The data consists of 19 variables on 390 subjects:  Patient ID, Chol(Cholesterol), stab.glu(Stabilized Glucose), hdl (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure), waist, hip, time.ppn.
+   The data consists of 19 variables on 390 subjects:  Patient ID, Chol(Cholesterol), stab.glu(Stabilized Glucose), HDL (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, Height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure), waist, hip, time.ppn.
    
    https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
   
 ### Data Preperation:
 
-- Vanderbilt dataset diagnosis of diabetes was based on a glycohemoglobin. The diabetes class attribute used to group the glycohemoglobin readings is : 
+- Vanderbilt dataset diagnosis of diabetes was based on glycohemoglobin readings. These readings have been grouped into Diabetes, Pre-diabetes, and Non-Diabetes based on the following ranges:
   
        - Non-diabetes = below 5.7%
        - Pre-diabetes = 5.7 and 6.4%
@@ -45,7 +44,7 @@ Supervised Learning - Classification Algorithm
    
      
 ### Techniques:
-- Predictive models:  Decision tree, Random Forest, KNN, Naive Bayes, Random forest
+- Predictive models:  Decision Tree, Random Forest, K-Nearest Neighbors, Naive Bayes and Support Vector Machines.
   
 
 ### Relevant tools:
@@ -66,10 +65,10 @@ Dataset 1
 3. View datasets
 4. check data shape 
 5. Check datatypes 
-6. Check for missing values : none were detected.
+6. Check for missing values 
 7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
-8. Run Ydata Profiling on the datasets.
-
+8. Run EDA Ydata Profiling on the datasets.
+9. Run EDA using Sweetviz for comparison with Ydata profiling
 
 ``` Python
 
@@ -98,12 +97,12 @@ Dataset 2
 5. Check for missing values 
 6. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
 7. Run Ydata Profiling on the datasets.
-8. 
+8. Run EDA using Sweetviz for comparison with Ydata profiling
 
 
 ### Result 
 Dataset Al-Kindy Diabetes
-Number of observation 1000, this consist of 565 Males and 435 Females between teh age range of 20-79years  
+Number of observation 1000, this consist of 565 Males and 435 Females between the age range of 20-79years  
 diabetes classes:   844 are diabetes, 103  are Non-diabates and 53 are prediabetes i.e. datasets is highly imbalance
 
 Variables 14
