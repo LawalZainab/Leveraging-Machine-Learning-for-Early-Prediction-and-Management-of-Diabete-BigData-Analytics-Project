@@ -9,7 +9,7 @@ This research explores the application of machine learning in predicting diabete
 Supervised Learning - Classification Algorithm
 
 ### Data Sources:
- This research paper mainly uses two datsets:
+ This research paper mainly uses two datasets:
  
 1- The Diabetes Dataset of 1000 Iraqi patients, acquired from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital). 
 
