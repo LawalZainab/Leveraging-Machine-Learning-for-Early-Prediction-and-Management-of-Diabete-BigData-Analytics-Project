@@ -59,7 +59,7 @@ Downloading datasets:
 
 #### 2- Exploratory Data Analysis
 
-Dataset 1
+Dataset 1 - Al_Kindy
 1. Install and Import the required packaged into Jupyter notebook.
 2. Read and understanding  Dataset_of_Diabetes_Al-Kindy.csv 
 3. View datasets
@@ -89,7 +89,7 @@ profile_data.to_file('Diabetes-Al_Kindy_Teaching_Hospital_data.html')
 analyze_report = sv.analyze(data)
 report_Al_Kindy_Diabetes = sv.analyze(data)
 ```
-Dataset 2
+Dataset 2 - Vanderbilt
 1. Read and understanding  Vanderbilt_Diabetes_Dataset.csv 
 2. View datasets
 3. Vheck data shape 
