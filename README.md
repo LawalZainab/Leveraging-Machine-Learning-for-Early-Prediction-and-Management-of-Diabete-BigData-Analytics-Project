@@ -102,16 +102,17 @@ Dataset 2 - Vanderbilt
 
 ### Result 
 #### Dataset Al-Kindy Diabetes
-Number of observation 1000 with no Missing value, this consist of 565 Males and 435 Females between the age range of 20-79years. 
-Diabetes classes:   844 are diabetes, 103  are Non-diabates and 53 are prediabetes- Dataset is highly imbalance. 
-Normaly distributed variables, i.e. with skewness values between -0.5 and 0.5 : HbA1c, BMI,
-Slightly Skewed variables, i.e with Skewness values within the range of -1 and -0.5 (negative skewed) or 0.5 and 1(positive skewed): Age, Chol, 
-Highly skewed vairables Skewed variables, i.e, skewness values less than -1 (negative skewed) or greater than 1 (positive skewed) : Urea, Cr, Tg, HDL, LDL, VLDL 
-Highly Correlated:  CLASS with BMI and hBA1c; TG with VDL; and Urea with Cr 
+- Number of observations 1000 with no Missing value, this consist of 565 Males and 435 Females between the age range of 20-79years. 
+- Diabetes classes:   844 are diabetes, 103 are Non-diabates and 53 are prediabetes. Dataset is highly imbalance. 
+- Normaly distributed variables, i.e. with skewness values between -0.5 and 0.5 : HbA1c, BMI.
+- Slightly Skewed variables, i.e with Skewness values within the range of -1 and -0.5 (negative skewed) or 0.5 and 1(positive skewed): Age, Chol.
+- Highly skewed vairables Skewed variables, i.e, skewness values less than -1 (negative skewed) or greater than 1 (positive skewed) : Urea, Cr, Tg, HDL, LDL, VLDL.
+- Highly Correlated:  CLASS with BMI and hBA1c; TG with VDL; and Urea with Cr 
 
-Variables 14
 #### Vanderbilt Diabetes Datasets
-
+- Number of observations 390 with 162 Males and 228 Females between the age range 19-92years.
+- Diabetes classes: 67 are Diabetes, 298 are Non-diabetes, and 25 are Pre-diabetes.  Dataset is highly imbalance.
+- Missing cells: Chol = 1, HDL = 1, Ratio =1, Height = 3, BMI = 3, Frame = 11, Waist = 2, Hip = 2, time.ppn = 3, bp.1s= 5, bp.1d= 5, bp.2s=252 and  bp.2d= 252
 
 From the initial Exploratory Analysis
 bp.2s( second systolic blood pressure) have 252 missing values and bp.2d (second diastolic blood pressure) have 252 missing values 
