@@ -106,14 +106,22 @@ Dataset 2 - Vanderbilt
 - Diabetes classes:   844 are diabetes, 103 are Non-diabates and 53 are prediabetes. Dataset is highly imbalance. 
 - Normaly distributed variables, i.e. with skewness values between -0.5 and 0.5 : HbA1c, BMI.
 - Slightly Skewed variables, i.e with Skewness values within the range of -1 and -0.5 (negative skewed) or 0.5 and 1(positive skewed): Age, Chol.
-- Highly skewed vairables Skewed variables, i.e, skewness values less than -1 (negative skewed) or greater than 1 (positive skewed) : Urea, Cr, Tg, HDL, LDL, VLDL.
-- Highly Correlated:  CLASS with BMI and hBA1c; TG with VDL; and Urea with Cr 
+- Highly skewed vairables Skewed variables, i.e, skewness values less than -1 (negative skewed) or greater than 1 (positive skewed) : Urea, Cr, TG, HDL, LDL, VLDL.
+- Highly Correlated:  CLASS with BMI and hBA1c; TG with VDL; and Urea with Cr.
 
 #### Vanderbilt Diabetes Datasets
 - Number of observations 390 with 162 Males and 228 Females between the age range 19-92years.
 - Diabetes classes: 67 are Diabetes, 298 are Non-diabetes, and 25 are Pre-diabetes.  Dataset is highly imbalance.
 - Missing cells: Chol = 1, HDL = 1, Ratio =1, Height = 3, BMI = 3, Frame = 11, Waist = 2, Hip = 2, time.ppn = 3, bp.1s= 5, bp.1d= 5, bp.2s=252 and  bp.2d= 252
 
-Since there are 252 missing values  in bp.2s and bp.2d- we drop the variabls, as bp.1s and bp.1d provided the systolic blood pressure and  diastolic blood pressure needed for our analysis. 
+Since there are 252 missing values  in bp.2s and bp.2d - we drop the variables, as bp.1s and bp.1d provided the systolic blood pressure and diastolic blood pressure needed for our analysis. 
+
+``` Python
+# To remove bp.2s and bp.2d from the dataframe
+data3 = data2.drop(['bp.2s', 'bp.2d'], axis=1)
+data3
+profile_data3 = ProfileReport(data3)
+profile_data3
+```
 
 
