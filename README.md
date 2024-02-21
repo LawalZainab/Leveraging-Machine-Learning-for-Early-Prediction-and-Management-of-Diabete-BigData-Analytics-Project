@@ -20,14 +20,13 @@ Supervised Learning - Classification Algorithm
        
 2- The Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
 
-   The data consists of 19 variables on 390 subjects:  Patient ID, Chol(Cholesterol), stab.glu(Stabilized Glucose), hdl (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic 
-   blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure), waist, hip, time.ppn.
+   The data consists of 19 variables on 390 subjects:  Patient ID, Chol(Cholesterol), stab.glu(Stabilized Glucose), hdl (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure), waist, hip, time.ppn.
    
    https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
   
 ### Data Preperation:
 
-- Vanderbilt dataset diagnosis of diabetes was based on a glycohemoglobin. The diabetes class attribute used: 
+- Vanderbilt dataset diagnosis of diabetes was based on a glycohemoglobin. The diabetes class attribute used to group the glycohemoglobin readings is : 
   
        - Non-diabetes = below 5.7%
        - Pre-diabetes = 5.7 and 6.4%
@@ -37,7 +36,7 @@ Supervised Learning - Classification Algorithm
   
       - Weight- there were 2 sets of data for weight : Weight1 and Weigh2, We took the Avg Weight for the calculation of BMI
 
-   
+
 ### Research Questions
 - This research focuses on datasets from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital)
    - How can machine learning models contribute to early detection and accurate prediction of diabetes, considering diverse patient populations and datasets? Comparing the predictive performance of different Algorithm for early diabetes prediction
