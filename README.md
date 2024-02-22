@@ -41,6 +41,8 @@ Supervised Learning - Classification Algorithm
    - How can machine learning models contribute to early detection and accurate prediction of diabetes, considering diverse patient populations and datasets? Comparing the predictive performance of different Algorithm for early diabetes prediction
    - What features and variables are most influential in developing robust machine learning models for diabetes risk assessment
    - How can machine learning algorithms be optimized to accurately predict the onset of diabetes?
+   - What machine learning technique is optimal to create a predictive model for diabetes?
+   - What are the optimal validation metrics to compare the models’ performance?
    
      
 ### Techniques:
