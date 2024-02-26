@@ -37,13 +37,14 @@ Supervised Learning - Classification Algorithm
 
 
 ### Research Questions
-- This research focuses on datasets from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital)
-   - How can machine learning models contribute to early detection and accurate prediction of diabetes, considering diverse patient populations and datasets? Comparing the predictive performance of different Algorithm for early diabetes prediction
-   - What features and variables are most influential in developing robust machine learning models for diabetes risk assessment
-   - How can machine learning algorithms be optimized to accurately predict the onset of diabetes?
-   - What machine learning technique is optimal to create a predictive model for diabetes?
-   - What are the optimal validation metrics to compare the models’ performance?
-    - How to identify pre-diabetes, as well as the Test Negative and Positive results of Vanderbilt Diabetes datasets using machine learning.
+- The main aim of this research is to propose a multiclass classification methodology for the prediction of diabetes.
+-This research focuses on two datasets from the laboratory of Medical City Hospital (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital) and another dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
+-To employ different supervised multiclass classification algorithms that would accurately predict the onset of diabetes based on the predictor risk factors.
+-	What features are most influential in developing robust machine learning models for diabetes risk assessment?
+- What machine learning technique is optimal to create a predictive model for diabetes?
+-Evaluate and compare the developed system and performance of each algorithm.
+-	Comparing which dataset accurately predicts diabetes.
+
    
      
 ### Techniques:
