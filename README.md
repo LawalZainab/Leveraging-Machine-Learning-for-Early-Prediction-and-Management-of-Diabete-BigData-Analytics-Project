@@ -26,7 +26,9 @@ Supervised Learning - Classification Algorithm
    The data consists of 19 variables on 390 subjects:  Chol(Cholesterol), stab.glu(Stabilized Glucose), HDL (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, Height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure), waist, hip, time.ppn.
    
    https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
-  
+
+  ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f33de591-140d-42e0-8343-bc50f8b4cabf)
+
 ### Data Preperation:
 
 - Vanderbilt dataset diagnosis of diabetes was based on glycohemoglobin readings. These readings have been grouped into Diabetes, Pre-diabetes, and Non-Diabetes based on the following ranges:
