@@ -17,7 +17,9 @@ Supervised Learning - Classification Algorithm
 
  [Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)
 
-       ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5c66675d-0eb0-4b19-877e-a118092a37d3)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/92540bb0-8c76-4e27-bcd2-196c0d4141a2)
+
+       
 
 2- The Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
 
