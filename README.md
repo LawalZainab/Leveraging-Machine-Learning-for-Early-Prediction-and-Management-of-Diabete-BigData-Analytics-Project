@@ -13,8 +13,6 @@ Supervised Learning - Classification Algorithm
  
 1- The Diabetes Dataset of 1000 Iraqi patients, acquired from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital). 
 
- The data consists of 11 variables on 1000 subjects:  Age, Gender, Creatinine ratio (Cr), Body Mass Index (BMI), Urea(High blood urea nitrogen), Cholesterol (Chol), LDL(low-density lipoprotein), VLDL(very low density lipoprotein), Triglycerides (TG), HDL Cholesterol(high-density lipoprotein), HBA1C(hemoglobin A1c), Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Pre-diabetic).
-
  [Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/92540bb0-8c76-4e27-bcd2-196c0d4141a2)
@@ -23,15 +21,13 @@ Supervised Learning - Classification Algorithm
 
 2- The Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
 
-   The data consists of 19 variables on 390 subjects:  Chol(Cholesterol), stab.glu(Stabilized Glucose), HDL (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, Height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure), waist, hip, time.ppn.
-   
-   https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
+ https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
 
   ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f33de591-140d-42e0-8343-bc50f8b4cabf)
 
 ### Data Preperation:
 
-- Vanderbilt dataset diagnosis of diabetes was based on glycohemoglobin readings. These readings have been grouped into Diabetes, Pre-diabetes, and Non-Diabetes based on the following ranges:
+- Vanderbilt dataset diagnosis of diabetes was based on glycohemoglobin readings using Diabetic Screening Guidelines & Rules. The rules assisted in identifying patients that were as diabetic, pre-diabetic, or non-diabetic.
   
        - Non-diabetes = below 5.7%
        - Pre-diabetes = 5.7 and 6.4%
@@ -44,17 +40,18 @@ Supervised Learning - Classification Algorithm
 
 ### Research Questions
 - The main aim of this research is to propose a multiclass classification methodology for the prediction of diabetes.
--This research focuses on two datasets from the laboratory of Medical City Hospital (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital) and another dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
--To employ different supervised multiclass classification algorithms that would accurately predict the onset of diabetes based on the predictor risk factors.
+  
+- This research focuses on two datasets from the laboratory of Medical City Hospital (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital) and another dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
+- To employ different supervised multiclass classification algorithms that would accurately predict the onset of diabetes based on the predictor risk factors.
 -	What features are most influential in developing robust machine learning models for diabetes risk assessment?
 - What machine learning technique is optimal to create a predictive model for diabetes?
--Evaluate and compare the developed system and performance of each algorithm.
+- Evaluate and compare the developed system and performance of each algorithm.
 -	Comparing which dataset accurately predicts diabetes.
 
    
      
 ### Techniques:
-- Machine Learning Algorithms that will be used are:  Decision Tree, Random Forest, K-Nearest Neighbors, Naive Bayes and Support Vector Machines.
+- Machine Learning Algorithms that will be used are:  Decision Tree, Random Forest, K-Nearest Neighbors, Naive Bayes, Multinomial Logistic Regression and Support Vector Machines.
   
 
 ### Relevant tools:
