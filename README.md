@@ -16,7 +16,9 @@ Supervised Learning - Classification Algorithm
  The data consists of 11 variables on 1000 subjects:  Age, Gender, Creatinine ratio (Cr), Body Mass Index (BMI), Urea(High blood urea nitrogen), Cholesterol (Chol), LDL(low-density lipoprotein), VLDL(very low density lipoprotein), Triglycerides (TG), HDL Cholesterol(high-density lipoprotein), HBA1C(hemoglobin A1c), Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Pre-diabetic).
 
  [Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)
-       
+
+       ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5c66675d-0eb0-4b19-877e-a118092a37d3)
+
 2- The Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
 
    The data consists of 19 variables on 390 subjects:  Chol(Cholesterol), stab.glu(Stabilized Glucose), HDL (high-density lipoprotein), ratio(Chol/hdl) gylhb(Glycated hemoglobin),Location, Age, Gender, Height, Weight 1, Weight 2, Height, Frame, bp.1s( first systolic blood pressure), bp.1d(first diastolic blood pressure), bp.2s( second systolic blood pressure), bp.2d (second diastolic blood pressure), waist, hip, time.ppn.
