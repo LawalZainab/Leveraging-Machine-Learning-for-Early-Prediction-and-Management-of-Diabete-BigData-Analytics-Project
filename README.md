@@ -9,12 +9,13 @@ This research explores the application of machine learning in predicting diabete
 ### Research Questions
 - The main aim of this research is to propose a multiclass classification methodology for the prediction of diabetes.
   
-- This research focuses on two datasets from the laboratory of Medical City Hospital (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital) and another dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
-- To employ different supervised multiclass classification algorithms that would accurately predict the onset of diabetes based on the predictor risk factors.
--	What features are most influential in developing robust machine learning models for diabetes risk assessment?
-- What machine learning technique is optimal to create a predictive model for diabetes?
-- Evaluate and compare the developed system and performance of each algorithm.
--	Comparing which dataset accurately predicts diabetes.
+     - This research focuses on two datasets from the laboratory of Medical City Hospital (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital) and another dataset from Vanderbilt, which is based on a study of rural African Americans in 
+         Virginia.
+      - To employ different supervised multiclass classification algorithms that would accurately predict the onset of diabetes based on the predictor risk factors.
+      - What features are most influential in developing robust machine learning models for diabetes risk assessment?
+      - What machine learning technique is optimal to create a predictive model for diabetes?
+      - Evaluate and compare the developed system and performance of each algorithm.
+      -	Comparing which dataset accurately predicts diabetes.
 
    
 ### Theme: 
