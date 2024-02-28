@@ -108,6 +108,22 @@ Dataset 2 - Vanderbilt
 7. Run Ydata Profiling on the datasets.
 8. Run EDA using Sweetviz for comparison with Ydata profiling
 
+``` Python
+
+
+from google.colab import files
+Vanderbilt_Diabetes_ = files.upload()
+data = pd.read_csv(r"Vanderbilt_Diabetes_Dataset.csv")
+data
+data.shape
+data.info()
+data.isnull().sum()
+data.describe()
+profile_data = ProfileReport(data)
+profile_data
+profile_data.to_file('Vanderbilt_Diabetes_Dataset.html')
+analyze_report = sv.analyze(data)
+report_Al_Kindy_Diabetes = sv.analyze(data)
 
 ### Result 
 #### Dataset Al-Kindy Diabetes
