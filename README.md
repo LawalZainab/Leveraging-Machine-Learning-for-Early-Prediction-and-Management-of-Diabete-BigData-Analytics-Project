@@ -92,6 +92,8 @@ data.shape
 data.info()
 data.isnull().sum()
 data.describe()
+d_class = data['CLASS'].value_counts()# show the counts of Non-diabetes Pre-diabetes and Diabetes
+d_class
 profile_data = ProfileReport(data)
 profile_data
 profile_data.to_file('Diabetes-Al_Kindy_Teaching_Hospital_data.html')
@@ -159,3 +161,17 @@ profile_data3
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/40701180-54b2-42ef-9f99-078faa9a2093)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/791bcd21-b519-4a88-b9e6-ee897fd0afe4)
 
+
+### Data Processing
+``` Python
+## encoding the CLASS
+class_encode = {'N': 1, 'P' : 2, 'Y' : 3}
+data['CLASS'] = data['CLASS'].replace(class_encode)
+# dropping Non biological varibles Patient ID and Number of Patients
+data1 = data.drop(['ID', 'No_Pation'], axis=1)
+data1
+df = data1.drop_duplicates() # checking for duplicates
+df.shape
+df_class = df['CLASS'].value_counts()# show the counts of Non-diabetes(1)= 96, Pre-diabetes(96) and Diabetes(3) = 690
+df_class
+```
