@@ -126,7 +126,7 @@ profile_data
 profile_data.to_file('Vanderbilt_Diabetes_Dataset.html')
 analyze_report = sv.analyze(data)
 report_Al_Kindy_Diabetes = sv.analyze(data)
-
+```
 ### Result 
 #### Dataset Al-Kindy Diabetes
 - Number of observations 1000 with no Missing value, this consist of 565 Males and 435 Females between the age range of 20-79years. 
