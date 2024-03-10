@@ -191,6 +191,52 @@ data.duplicated(subset = ['ID']).sum()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ad85bc8e-e910-4060-8e44-9f8e385c11e7)
 
+### Removing the Non-biological features
+``` Python
+df = data.drop(['ID'], axis=1)
+df
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3f0ffa22-a3f0-4ffa-945d-4dcfdf867e2a)
+
+
+#### Checking the Class count and Gender Count
+``` Python
+dd_class = df['CLASS'].value_counts()# show the counts of Non-diabetes Pre-diabetes and Diabetes
+dd_class
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cb79f340-0305-4d11-bed4-0d1d20557313)
+
+``` Python
+dd_Gender = df['Gender'].value_counts()# show the counts of Males and Females
+dd_Gender
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a69b1928-01fe-483a-94e3-b2613efe5cb1)
+
+#### Encoding the Class 'N': 1, 'P' : 2, 'Y' : 3
+
+``` Python
+class_encode = {'N': 1, 'P' : 2, 'Y' : 3}
+df['CLASS'] = df['CLASS'].replace(class_encode)
+```
+### Changing the datatypes for CLASS and Gender
+``` Python
+df['CLASS'] = df.CLASS.astype('category')
+df['Gender'] = df.Gender.astype('category')
+df.info()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/34975a25-d425-49ee-85f3-a01b49024e36)
+
+
+#### Median value of Non-diabetes, Pre-diabetes and Diabetes
+``` Python
+df.groupby('CLASS').median()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b18f8d83-3639-4cc4-801c-2f65d290bd43)
+``` Python
+df.describe()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c7bf05dd-51d1-4e5c-b3b2-5a025806c438)
+
 
 Dataset 1 - Al_Kindy
 1. Install and Import the required packaged into Jupyter notebook.
