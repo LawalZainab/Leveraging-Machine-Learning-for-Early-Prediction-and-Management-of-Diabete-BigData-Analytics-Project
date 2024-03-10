@@ -79,6 +79,20 @@ Dataset 1 - Al_Kindy
 8. Run EDA Ydata Profiling on the datasets.
 9. Run EDA using Sweetviz for comparison with Ydata profiling
 
+
+#### 
+
+#### Storing the dataset
+
+``` Python
+from google.colab import files
+diabetes = files.upload()
+
+data = pd.read_csv(r"Dataset_of_Diabetes_Al-Kindy.csv")
+
+data_backup = data.copy()
+```
+
 ``` Python
 
 !pip install ydata-profiling
