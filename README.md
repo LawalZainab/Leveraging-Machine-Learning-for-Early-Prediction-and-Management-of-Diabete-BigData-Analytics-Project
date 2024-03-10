@@ -251,7 +251,7 @@ print(Y)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/25cb1be2-4693-4f7f-8841-9681ec8f9244)
 
-#### Balancing and Splitting datasets
+#### Pie Chart of CLASS features
 ``` Python
 df['CLASS'].value_counts()
 ```
@@ -280,6 +280,41 @@ X = pd.get_dummies(X, columns = ['Gender'], prefix = ['Gender'])
 X.head()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/39963e1c-9669-4275-8d13-049f308fd058)
+
+#### Balancing and Splitting datasets
+``` Python
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20, stratify= Y, random_state= 11)
+```
+``` Python
+def plot_resampling_results(Y_resampled, title):
+  plt.figure(figsize = (10, 4))
+  pd.Series(Y_resampled).value_counts().plot.pie(autopct='%1.1f%%', startangle=90, colors=['skyblue', 'lightcoral', 'Green'])
+  plt.title(title)
+  plt.show()
+``` 
+
+
+#### Random Undersampling
+``` Python
+rus = RandomUnderSampler(random_state =101)
+X_rus, Y_rus = rus.fit_resample(X_train, Y_train)
+plot_resampling_results(Y_rus, 'Class Distribution After Random Undersampling')
+``` 
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/97b8ccba-20dc-4a27-996f-f2480d6315b9)
+``` Python
+Y_train.value_counts()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d07a44b9-d0cf-417b-9ea2-b8269d6a53dc)
+``` Python
+Y_rus.value_counts()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e7948829-abdf-4e10-a072-812d101e130d)
+``` Python
+print('No. of records removed:', Y_train.shape[0] - Y_rus.shape[0])
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a2121dac-c4d8-4a11-819d-150b35153812)
+
 
 from google.colab import files
 Vanderbilt_Diabetes_ = files.upload()
