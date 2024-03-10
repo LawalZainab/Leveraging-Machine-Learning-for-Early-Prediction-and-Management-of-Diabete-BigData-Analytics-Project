@@ -155,10 +155,18 @@ data.describe()
 
 
 
+#### 2- Exploratory Data Analysis and Data Visualization - Al- Kindy Diabetes Datasets
+1. Ydata Profiling
+2. Sweetviz
 
 ``` Python
+profile_data = ProfileReport(data)
+profile_data
+profile_data.to_file('Diabetes-Al_Kindy_Teaching_Hospital_data.html')
 
-#### 2- Exploratory Data Analysis
+analyze_report = sv.analyze(data)
+report_Al_Kindy_Diabetes = sv.analyze(data)
+```
 
 Dataset 1 - Al_Kindy
 1. Install and Import the required packaged into Jupyter notebook.
