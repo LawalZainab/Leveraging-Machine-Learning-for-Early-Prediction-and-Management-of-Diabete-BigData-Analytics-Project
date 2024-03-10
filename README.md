@@ -66,20 +66,6 @@ Downloading datasets:
 [[Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)](https://data.mendeley.com/datasets/wj9rwkp9c2/1/files/2eb60cac-96b8-46ea-b971-6415e972afc9)
 
 
-#### 2- Exploratory Data Analysis
-
-Dataset 1 - Al_Kindy
-1. Install and Import the required packaged into Jupyter notebook.
-2. Read and understanding  Dataset_of_Diabetes_Al-Kindy.csv 
-3. View datasets
-4. check data shape 
-5. Check datatypes 
-6. Check for missing values 
-7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
-8. Run EDA Ydata Profiling on the datasets.
-9. Run EDA using Sweetviz for comparison with Ydata profiling
-
-
 #### Libraries Used
 1. Data-profiling
 2. Sweetviz
@@ -133,6 +119,19 @@ data_backup = data.copy()
 ```
 
 ``` Python
+
+#### 2- Exploratory Data Analysis
+
+Dataset 1 - Al_Kindy
+1. Install and Import the required packaged into Jupyter notebook.
+2. Read and understanding  Dataset_of_Diabetes_Al-Kindy.csv 
+3. View datasets
+4. check data shape 
+5. Check datatypes 
+6. Check for missing values 
+7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
+8. Run EDA Ydata Profiling on the datasets.
+9. Run EDA using Sweetviz for comparison with Ydata profiling
 
 !pip install ydata-profiling
 from ydata_profiling import ProfileReport
