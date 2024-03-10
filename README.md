@@ -36,15 +36,15 @@ Supervised Learning - Classification Algorithm
 
  https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
 
- #### Data Preperation:
+ ### Data Preperation:
 
- - Vanderbilt dataset diagnosis of diabetes was based on glycohemoglobin readings using Diabetic Screening Guidelines & Rules. The rules assisted in identifying patients that were as diabetic, pre-diabetic, or non-diabetic.
+ - The Vanderbilt dataset diagnosis of diabetes was created based on glycohemoglobin readings using Diabetic Screening Guidelines & Rules. The rules assisted in identifying patients that were as diabetic, pre-diabetic, or non-diabetic. This additional features has been added to the data
   
        - Non-diabetes = below 5.7%
        - Pre-diabetes = 5.7 and 6.4%
        - Diabetes = above 6.4%
    
-- BMI was calculated 703 x weight (lbs)/ [height(inches]2
+- The BMI was not provided in the data, but was calculated using the provided weights and heights using the formular =  703 x weight (lbs)/ [height(inches]2   . This additional feature has been added to the datasets
   
       - Weight- there were 2 sets of data for weight : Weight1 and Weigh2, We took the Avg Weight for the calculation of BMI
 
