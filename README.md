@@ -315,6 +315,86 @@ print('No. of records removed:', Y_train.shape[0] - Y_rus.shape[0])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a2121dac-c4d8-4a11-819d-150b35153812)
 
+``` Python
+smote = SMOTE(random_state =123)
+X_smote, Y_smote = smote.fit_resample(X_train, Y_train)
+plot_resampling_results(Y_smote, 'Class Distribution After SMOTE')
+``` 
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3e34f268-43f5-460f-98e0-d6dbe2329b45)
+``` Python
+Y_train.value_counts()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/69596304-7176-497e-b931-18a591f51332)
+
+``` Python
+Y_smote.value_counts()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/506b32b6-00b4-4681-8823-c568b1306524)
+
+``` Python
+print('No. of records added:', Y_smote.shape[0] - Y_train.shape[0])
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8525e62e-3ebd-4199-8548-fbaf6da52650)
+
+#### Combination of SMOTE and Tomek Links
+``` Python
+smote_tomek = SMOTETomek(random_state = 20)
+X_st, Y_st = smote_tomek.fit_resample(X_train, Y_train)
+plot_resampling_results(Y_st, 'Classification After SMOTE and Tomek Links')
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/fd300379-b5d8-4a86-824f-121460225733)
+``` Python
+Y_train.value_counts()
+``` 
+``` Python
+Y_st.value_counts()
+``` 
+``` Python
+print('No. of records added:', Y_st.shape[0] - Y_train.shape[0])
+``` 
+
+#### Plotting Boxplot to visualize the outliers present in the dataframe
+``` Python
+plt.figure(figsize = (15, 15))
+df[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']].boxplot(vert =0)
+``` 
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/2247f773-8c1d-4073-89ee-c37569efd652)
+
+#### Treating the Outliers
+``` Python
+def  replace_outlier(col):
+  Q1, Q3 =np.quantile(col, [.25, .75])
+  IQR =Q3 -Q1
+  LL =Q1 -1.5*IQR
+  UL = Q3 + 1.5*IQR
+  return LL, UL # Winsorization -UL - Capping, LL - Flooring
+  
+df_num = X_train[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']]
+
+for i in df_num.columns:
+  LL, UL = replace_outlier(df_num[i])
+  df_num[i] = np.where(df_num[i]> UL, UL, df_num[i])
+  df_num[i] = np.where(df_num[i] < LL, LL, df_num[i])  # Winsorization - Capping and Flooring
+``` 
+
+#### Plotting Boxplot to visualize the dataframe after treating the Outliers
+``` Python
+plt.figure(figsize = (15, 10))
+df_num.boxplot(vert=0)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f1ff518a-f7d2-4232-8143-c257fd15e9b8)
+
+#### Plotting the heatmap to see the relatonship between the features
+``` Python
+plt.figure(figsize= (10,10))
+sns.set(font_scale = 1.0)
+sns.heatmap(df_num.corr(), annot =True)
+
+```
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f71e04ab-0283-4610-8a2a-5a042c77e23d)
 
 from google.colab import files
 Vanderbilt_Diabetes_ = files.upload()
