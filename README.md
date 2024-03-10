@@ -81,7 +81,13 @@ Dataset 1 - Al_Kindy
 
 
 #### Libraries Used
-
+1. pandas
+2. imblearn
+3. numpy
+4. matplotlib
+5. seaborn
+6. sklearn
+   
 
 ``` Python
 
