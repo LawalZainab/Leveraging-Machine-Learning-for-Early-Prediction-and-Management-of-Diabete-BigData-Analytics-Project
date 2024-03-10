@@ -167,6 +167,30 @@ profile_data.to_file('Diabetes-Al_Kindy_Teaching_Hospital_data.html')
 analyze_report = sv.analyze(data)
 report_Al_Kindy_Diabetes = sv.analyze(data)
 ```
+### Data Preprocessing
+
+#### Checking for duplicate
+``` Python
+data.shape[0]
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9ae06c9e-cf44-491a-8b4e-e9c649363367)
+``` Python
+data.duplicated().sum()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/146dfe84-04da-47cc-b015-8903a6d31c9a)
+``` Python
+data['ID'].nunique()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d9ca7200-6c89-45fb-99ba-33dc9b6ac6e7)
+``` Python
+data.shape[0] - data['ID'].nunique()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3bab184a-6e50-4146-ad28-adffcc1892e2)
+``` Python
+data.duplicated(subset = ['ID']).sum()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ad85bc8e-e910-4060-8e44-9f8e385c11e7)
+
 
 Dataset 1 - Al_Kindy
 1. Install and Import the required packaged into Jupyter notebook.
