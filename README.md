@@ -80,7 +80,35 @@ Dataset 1 - Al_Kindy
 9. Run EDA using Sweetviz for comparison with Ydata profiling
 
 
-#### 
+#### Libraries Used
+
+
+``` Python
+
+from imblearn.under_sampling import RandomUnderSampler
+from imblearn.over_sampling import SMOTE, RandomOverSampler
+from imblearn.combine import SMOTETomek
+from sklearn.model_selection import train_test_split, cross_val_score, KFold
+import seaborn as sns
+import matplotlib.pyplot as plt
+import sweetviz as sv
+import pandas as pd
+import numpy as np
+from sklearn import tree
+from sklearn.metrics import roc_curve, classification_report, roc_auc_score, accuracy_score, f1_score, precision_score, recall_score
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.feature_selection import VarianceThreshold, RFE, SelectFromModel
+from sklearn.preprocessing import RobustScaler, MinMaxScaler
+from sklearn.tree import DecisionTreeClassifier, plot_tree # Decision Tree
+from sklearn.metrics import make_scorer, f1_score,precision_score, recall_score, roc_auc_score, auc, roc_curve, ConfusionMatrixDisplay
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import metrics
+import sklearn
+from sklearn.naive_bayes import GaussianNB # Naive Bayes
+from sklearn.svm import SVC # Support Vector Machines
+from sklearn.neighbors import KNeighborsClassifier as knn
+
+```
 
 #### Storing the dataset
 
@@ -89,8 +117,8 @@ from google.colab import files
 diabetes = files.upload()
 
 data = pd.read_csv(r"Dataset_of_Diabetes_Al-Kindy.csv")
-
 data_backup = data.copy()
+
 ```
 
 ``` Python
