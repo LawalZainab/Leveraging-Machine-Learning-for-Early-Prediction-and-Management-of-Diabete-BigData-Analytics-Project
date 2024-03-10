@@ -398,6 +398,20 @@ sns.heatmap(df_num.corr(), annot =True)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3d630016-3412-415d-876c-7405555c0e7e)
 
 
+### Features Scaling using MinMax Scaler
+``` Python
+scaler = MinMaxScaler().fit(df_num)
+print(scaler)
+scaler.transform(df_num)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ec45c202-35ad-4247-aaf7-f9e93acfadc6)
+``` Python
+X_st_scaled = scaler.transform(df_num)
+print(X_st_scaled)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b451034a-f5d9-4119-86ac-2d509bceb6cc)
+
+
 from google.colab import files
 Vanderbilt_Diabetes_ = files.upload()
 data = pd.read_csv(r"Vanderbilt_Diabetes_Dataset.csv")
