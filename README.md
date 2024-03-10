@@ -237,17 +237,19 @@ df.describe()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c7bf05dd-51d1-4e5c-b3b2-5a025806c438)
 
-
-Dataset 1 - Al_Kindy
-1. Install and Import the required packaged into Jupyter notebook.
-2. Read and understanding  Dataset_of_Diabetes_Al-Kindy.csv 
-3. View datasets
-4. check data shape 
-5. Check datatypes 
-6. Check for missing values 
-7. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
-8. Run EDA Ydata Profiling on the datasets.
-9. Run EDA using Sweetviz for comparison with Ydata profiling
+#### Seperating the data and labels
+``` Python
+X = df.drop(columns = 'CLASS', axis = 1)
+Y = df['CLASS']
+```
+``` Python
+print(X)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8d378d1e-7e61-4fb1-9127-3691b2a42765)
+``` Python
+print(Y)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/25cb1be2-4693-4f7f-8841-9681ec8f9244)
 
 !pip install ydata-profiling
 from ydata_profiling import ProfileReport
