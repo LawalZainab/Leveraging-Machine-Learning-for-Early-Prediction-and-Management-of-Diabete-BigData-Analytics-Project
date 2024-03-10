@@ -251,37 +251,35 @@ print(Y)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/25cb1be2-4693-4f7f-8841-9681ec8f9244)
 
-!pip install ydata-profiling
-from ydata_profiling import ProfileReport
-import pandas as pd
-from google.colab import files
-Dataset_of_Diabetes = files.upload()
-data = pd.read_csv(r"Dataset_of_Diabetes_Al-Kindy.csv")
-data
-data.shape
-data.info()
-data.isnull().sum()
-data.describe()
-d_class = data['CLASS'].value_counts()# show the counts of Non-diabetes Pre-diabetes and Diabetes
-d_class
-profile_data = ProfileReport(data)
-profile_data
-profile_data.to_file('Diabetes-Al_Kindy_Teaching_Hospital_data.html')
-analyze_report = sv.analyze(data)
-report_Al_Kindy_Diabetes = sv.analyze(data)
+#### Balancing and Splitting datasets
+``` Python
+df['CLASS'].value_counts()
 ```
-Dataset 2 - Vanderbilt
-1. Read and understanding  Vanderbilt_Diabetes_Dataset.csv 
-2. View datasets
-3. Vheck data shape 
-4. Check datatypes 
-5. Check for missing values 
-6. Check data summary: Minimum, Maximum, Mean, and the Percentiles (25%, 50%, and 75%) of the datasets.
-7. Run Ydata Profiling on the datasets.
-8. Run EDA using Sweetviz for comparison with Ydata profiling
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ff32a0c9-b6c2-4132-88e6-e12f3048b39c)
 
 ``` Python
+fig, axes =plt.subplots(nrows =1, ncols=2, figsize =(10, 4))
 
+pie_colors = ['skyblue', 'lightcoral', 'Green']
+axes[0].pie(df['CLASS'].value_counts(), labels =df['CLASS'].value_counts().index, autopct='%1.1f%%', startangle=90, colors=pie_colors)
+axes[0].set_title('Class Distribution Before Resampling(Pie Chart)')
+
+
+countplot_colors = sns.color_palette(pie_colors)
+sns.countplot(x='CLASS', data=df, palette=countplot_colors, ax=axes[1])
+axes[1].set_title('Classfication Distribution Before Resampling(count plot)')
+
+plt.tight_layout()
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5f24b6b9-c739-44fc-b387-ce839323381e)
+
+#### Using Dummies to represent Gender in the datasets
+``` Python
+X = pd.get_dummies(X, columns = ['Gender'], prefix = ['Gender'])
+X.head()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/39963e1c-9669-4275-8d13-049f308fd058)
 
 from google.colab import files
 Vanderbilt_Diabetes_ = files.upload()
