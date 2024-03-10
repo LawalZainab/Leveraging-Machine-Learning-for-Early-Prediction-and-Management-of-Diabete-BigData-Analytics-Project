@@ -11,11 +11,11 @@ This research explores the application of machine learning in predicting diabete
   
 This research focuses on two datasets from the laboratory of Medical City Hospital (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital) and another dataset from Vanderbilt, which is based on a study of rural African Americans in 
          Virginia.
-      1.  To employ different supervised multiclass classification algorithms that would accurately predict the onset of diabetes based on the predictor risk factors.
-      2.  What features are most influential in developing robust machine learning models for diabetes risk assessment?
-      3.  What machine learning technique is optimal to create a predictive model for diabetes?
-      4.  Evaluate and compare the developed system and performance of each algorithm.
-      5. 	Comparing which dataset accurately predicts diabetes.
+1.  To employ different supervised multiclass classification algorithms that would accurately predict the onset of diabetes based on the predictor risk factors.
+2.  What features are most influential in developing robust machine learning models for diabetes risk assessment?
+3.  What machine learning technique is optimal to create a predictive model for diabetes?
+4.  Evaluate and compare the developed system and performance of each algorithm.
+5.  Comparing which dataset accurately predicts diabetes.
 
    
 ### Theme: 
