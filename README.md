@@ -28,20 +28,20 @@ Supervised Learning - Classification Algorithm
 
  [Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)
  
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/92540bb0-8c76-4e27-bcd2-196c0d4141a2)
-
-#### Al-Kindy Daibetes Data Description
-       
-
 2- The Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
 
  https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
 
+
+### Al-Kindy Daibetes Data Description
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/92540bb0-8c76-4e27-bcd2-196c0d4141a2)
+
+
  ### Data Preperation: Vanderbilt Diabetes
 
 -  Two(2) additional features(columns) has been added to the Vanderbilt datasets: CLASS and BMI
-- 
+ 
   1. CLASS - Using glycohemoglobin readings, Diabetic Screening Guidelines & Rules were used to classify patients as diabetic, pre-diabetic, or non-diabetic. Diabetic Screening Guidelines & Rules states that 
  
        - Non-diabetes  patients has  = below 5.7% glycohemoglobin readings
