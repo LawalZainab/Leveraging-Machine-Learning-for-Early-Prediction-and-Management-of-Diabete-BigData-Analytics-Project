@@ -81,16 +81,21 @@ Dataset 1 - Al_Kindy
 
 
 #### Libraries Used
-1. pandas
-2. imblearn
-3. numpy
-4. matplotlib
-5. seaborn
-6. sklearn
+1. Data-profiling
+2. Sweetviz
+3. Pandas
+4. Imblearn
+5. Numpy
+6. Matplotlib
+7. Seaborn
+8. Sklearn
    
 
 ``` Python
-
+!pip install ydata-profiling
+!pip install imbalanced-learn
+from ydata_profiling import ProfileReport
+!pip install sweetviz
 from imblearn.under_sampling import RandomUnderSampler
 from imblearn.over_sampling import SMOTE, RandomOverSampler
 from imblearn.combine import SMOTETomek
