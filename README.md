@@ -56,7 +56,6 @@ Supervised Learning - Classification Algorithm
 
    ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f33de591-140d-42e0-8343-bc50f8b4cabf)
 
-
      
 ### Techniques:
 - Machine Learning Algorithms that will be used are:  Decision Tree, Random Forest, K-Nearest Neighbors, Naive Bayes, Multinomial Logistic Regression and Support Vector Machines.
@@ -128,7 +127,26 @@ data.head()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/96799704-fa28-4ee0-a8bd-6d9e470a25a6)
 
-data
+
+#### Data Observations
+
+``` Python
+data.info()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9e8c9f7a-4c22-45c7-8958-c751d744958c)
+
+``` Python
+data.shape
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a9741973-d3d9-41ea-8ab9-4fca06682161)
+
+d_class = data['CLASS'].value_counts()# show the counts of Non-diabetes Pre-diabetes and Diabetes
+d_class
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f144c544-de9b-4e35-8cb1-fb3e13d2d46d)
+
+data.describe()
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ef95d59d-5038-472b-869e-5e2ee77447ec)
+
 ``` Python
 
 #### 2- Exploratory Data Analysis
