@@ -356,11 +356,12 @@ print('No. of records added:', Y_st.shape[0] - Y_train.shape[0])
 
 #### Plotting Boxplot to visualize the outliers present in the dataframe
 ``` Python
-plt.figure(figsize = (15, 15))
-df[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']].boxplot(vert =0)
+plt.figure(figsize = (10, 10))
+X_st[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']].boxplot(vert =0)
 ``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f9f12bf3-437f-485b-b7ec-f26d4f09f8b8)
 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/2247f773-8c1d-4073-89ee-c37569efd652)
+
 
 #### Treating the Outliers
 ``` Python
@@ -371,7 +372,7 @@ def  replace_outlier(col):
   UL = Q3 + 1.5*IQR
   return LL, UL # Winsorization -UL - Capping, LL - Flooring
   
-df_num = X_train[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']]
+df_num = X_st[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']]
 
 for i in df_num.columns:
   LL, UL = replace_outlier(df_num[i])
@@ -384,17 +385,18 @@ for i in df_num.columns:
 plt.figure(figsize = (15, 10))
 df_num.boxplot(vert=0)
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f1ff518a-f7d2-4232-8143-c257fd15e9b8)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8e4315b7-e088-4193-9ca6-175f5c173be4)
+
 
 #### Plotting the heatmap to see the relatonship between the features
 ``` Python
 plt.figure(figsize= (10,10))
 sns.set(font_scale = 1.0)
 sns.heatmap(df_num.corr(), annot =True)
-
 ```
 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f71e04ab-0283-4610-8a2a-5a042c77e23d)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3d630016-3412-415d-876c-7405555c0e7e)
+
 
 from google.colab import files
 Vanderbilt_Diabetes_ = files.upload()
