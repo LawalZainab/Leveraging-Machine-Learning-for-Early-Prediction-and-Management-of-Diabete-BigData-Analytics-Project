@@ -27,28 +27,34 @@ Supervised Learning - Classification Algorithm
 1- The Diabetes Dataset of 1000 Iraqi patients, acquired from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital). 
 
  [Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)
+ 
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/92540bb0-8c76-4e27-bcd2-196c0d4141a2)
 
+#### Al-Kindy Daibetes Data Description
        
 
 2- The Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
 
  https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
 
- ### Data Preperation:
+ ### Data Preperation: Vanderbilt Diabetes
 
- - The Vanderbilt dataset diagnosis of diabetes was created based on glycohemoglobin readings using Diabetic Screening Guidelines & Rules. The rules assisted in identifying patients that were as diabetic, pre-diabetic, or non-diabetic. This additional features has been added to the data
-  
-       - Non-diabetes = below 5.7%
-       - Pre-diabetes = 5.7 and 6.4%
-       - Diabetes = above 6.4%
+-  Two(2) additional features(columns) has been added to the Vanderbilt datasets: CLASS and BMI
+- 
+  1. CLASS - Using glycohemoglobin readings, Diabetic Screening Guidelines & Rules were used to classify patients as diabetic, pre-diabetic, or non-diabetic. Diabetic Screening Guidelines & Rules states that 
+ 
+       - Non-diabetes  patients has  = below 5.7% glycohemoglobin readings
+       - Pre-diabetes patients has  = 5.7 and 6.4% glycohemoglobin readings
+       - Diabetes patients has = above 6.4% glycohemoglobin readings
    
-- The BMI was not provided in the data, but was calculated using the provided weights and heights using the formular =  703 x weight (lbs)/ [height(inches]2   . This additional feature has been added to the datasets
+  2.  BMI  was calculated using  =  703 x weight (lbs)/ [height(inches]2  
   
-      - Weight- there were 2 sets of data for weight : Weight1 and Weigh2, We took the Avg Weight for the calculation of BMI
+      - Weight- 2 sets of Weight data was provided in the original datasets : Weight1 and Weigh2,  The avergae weights was used in the calcaulation of BMI 
 
-  ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f33de591-140d-42e0-8343-bc50f8b4cabf)
+#### Vanderbilt Diabetes Data Description
+
+   ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f33de591-140d-42e0-8343-bc50f8b4cabf)
 
 
      
