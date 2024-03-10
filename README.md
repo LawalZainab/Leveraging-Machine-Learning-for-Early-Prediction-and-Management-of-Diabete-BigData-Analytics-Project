@@ -31,7 +31,7 @@ Supervised Learning - Classification Algorithm
 2- The Diabetes Dataset from Vanderbilt, which is based on a study of rural African Americans in Virginia.
 
  https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
-
+[[Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)](https://data.mendeley.com/datasets/wj9rwkp9c2/1/files/2eb60cac-96b8-46ea-b971-6415e972afc9)
 
 ### Al-Kindy Daibetes Data Description
 
@@ -69,7 +69,7 @@ Supervised Learning - Classification Algorithm
 #### 1- Data Downloading and Inspection
    
 Downloading datasets:
-[[Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)](https://data.mendeley.com/datasets/wj9rwkp9c2/1/files/2eb60cac-96b8-46ea-b971-6415e972afc9)
+
 
 
 #### Libraries Used
@@ -113,7 +113,7 @@ from sklearn.neighbors import KNeighborsClassifier as knn
 
 ```
 
-#### Storing the dataset
+#### Storing the  Al-Kindy Diabetes dataset
 
 ``` Python
 from google.colab import files
@@ -123,7 +123,12 @@ data = pd.read_csv(r"Dataset_of_Diabetes_Al-Kindy.csv")
 data_backup = data.copy()
 
 ```
+``` Python
+data.head()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/96799704-fa28-4ee0-a8bd-6d9e470a25a6)
 
+data
 ``` Python
 
 #### 2- Exploratory Data Analysis
