@@ -193,10 +193,11 @@ data.duplicated(subset = ['ID']).sum()
 
 ### Removing the Non-biological features
 ``` Python
-df = data.drop(['ID'], axis=1)
+df = data.drop(['ID', 'No_Patients'], axis=1)
 df
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3f0ffa22-a3f0-4ffa-945d-4dcfdf867e2a)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5c700a9e-30c9-4844-abf9-0d99e9d6ab5f)
+
 
 
 #### Checking the Class count and Gender Count
@@ -224,18 +225,21 @@ df['CLASS'] = df.CLASS.astype('category')
 df['Gender'] = df.Gender.astype('category')
 df.info()
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/34975a25-d425-49ee-85f3-a01b49024e36)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b85127a0-c580-446a-b30e-8e181385f2d1)
+
 
 
 #### Median value of Non-diabetes, Pre-diabetes and Diabetes
 ``` Python
 df.groupby('CLASS').median()
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b18f8d83-3639-4cc4-801c-2f65d290bd43)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/411cdf37-4b58-456b-bee9-691fed1fe092)
+
 ``` Python
 df.describe()
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c7bf05dd-51d1-4e5c-b3b2-5a025806c438)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5a9cf075-c0d1-4cae-9e3d-87b3a0632575)
+
 
 #### Seperating the data and labels
 ``` Python
