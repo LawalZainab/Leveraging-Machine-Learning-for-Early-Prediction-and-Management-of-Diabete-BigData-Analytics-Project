@@ -241,7 +241,7 @@ df.describe()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5a9cf075-c0d1-4cae-9e3d-87b3a0632575)
 
 
-#### Seperating the data and labels
+## Seperating the data and labels
 ``` Python
 X = df.drop(columns = 'CLASS', axis = 1)
 Y = df['CLASS']
@@ -249,7 +249,16 @@ Y = df['CLASS']
 ``` Python
 print(X)
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8d378d1e-7e61-4fb1-9127-3691b2a42765)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e1cb1586-c3d0-49e4-91b6-dfc709202791)
+
+#### Using Dummies to represnet Gender
+
+``` Python
+X = pd.get_dummies(X, columns = ['Gender'], prefix = ['Gender'])
+X.head()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3c9da75d-806b-4398-98c7-0d2089750c37)
+
 ``` Python
 print(Y)
 ```
