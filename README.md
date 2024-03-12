@@ -597,4 +597,126 @@ df1.groupby('CLASS').median()
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e93dda0f-9b99-4679-b138-34aed415578a)
 
+### Ydata profile 2
 
+ ``` Python
+profile_df1 = ProfileReport(df1)
+profile_df1
+profile_df1.to_file('Vanderbilt_Diabetes_data2.html')
+ ```
+### Sweetviz Profile
+ ``` Python
+analyze_reportt = sv.analyze(df1)
+report_Vanderbilt_Data2 = sv.analyze(df1)
+ ```
+## Seperating the data and labels
+``` Python
+XX = df1.drop(columns = 'CLASS', axis = 1)
+YY = df1['CLASS']
+print(XX)
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/97b2f53e-c59b-42e9-b310-7db4c6dffce8)
+
+### Onehot - creating seperate column for female and male
+``` Python
+XX = pd.get_dummies(XX, columns = ['Gender'], prefix = ['Gender'])
+XX.head()
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/db1fc9fb-9674-4262-88db-35569ede2435)
+``` Python
+print(YY)
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/46626e93-9587-4f1f-9679-b0d7d82c6c82)
+
+### Pie Cahart of the CLASS
+
+``` Python
+fig, axes =plt.subplots(nrows =1, ncols=2, figsize =(10, 4))
+
+pie_colors = ['Blue', 'Red', 'Green']
+axes[0].pie(df1['CLASS'].value_counts(), labels =df1['CLASS'].value_counts().index, autopct='%1.1f%%', startangle=90, colors=pie_colors)
+axes[0].set_title('Class Distribution Before Resampling(Pie Chart)')
+
+
+countplot_colors = sns.color_palette(pie_colors)
+sns.countplot(x='CLASS', data=df1, palette=countplot_colors, ax=axes[1])
+axes[1].set_title('Classfication Distribution Before Resampling(count plot)')
+
+plt.tight_layout()
+plt.show()
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/02a92c92-e736-4474-9adb-43693168f607)
+
+
+### Splitting datasets
+``` Python
+XX_train, XX_test, YY_train, YY_test = train_test_split(XX, YY, test_size=0.20, stratify= YY, random_state= 11)
+ ```
+## Handling missing cells
+
+#### Checking missing cells in training set and test set
+``` Python
+XX_train.isnull().sum()
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/99a27315-6757-430c-a91d-21a01506b258)
+``` Python
+XX_test.isnull().sum()
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/82ba4b52-f702-4629-a031-b7c2a5efe3d6)
+
+##### Identify missing cell in testing set
+``` Python
+missing_cells_mask =  XX_test.isnull().any(axis =1)
+ ```
+##### Moving missing cells to training sets
+``` Python
+XX_train_missing = XX_test[missing_cells_mask]
+YY_train_missing = YY_test[XX_train_missing.index]
+``` 
+##### Removing rows with missing values from the testing set
+``` Python
+XX_test = XX_test.dropna()
+YY_test = YY_test.loc[XX_test.index]
+ ```
+##### Concatenate the training set with the row containing missing values
+``` Python
+XX_train = pd.concat([XX_train, XX_train_missing])
+YY_train = pd.concat([YY_train, YY_train_missing])
+```
+##### Confirming all missing cells are in training sets
+``` Python
+XX_train.isnull().sum()
+XX_test.isnull().sum()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/68c54125-9b02-4aaa-8507-3561e0b55c8f)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/03ff071c-e56a-415e-9c5b-e279e8a44a25)
+
+## Balancing the training sets
+``` Python
+def plot_resampling_results(YY_resampled, title):
+  plt.figure(figsize = (10, 4))
+  pd.Series(YY_resampled).value_counts().plot.pie(autopct='%1.1f%%', startangle=90, colors=['skyblue', 'lightcoral', 'Green'])
+  plt.title(title)
+  plt.show()
+``` 
+#### Tecnique 1:  Random Undersampling 
+``` Python
+russ = RandomUnderSampler(random_state =101)
+XX_russ, YY_russ = russ.fit_resample(XX_train, YY_train)
+plot_resampling_results(YY_russ, 'Class Distribution After Random Undersampling')
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c32df934-eb93-492d-96c3-525503c5694c)
+``` Python
+YY_train.value_counts()
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/54425602-3ec7-46b0-aae4-e12c97a4c3d8)
+``` 
+``` Python
+YY_russ.value_counts()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c4c80e0d-e9ca-42ab-8b64-a7c801fb2bb4)
+
+``` Python
+print('No. of records removed:', YY_train.shape[0] - YY_russ.shape[0])
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/07b6acee-bdc1-4cc5-a669-d19609a8a78f)
