@@ -561,7 +561,7 @@ dff
 
 ### Renaming bp.1s: Systolic_Blood_Pressure and bp.1d:Diastolic_Blood_Pressure
  ``` Python
-dff.rename(columns = {'bp.1s': 'Systolic_Blood_Pressure','bp.1d':'Diastolic_Blood_Pressure' })
+df1 = dff.rename(columns = {'bp.1s': 'Systolic_Blood_Pressure','bp.1d':'Diastolic_Blood_Pressure' })
 
 ```
 
@@ -569,14 +569,14 @@ dff.rename(columns = {'bp.1s': 'Systolic_Blood_Pressure','bp.1d':'Diastolic_Bloo
 
 #### Checking the Class count and Gender Count
  ``` Python
-d_class = dff['CLASS'].value_counts()
+d_class = df1['CLASS'].value_counts()
 d_class
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/21ee327a-999d-40f9-a6f4-a6ff135ac4c1)
 
 
  ``` Python
-d_Gender = dff['Gender'].value_counts()
+d_Gender = df1['Gender'].value_counts()
 d_Gender
  ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7fc65a3f-9c93-4f0e-a905-7687ac8c991b)
@@ -584,16 +584,17 @@ d_Gender
 ### Encoding the Class 'N': 1, 'P' : 2, 'Y' : 3
  ``` Python
 clas_encode = {'N': 1, 'P' : 2, 'Y' : 3}
-dff['CLASS'] = dff['CLASS'].replace(clas_encode)
-dff['CLASS'] = dff.CLASS.astype('category')
-dff['Gender'] = dff.Gender.astype('category')
-dff.info()
+df1['CLASS'] = df1['CLASS'].replace(clas_encode)
+df1['CLASS'] = df1.CLASS.astype('category')
+df1['Gender'] = df1.Gender.astype('category')
+df1.info()
  ```
 
 ### Median value of Non-diabetes, Pre-diabetes and Diabetes
 1 = Non-diabetes; 2 = Pre-diabetes; 3 = Diabetes
 
-dff.groupby('CLASS').median()
+df1.groupby('CLASS').median()
 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/6992190f-5257-480b-b323-d55288fd6dc5)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e93dda0f-9b99-4679-b138-34aed415578a)
+
 
