@@ -488,3 +488,112 @@ df.shape
 df_class = df['CLASS'].value_counts()# show the counts of Non-diabetes(1)= 96, Pre-diabetes(96) and Diabetes(3) = 690
 df_class
 ```
+
+## Uploading dataset 2- Vanderbilt Diabetes Dataset
+``` Python
+from google.colab import files
+Vanderbilt_Diabetes = files.upload()
+
+data2 = pd.read_csv(r"Vanderbilt_Diabetes_Dataset.csv")
+data2_backup = data2.copy()
+```
+### Viewing dataset
+``` Python
+data2
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/30d95773-5c34-4d04-a73d-5db3a7df7686)
+
+## Data  Observations
+``` Python
+data2.info()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0b304325-a1be-489f-9684-82fed00a9c75)
+``` Python
+data2.shape
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0c4a3ab6-f45f-4ffa-b4d4-ea157a88d8ca)
+``` Python
+data2.isnull().sum()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/2f4af577-b75f-4d8e-ac5b-b950ca98ff54)
+
+``` Python
+dd_class = data2['CLASS'].value_counts()
+dd_class
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0205dc1d-9f89-496d-9bc9-7bbae360e558)
+``` Python
+data2.describe()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/547700c6-9e8f-400f-a104-5b1767f967ee)
+
+
+## Checking for duplicate
+``` Python
+data2.shape[0]
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9f3f49c6-9158-434b-8f31-d96019b75a9d)
+``` Python
+data2.duplicated().sum()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/079309ab-b62b-4ab5-9582-31e6df0fd79a)
+``` Python
+ data2['id'].nunique()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f5727975-f644-4167-ae78-cdfbd28500e1)
+
+
+ ### Removing the Non-biological features
+ ``` Python
+data3 = data2.drop(['id', 'Location', 'frame', 'time.ppn'], axis=1)
+data3
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/69ec5f38-6931-4c45-a113-6789adbe69c0)
+
+### Removing the bp.2s and bp.2d as over 50% of the cells are missing.
+The threshold used for dropping is 50% of missing cells
+Note we do have bp.1s and bp.1d this provides us with the Sytolic and Diastolic blood pressure
+ ``` Python
+dff = data3.drop(['bp.2s', 'bp.2d'], axis=1)
+dff
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3cd8aeb5-7aa5-4a3b-a7da-958860734a7f)
+
+### Renaming bp.1s: Systolic_Blood_Pressure and bp.1d:Diastolic_Blood_Pressure
+ ``` Python
+dff.rename(columns = {'bp.1s': 'Systolic_Blood_Pressure','bp.1d':'Diastolic_Blood_Pressure' })
+
+```
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c82d727e-8496-4018-9fa5-2bf2d0d6aa4a)
+
+#### Checking the Class count and Gender Count
+ ``` Python
+d_class = dff['CLASS'].value_counts()
+d_class
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/21ee327a-999d-40f9-a6f4-a6ff135ac4c1)
+
+
+ ``` Python
+d_Gender = dff['Gender'].value_counts()
+d_Gender
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7fc65a3f-9c93-4f0e-a905-7687ac8c991b)
+
+### Encoding the Class 'N': 1, 'P' : 2, 'Y' : 3
+ ``` Python
+clas_encode = {'N': 1, 'P' : 2, 'Y' : 3}
+dff['CLASS'] = dff['CLASS'].replace(clas_encode)
+dff['CLASS'] = dff.CLASS.astype('category')
+dff['Gender'] = dff.Gender.astype('category')
+dff.info()
+ ```
+
+### Median value of Non-diabetes, Pre-diabetes and Diabetes
+1 = Non-diabetes; 2 = Pre-diabetes; 3 = Diabetes
+
+dff.groupby('CLASS').median()
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/6992190f-5257-480b-b323-d55288fd6dc5)
+
