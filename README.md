@@ -875,6 +875,23 @@ print(XX_st_scaled)
 
 
 ##### Feature selection using the embedded technique- Random Forest
+``` Python
+forest = RandomForestClassifier( n_estimators=500, random_state =11)
+forest.fit(XX_st_scaled, YY_st)
+importances = forest.feature_importances_
+indices = np.argsort(importances)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_st_scaled.shape[1]),
+importances[indices],
+align ='center')
+
+feat_labels = XX.columns
+plt.xticks(range(XX_st_scaled.shape[1]),
+           feat_labels[indices], rotation = 90)
+plt.xlim([-1,XX_st_scaled.shape[1]])
+
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ac86b832-08a7-4433-b243-7576c44d1fc2)
 
 ``` Python
 clf_rf = RandomForestClassifier( random_state =11)
