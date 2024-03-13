@@ -802,7 +802,7 @@ plot_resampling_results(YY_st, 'Classification After SMOTE and Tomek Links')
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b7d5161c-856b-4df6-8aff-332ccad75753)
 
-``` Python``` Python
+``` Python
 YY_train.value_counts()
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e21a1f10-3e1a-4077-bb88-7b943924a134)
@@ -810,10 +810,91 @@ YY_train.value_counts()
 
 ``` Python
 YY_st.value_counts()
-
+```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cb237667-ef22-4111-a86d-639e12a733c1)
 
 ``` Python
 print('No. of records added:', YY_st.shape[0] - YY_train.shape[0])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/29658632-51f5-4047-a0df-3c0db412853c)
+
+
+#### Plotting Boxplot to visualize the outliers present in the dataframe
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/79dc8abe-2d8c-42b0-82e9-599b0e8fa465)
+
+#### Treating the Outliers
+``` Python
+def  replace_outlier(col):
+  Q1, Q3 =np.quantile(col, [.25, .75])
+  IQR =Q3 -Q1
+  LL =Q1 -1.5*IQR
+  UL = Q3 + 1.5*IQR
+  return LL, UL # Winsorization -UL - Capping, LL - Flooring
+```
+
+``` Python
+df_num = XX_st[[ 'chol', 'stab.glu', 'hdl','ratio', 'glyhb', 'Age', 'Height', 'Weight', 'BMI', 'Systolic_Blood_Pressure', 'Diastolic_Blood_Pressure','waist', 'hip', 'Gender_female', 'Gender_male']]
+
+for i in df_num.columns:
+  LL, UL = replace_outlier(df_num[i])
+  df_num[i] = np.where(df_num[i]> UL, UL, df_num[i])
+  df_num[i] = np.where(df_num[i] < LL, LL, df_num[i])  # Winsorization - Capping and Flooring
+```
+##### Plotting Boxplot to visualize the dataframe after treating the Outliers
+
+``` Python
+plt.figure(figsize = (15, 10))
+df_num.boxplot(vert=0)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cd617cc3-7e09-4923-bb2e-c32f97c3b874)
+
+#### Plotting the heatmap to see the relatonship between the features
+``` Python
+plt.figure(figsize= (7,7))
+sns.set(font_scale = 0.7)
+sns.heatmap(df_num.corr(), annot =True)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/529b4fb9-7a62-49e2-b395-0bd24b2a4d28)
+
+##### Features Scaling using MinMax Scaler
+
+``` Python
+scalerr = MinMaxScaler().fit(df_num)
+print(scalerr)
+scalerr.transform(df_num)
+``` 
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b764cd56-6f72-4743-8122-80aa7c229edd)
+
+``` Python
+XX_st_scaled = scalerr.transform(df_num)
+print(XX_st_scaled)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/68d742ad-b199-495f-b2a6-fd05e30c51ba)
+
+
+##### Feature selection using the embedded technique- Random Forest
+
+``` Python
+clf_rf = RandomForestClassifier( random_state =11)
+clf_rf.fit( XX_st_scaled, YY_st)
+```
+``` Python
+sfm_rf =  SelectFromModel(clf_rf, threshold = 'median') ## Using SelectFromModel to perform feature selection
+sfm_rf.fit(XX_st_scaled,YY_st)
+
+XX_st_scaled_selected = sfm_rf.fit_transform(XX_st_scaled,YY_st)
+XX_test_selected = sfm_rf.fit_transform(XX_test, YY_test)
+
+
+clf_rf_selected = RandomForestClassifier(random_state = 11) ## Training Random Forest model classifier on selected features
+clf_rf_selected.fit(XX_st_scaled_selected, YY_st)
+
+YY_pred_rf = clf_rf_selected.predict(XX_test_selected) ## Making prediction on the test set
+YY_pred_rf
+``` 
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/666dbe9a-7efe-493e-aea7-3ad5baef53d2)
+
+
