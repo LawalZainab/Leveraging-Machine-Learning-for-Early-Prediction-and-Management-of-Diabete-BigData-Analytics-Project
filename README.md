@@ -692,6 +692,44 @@ XX_test.isnull().sum()
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/03ff071c-e56a-415e-9c5b-e279e8a44a25)
 
+#### Confirming test set does not have missing cells
+``` Python
+XX_test.isnull().sum()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/63b92c82-8d5e-4b77-b642-5eba66c8946c)
+
+
+### Using median and mean to replace the missing cells in the data
+From the EDA above:
+chol = skewness =0.95- slightly skewed - median will be used to replace missing cells
+hdl = skewness =1.23- Highly skewed -median will be used to replace missing cells
+ratio = skewness =2.24- Highly skewed- median will be used to replace missing cells
+Height = skewness = 0.016: normally distributed- mean will be used to replace missing cells
+BMI = skewness =0.84- slightly skewed- median will be used to replace missing cells
+Systolic_Blood_Pressure = 1.09- Highly skewed -median will be used to replace missing cells
+Diastolic_Blood_Pressure = 0.25: normally distributed- mean will be used to replace missing cells
+waist = 0.46: normally distributed- mean will be used to replace missing cells
+hip =0.79- slightly skewed -median will be used to replace missing cells
+
+``` Python
+XX_train =  XX_train.fillna({'chol' : XX_train['chol'].median(),
+                             'hdl' : XX_train['hdl'].median(),
+                             'ratio' :XX_train['ratio'].median(),
+                             'Height' : XX_train['Height'].mean(),
+                             'BMI' :XX_train['BMI'].median(),
+                             'Systolic_BloodPressure' : XX_train['Systolic_Blood_Pressure'].median(),
+                             'Diastolic_Blood_Pressure' :XX_train['Diastolic_Blood_Pressure'].mean(),
+                             'waist' : XX_train['waist'].mean(),
+                             'hip':XX_train['hip'].median() },
+                            inplace = True)
+
+```
+``` Python
+print(XX_train)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/17874fac-48e6-4613-8cb4-0ffbb026835d)
+
+
 ## Balancing the training sets
 ``` Python
 def plot_resampling_results(YY_resampled, title):
@@ -700,7 +738,7 @@ def plot_resampling_results(YY_resampled, title):
   plt.title(title)
   plt.show()
 ``` 
-#### Tecnique 1:  Random Undersampling 
+#### Tecnique 1:  Random Undersampling Vanderbilt Datasets
 ``` Python
 russ = RandomUnderSampler(random_state =101)
 XX_russ, YY_russ = russ.fit_resample(XX_train, YY_train)
@@ -720,3 +758,9 @@ YY_russ.value_counts()
 print('No. of records removed:', YY_train.shape[0] - YY_russ.shape[0])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/07b6acee-bdc1-4cc5-a669-d19609a8a78f)
+
+#### Technique 2: SMOTE( Synthetic Minority Over-Sampling Technique)- Vanderbilt Datasets
+
+
+
+
