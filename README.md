@@ -717,7 +717,7 @@ XX_train =  XX_train.fillna({'chol' : XX_train['chol'].median(),
                              'ratio' :XX_train['ratio'].median(),
                              'Height' : XX_train['Height'].mean(),
                              'BMI' :XX_train['BMI'].median(),
-                             'Systolic_BloodPressure' : XX_train['Systolic_Blood_Pressure'].median(),
+                             'Systolic_Blood_Pressure' : XX_train['Systolic_Blood_Pressure'].median(),
                              'Diastolic_Blood_Pressure' :XX_train['Diastolic_Blood_Pressure'].mean(),
                              'waist' : XX_train['waist'].mean(),
                              'hip':XX_train['hip'].median() },
@@ -725,9 +725,10 @@ XX_train =  XX_train.fillna({'chol' : XX_train['chol'].median(),
 
 ```
 ``` Python
-print(XX_train)
+XX_train.isnull().sum()
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/17874fac-48e6-4613-8cb4-0ffbb026835d)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/551804a2-eb49-4643-8931-b11768365a1d)
+
 
 
 ## Balancing the training sets
@@ -744,23 +745,75 @@ russ = RandomUnderSampler(random_state =101)
 XX_russ, YY_russ = russ.fit_resample(XX_train, YY_train)
 plot_resampling_results(YY_russ, 'Class Distribution After Random Undersampling')
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c32df934-eb93-492d-96c3-525503c5694c)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e2f9dc80-c299-4f11-8412-be62d5fb6422)
+
 ``` Python
 YY_train.value_counts()
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/54425602-3ec7-46b0-aae4-e12c97a4c3d8)
-``` 
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/48a215ef-1a36-4bf7-b18c-9d2376f236bc)
+
 ``` Python
 YY_russ.value_counts()
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c4c80e0d-e9ca-42ab-8b64-a7c801fb2bb4)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/36a4d1e3-b3a9-4a42-8f32-cde1dfaa0186)
+
 
 ``` Python
 print('No. of records removed:', YY_train.shape[0] - YY_russ.shape[0])
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/07b6acee-bdc1-4cc5-a669-d19609a8a78f)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/08a51f15-b5a9-405b-a121-85795db50122)
+
 
 #### Technique 2: SMOTE( Synthetic Minority Over-Sampling Technique)- Vanderbilt Datasets
+Smote generates synthetic minority class examples by interpolating between existing instances. This helps in increasing the diversity of the minority class.
+
+``` Python
+smote = SMOTE(random_state =11)
+
+XX_smote, YY_smote = smote.fit_resample(XX_train, YY_train)
+plot_resampling_results(YY_smote, 'Class Distribution After SMOTE')
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ad26d3d8-9185-4ce2-8baf-3dfbe6563443)
+
+``` Python
+YY_train.value_counts()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/484d49c9-3b09-4621-a9aa-877cf58bcf5a)
+
+``` Python
+YY_smote.value_counts()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b8efdbb6-837b-4d16-a26f-c6f011583f70)
+
+``` Python
+print('No. of records added:', YY_smote.shape[0] - YY_train.shape[0])
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/de0dc36e-1376-4acf-bc2d-d434c268cb71)
+
+##### Technique 3: Combination of SMOTE and Tomek Links
+SMOTETomek which combines both oversampling (using SMOTE for the minority class) and undersampling (using Tomek links to remove Tomek pairs). This combined approach aims to create a more balanced dataset. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority
+
+``` Python
+smote_tomek = SMOTETomek(random_state = 20)
+XX_st, YY_st = smote_tomek.fit_resample(XX_train, YY_train)
+plot_resampling_results(YY_st, 'Classification After SMOTE and Tomek Links')
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b7d5161c-856b-4df6-8aff-332ccad75753)
+
+``` Python``` Python
+YY_train.value_counts()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e21a1f10-3e1a-4077-bb88-7b943924a134)
 
 
+``` Python
+YY_st.value_counts()
 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cb237667-ef22-4111-a86d-639e12a733c1)
 
+``` Python
+print('No. of records added:', YY_st.shape[0] - YY_train.shape[0])
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/29658632-51f5-4047-a0df-3c0db412853c)
