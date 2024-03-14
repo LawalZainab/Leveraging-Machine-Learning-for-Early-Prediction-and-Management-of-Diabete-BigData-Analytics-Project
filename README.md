@@ -241,6 +241,12 @@ print(X)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e1cb1586-c3d0-49e4-91b6-dfc709202791)
 
+#### Ydata profiling 2 was performed 
+
+``` Python
+profile_df = ProfileReport(df)
+profile_df
+``` 
 #### Onehot ecoding Gender
 
 ``` Python
