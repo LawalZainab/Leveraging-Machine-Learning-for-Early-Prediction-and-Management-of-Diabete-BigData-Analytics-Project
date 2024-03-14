@@ -413,7 +413,138 @@ print(X_st_scaled)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b451034a-f5d9-4119-86ac-2d509bceb6cc)
 
+## Random Forest Classifier
+``` Python
+fr =RandomForestClassifier(n_estimators=500, random_state =11)
+fr.fit(X_st_scaled, Y_st)
+importances = fr.feature_importances_
+print(importances)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1badcd17-af80-46dd-92c5-ca83db8009f3)
 
+``` Python
+indices = np.argsort(importances)[::-1]
+
+plt.ylabel('Feature importance')
+plt.bar(range(X_st_scaled.shape[1]),
+importances[indices],
+align ='center')
+
+feat_labels = X.columns
+plt.xticks(range(X_st_scaled.shape[1]),
+           feat_labels[indices], rotation = 90)
+plt.xlim([-1,X_st_scaled.shape[1]])
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/49022492-4b75-4501-a7e2-66f6b37502a1)
+
+#### Prediction
+``` Python
+Y_pred_fr = fr.predict(X_test)
+Y_pred_fr
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/63a8358b-a649-402c-8a3f-4abb8d84f7b5)
+
+
+### Accuracy
+``` Python
+print(metrics.accuracy_score(Y_test, Y_pred_fr ))
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a9fc3684-9eae-4ea9-802d-30d9acd60366)
+
+
+``` Python
+f1 = f1_score(Y_test,Y_pred_fr, average= 'weighted')
+print(f'F1 Score:{f1:.2f}')
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3564dacb-903d-4364-b5ba-fc5558cbc40f)
+
+#### Confusion Matrix
+``` Python
+cm = confusion_matrix(Y_test,Y_pred_fr)
+print("Confusion Matrix:")
+print(cm)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1681f7a3-ac8e-4c33-b152-01b0f77db35d)
+
+``` Python
+cm_disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['1', '2', '3'])
+cm_disp.plot()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8253257f-0e3d-48f7-8f01-ae353e17b108)
+
+#### ROC CURVE 
+``` Python
+Y_pred_fr_proba = fr.predict_proba(X_test)
+Y_pred_fr_proba.shape
+Y_pred_fr .shape
+roc_auc_score(Y_test,Y_pred_fr_proba, multi_class='ovr')
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/07bd77f2-c839-4eb9-84e6-ab349f837e75)
+
+
+
+## Decision Tree on Al-Kindy Diabetes Datasets
+``` Python
+clf_ddt = DecisionTreeClassifier(random_state =42)
+clf_ddt.fit(X_st_scaled, Y_st)
+importances_ddt = clf_ddt.feature_importances_
+print(importances_ddt)
+```
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/10a452f6-90c5-4887-ac7a-85a60ab382a5)
+
+``` Python
+indices_ddt = np.argsort(importances_ddt)[::-1]
+
+plt.ylabel('Feature importance')
+plt.bar(range(X_st_scaled.shape[1]),
+importances_ddt[indices_ddt],
+align ='center')
+
+feat_labels = X.columns
+plt.xticks(range(X_st_scaled.shape[1]),
+           feat_labels[indices_ddt], rotation = 90)
+plt.xlim([-1,X_st_scaled.shape[1]])
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f7dae258-551e-42d6-b90a-66c3d0b328fe)
+
+``` Python
+Y_pred_ddt = clf_ddt.predict(X_test)
+Y_pred_ddt
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/edcdac83-675c-49bd-bc91-eeca2eaeee3b)
+
+#### f1 score
+``` Python
+f1_ddt = f1_score(Y_test,Y_pred_ddt, average= 'weighted')
+print(f'F1 Score:{f1:.2f}')
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ac90fc43-ad28-4c1f-a400-7ccb10120585)
+
+
+#### ROC CURVE
+``` Python
+Y_pred_ddt_proba = clf_ddt.predict_proba(X_test)
+Y_pred_ddt_proba.shape
+Y_pred_ddt.shape
+roc_auc_score(Y_test,Y_pred_ddt_proba, multi_class='ovr')
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3aaf868c-980b-41dc-ab98-9bb82f1b1ebb)
+
+#### Confusion matrix
+``` Python
+cm_ddt = confusion_matrix(Y_test,Y_pred_ddt)
+print("Confusion Matrix:")
+print(cm_ddt)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/86cde74f-2ed4-415d-b900-ced88893db0e)
+
+``` Python
+cm_disp_tr = ConfusionMatrixDisplay(confusion_matrix=cm_ddt, display_labels=['1', '2', '3'])
+cm_disp_tr.plot()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a84b61e6-6344-4e45-a3f0-2fbba77b26ed)
 
 ## Uploading dataset 2- Vanderbilt Diabetes Dataset
 ``` Python
