@@ -101,6 +101,7 @@ from sklearn.metrics import roc_curve, classification_report, roc_auc_score, acc
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.feature_selection import VarianceThreshold, RFE, SelectFromModel
 from sklearn.preprocessing import RobustScaler, MinMaxScaler
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier, plot_tree # Decision Tree
 from sklearn.metrics import make_scorer, f1_score,precision_score, recall_score, roc_auc_score, auc, roc_curve, ConfusionMatrixDisplay
 from sklearn.ensemble import RandomForestClassifier
@@ -1105,3 +1106,9 @@ print("Confusion Matrix:")
 print(cm_svm)
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1bacbc09-514e-4c0a-914d-b6dd937f02b3)
+
+
+## Feature selection using embedded technique-  KNN
+
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(XX_st_scaled, YY_st)
