@@ -98,18 +98,10 @@ import pandas as pd
 import numpy as np
 from sklearn import tree
 from sklearn.metrics import roc_curve, classification_report, roc_auc_score, accuracy_score, f1_score, precision_score, recall_score
-from sklearn.multiclass import OneVsRestClassifier
-from sklearn.feature_selection import VarianceThreshold, RFE, SelectFromModel
-from sklearn.preprocessing import RobustScaler, MinMaxScaler
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier, plot_tree # Decision Tree
-from sklearn.metrics import make_scorer, f1_score,precision_score, recall_score, roc_auc_score, auc, roc_curve, ConfusionMatrixDisplay
+from sklearn.feature_selection import VarianceThreshold,  SelectFromModel
+from sklearn.preprocessing import  MinMaxScaler
+from sklearn.tree import DecisionTreeClassifier, plot_tree # Decision Treefrom sklearn.metrics import make_scorer, f1_score,precision_score, recall_score, roc_auc_score, auc, roc_curve, ConfusionMatrixDisplay
 from sklearn.ensemble import RandomForestClassifier
-from sklearn import metrics
-import sklearn
-from sklearn.naive_bayes import GaussianNB # Naive Bayes
-from sklearn.svm import SVC # Support Vector Machines
-from sklearn.neighbors import KNeighborsClassifier as knn
 
 ```
 
@@ -146,14 +138,12 @@ d_class = data['CLASS'].value_counts()# show the counts of Non-diabetes Pre-diab
 d_class
 ```
 
-
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f144c544-de9b-4e35-8cb1-fb3e13d2d46d)
 
 ``` Python
 data.describe()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ef95d59d-5038-472b-869e-5e2ee77447ec)
-
 
 
 #### 2- Exploratory Data Analysis and Data Visualization - Al- Kindy Diabetes Datasets
@@ -198,7 +188,6 @@ df = data.drop(['ID', 'No_Patients'], axis=1)
 df
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5c700a9e-30c9-4844-abf9-0d99e9d6ab5f)
-
 
 
 #### Checking the Class count and Gender Count
@@ -252,7 +241,7 @@ print(X)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e1cb1586-c3d0-49e4-91b6-dfc709202791)
 
-#### Using Dummies to represnet Gender
+#### Onehot ecoding Gender
 
 ``` Python
 X = pd.get_dummies(X, columns = ['Gender'], prefix = ['Gender'])
@@ -277,7 +266,6 @@ fig, axes =plt.subplots(nrows =1, ncols=2, figsize =(10, 4))
 pie_colors = ['skyblue', 'lightcoral', 'Green']
 axes[0].pie(df['CLASS'].value_counts(), labels =df['CLASS'].value_counts().index, autopct='%1.1f%%', startangle=90, colors=pie_colors)
 axes[0].set_title('Class Distribution Before Resampling(Pie Chart)')
-
 
 countplot_colors = sns.color_palette(pie_colors)
 sns.countplot(x='CLASS', data=df, palette=countplot_colors, ax=axes[1])
@@ -426,57 +414,6 @@ print(X_st_scaled)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b451034a-f5d9-4119-86ac-2d509bceb6cc)
 
 
-
-```
-### Result 
-#### Dataset Al-Kindy Diabetes
-- Number of observations 1000 with no Missing value, this consist of 565 Males and 435 Females between the age range of 20-79years. 
-- Diabetes classes:   844 are diabetes, 103 are Non-diabates and 53 are prediabetes. Dataset is highly imbalance. 
-- Normaly distributed variables, i.e. with skewness values between -0.5 and 0.5 : HbA1c, BMI.
-- Slightly Skewed variables, i.e with Skewness values within the range of -1 and -0.5 (negative skewed) or 0.5 and 1(positive skewed): Age, Chol.
-- Highly skewed vairables Skewed variables, i.e, skewness values less than -1 (negative skewed) or greater than 1 (positive skewed) : Urea, Cr, TG, HDL, LDL, VLDL.
-- Highly Correlated:  CLASS with BMI and hBA1c; TG with VDL; and Urea with Cr.
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/4dc2c1cd-c091-41c8-94af-7e7d85e5c1c3)
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3b37f2fb-764c-40a2-bca2-ba8b3e0a0b41)
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/bf2cb794-f980-4548-9ad2-582056f249ab)
-
-
-#### Vanderbilt Diabetes Datasets
-- Number of observations 390 with 162 Males and 228 Females between the age range 19-92years.
-- Diabetes classes: 67 are Diabetes, 298 are Non-diabetes, and 25 are Pre-diabetes.  Dataset is highly imbalance.
-- Missing cells: Chol = 1, HDL = 1, Ratio =1, Height = 3, BMI = 3, Frame = 11, Waist = 2, Hip = 2, time.ppn = 3, bp.1s= 5, bp.1d= 5, bp.2s=252 and  bp.2d= 252
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/36b04502-30cf-42fc-a18b-9e0c486b7037)
-
-Since there are 252 missing values  in bp.2s and bp.2d - we drop the variables, as bp.1s and bp.1d provided the systolic blood pressure and diastolic blood pressure needed for our analysis. 
-
-``` Python
-# To remove bp.2s and bp.2d from the dataframe
-data3 = data2.drop(['bp.2s', 'bp.2d'], axis=1)
-data3
-profile_data3 = ProfileReport(data3)
-profile_data3
-```
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/6d697ee5-e69b-4153-8eb6-b04cb7c611f5)
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/40701180-54b2-42ef-9f99-078faa9a2093)
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/791bcd21-b519-4a88-b9e6-ee897fd0afe4)
-
-
-### Data Processing
-``` Python
-## encoding the CLASS
-class_encode = {'N': 1, 'P' : 2, 'Y' : 3}
-data['CLASS'] = data['CLASS'].replace(class_encode)
-# dropping Non biological varibles Patient ID and Number of Patients
-data1 = data.drop(['ID', 'No_Pation'], axis=1)
-data1
-df = data1.drop_duplicates() # checking for duplicates
-df.shape
-df_class = df['CLASS'].value_counts()# show the counts of Non-diabetes(1)= 96, Pre-diabetes(96) and Diabetes(3) = 690
-df_class
-```
 
 ## Uploading dataset 2- Vanderbilt Diabetes Dataset
 ``` Python
@@ -719,7 +656,6 @@ XX_train.isnull().sum()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/551804a2-eb49-4643-8931-b11768365a1d)
 
 
-
 ## Balancing the training sets
 ``` Python
 def plot_resampling_results(YY_resampled, title):
@@ -922,6 +858,7 @@ print("Confusion Matrix:")
 print(cm)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1c069ceb-ce2a-464b-8844-cdf08fe6a699)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d1c1ff8c-d701-4c08-bf06-eee8c4c4dfc6)
 
 ### ROC Curve
 ``` Python
@@ -1009,94 +946,5 @@ print("Confusion Matrix:")
 print(cm_dt)
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/dbb9f616-2685-44b4-8cea-c993bc579b98)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b00f071a-e3dc-4544-909d-fd0a273966cf)
 
-## Feature selection using Threshold  technique-  Naive Bayes 
-
-Naive Bayes does not have embedded feature selection, variance threshold for feature selection
-``` Python
-variance_threshold = 0.1
-selector_nb = VarianceThreshold(threshold=variance_threshold)
-XX_train_selected_nb = selector_nb.fit_transform(XX_st_scaled)
-XX_test_selected_nb = selector_nb.transform(XX_test)
-```
-#### Prediction
-``` Python
-clf_nb = GaussianNB()
-clf_nb.fit(XX_train_selected_nb, YY_st)
-```
-``` Python
-YY_pred_nb = clf_nb.predict(XX_test_selected_nb)
-YY_pred_nb
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/006a4d4e-5b9f-404e-959c-a425bc424476)
-
-##### Accuracy
-``` Python
-print(metrics.accuracy_score(YY_test, YY_pred_nb ))
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8c89adcc-5085-4a1f-bf44-93ac3abe2b93)
-##### f1 score
-``` Python
-f1_nb = f1_score(YY_test,YY_pred_nb, average= 'weighted')
-print(f'F1 Score:{f1:.2f}')
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9ad203d1-dbaa-40e0-9a1d-ce5a4ab753b9)
-
-##### ROC Curve
-YY_pred_nb_proba = clf_nb.predict_proba(XX_test_selected_nb)
-YY_pred_nb_proba.shape
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/def65707-177c-485d-9228-b1a812e50e07)
-``` Python
-YY_pred_nb.shape
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d5e28012-0696-4acc-88c9-1586cef1229c)
-``` Python
-roc_auc_score(YY_test,YY_pred_nb_proba, multi_class='ovr')
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/035f5596-7056-4a3d-8b1b-bfb8354ca99f)
-``` Python
-cm_nb = confusion_matrix(YY_test,YY_pred_nb)
-print("Confusion Matrix:")
-print(cm_nb)
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/551006da-0734-4f91-9bdd-28f243da00ba)
-
-## Feature selection using embedded technique-  Support Vector Machines
-
-svm = SVC(kernel='linear', probability=True)
-svm.fit(XX_st_scaled, YY_st)
-
-##### SelectFromModel to perform feature selection
-``` Python
-sfm = SelectFromModel(svm, prefit=True)
-XX_train_selected_svm = sfm.transform(XX_st_scaled)
-XX_test_selected_svm = sfm.transform(XX_test)
-
-clf_svm = SVC(kernel='linear', probability=True)
-clf_svm.fit(XX_train_selected, YY_st)
-
-YY_pred_svm = clf_svm.predict(XX_test_selected)
-YY_pred_svm
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/01b2fd78-b213-42ab-ae20-9ea5e74e3b22)
-``` Python
-print(metrics.accuracy_score(YY_test, YY_pred_svm ))
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9f364142-feb0-4eb5-8c5d-6659a7979d53)
-``` Python
-f1_svm = f1_score(YY_test, YY_pred_svm, average='weighted')
-print(f"F1 Score: {f1:.2f}")
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1a150a7e-e9bf-40fb-afa6-18da0cd8a783)
-``` Python
-cm_svm = confusion_matrix(YY_test,YY_pred_svm)
-print("Confusion Matrix:")
-print(cm_svm)
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1bacbc09-514e-4c0a-914d-b6dd937f02b3)
-
-
-## Feature selection using embedded technique-  KNN
-
-knn = KNeighborsClassifier(n_neighbors=5)
-knn.fit(XX_st_scaled, YY_st)
