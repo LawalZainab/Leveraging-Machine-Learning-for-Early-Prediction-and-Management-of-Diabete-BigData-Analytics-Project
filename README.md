@@ -44,9 +44,9 @@ Supervised Learning - Classification Algorithm
  
   1. CLASS - Using glycohemoglobin readings, Diabetic Screening Guidelines & Rules were used to classify patients as diabetic, pre-diabetic, or non-diabetic. Diabetic Screening Guidelines & Rules states that 
  
-       - Non-diabetes  patients has  = below 5.7% glycohemoglobin readings
-       - Pre-diabetes patients has  = 5.7 and 6.4% glycohemoglobin readings
-       - Diabetes patients has = above 6.4% glycohemoglobin readings
+       - Non-diabetes  patients have  = below 5.7% glycohemoglobin readings
+       - Pre-diabetes patients have  = 5.7 and 6.4% glycohemoglobin readings
+       - Diabetes patients have = above 6.4% glycohemoglobin readings
    
   2.  BMI  was calculated using  =  703 x weight (lbs)/ [height(inches]2  
   
