@@ -426,19 +426,7 @@ print(X_st_scaled)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b451034a-f5d9-4119-86ac-2d509bceb6cc)
 
 
-from google.colab import files
-Vanderbilt_Diabetes_ = files.upload()
-data = pd.read_csv(r"Vanderbilt_Diabetes_Dataset.csv")
-data
-data.shape
-data.info()
-data.isnull().sum()
-data.describe()
-profile_data = ProfileReport(data)
-profile_data
-profile_data.to_file('Vanderbilt_Diabetes_Dataset.html')
-analyze_report = sv.analyze(data)
-report_Al_Kindy_Diabetes = sv.analyze(data)
+
 ```
 ### Result 
 #### Dataset Al-Kindy Diabetes
