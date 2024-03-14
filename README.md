@@ -58,7 +58,7 @@ Supervised Learning - Classification Algorithm
 
      
 ### Techniques:
-- Machine Learning Algorithms that will be used are:  Decision Tree, Random Forest, K-Nearest Neighbors, Naive Bayes, Multinomial Logistic Regression and Support Vector Machines.
+- Machine Learning Algorithms that will be used are:  Decision Tree and Random Forest.
   
 
 ### Relevant tools:
