@@ -183,6 +183,8 @@ data.duplicated(subset = ['ID']).sum()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ad85bc8e-e910-4060-8e44-9f8e385c11e7)
 
 ### Removing the Non-biological features
+Non-biological variables in the dataset were dropped ('id', 'Location', 'frame', 'time.ppn) becuase it will not provide any information on patients classes.
+
 ``` Python
 df = data.drop(['ID', 'No_Patients'], axis=1)
 df
@@ -191,6 +193,7 @@ df
 
 
 #### Checking the Class count and Gender Count
+This provide insights on the numbers of Males and Females in the diabetes classes
 ``` Python
 dd_class = df['CLASS'].value_counts()# show the counts of Non-diabetes Pre-diabetes and Diabetes
 dd_class
@@ -248,6 +251,7 @@ profile_df = ProfileReport(df)
 profile_df
 ``` 
 #### Onehot ecoding Gender
+One hot encoding:  was performed on the feature ‘Gender’ because it is a categorical variable containing label (Males and Females) values rather than numeric values. One hot encoding is performed because machine learning algorithms cannot operate on label data directly. They require all input variables and output variables to be numeric.
 
 ``` Python
 X = pd.get_dummies(X, columns = ['Gender'], prefix = ['Gender'])
@@ -289,7 +293,16 @@ X.head()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/39963e1c-9669-4275-8d13-049f308fd058)
 
-#### Balancing and Splitting datasets
+# Models Evaluation
+To evaluate models, data frame will be split into training (XX_train, YY_train) and testing (XX_test, YY_test) sets.
+Before the application of the Machine Learning Algorithm, the listed observed issues will be treated:
+1-	Balancing of data frame
+2-	Outlier treatment
+3-	Feature scaling of the data frame
+
+####  Splitting datasets
+Splitting the data into two parts, the first part contains 80% of the data whereas the second part of the data contains the remaining 20% of the data. We do this to avoid over-fitting, the two parts are called training and test splits, which gives us a better idea as to how our algorithm performed during the testing phase.The training split gets 80% of the data and the test split has 20% of the data.
+
 ``` Python
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20, stratify= Y, random_state= 11)
 ```
@@ -301,8 +314,18 @@ def plot_resampling_results(Y_resampled, title):
   plt.show()
 ``` 
 
+#### Balancing dataset
+Balancing the dataset: it was observed that the dataset was imbalanced from the exploratory data analysis carried out. Several balancing techniques were carried out.
+1-	Random Under sampling Technique.
+2-	SMOTE technique.
+3-	Combination of SMOTE and Tomek Link Technique.
+From the above technique, the Combination of SMOTE and Tomek Link Technique was selected as it combines the SMOTE ability to generate synthetic data for the minority class and Tomek Link's ability to remove the data that are identified as Tomek links from the majority class (that is, samples of data from the majority class that is closest with the minority class data).
 
 #### Random Undersampling
+Random undersampling involves randomly selecting examples from the majority class to delete from the training dataset.
+This has the effect of reducing the number of examples in the majority class in the transformed version of the training dataset. This process can be repeated until the desired class distribution is achieved, such as an equal number of examples for each class.
+This approach may be more suitable for those datasets where there is a class imbalance although a sufficient number of examples in the minority class, such a useful model can be fit.
+
 ``` Python
 rus = RandomUnderSampler(random_state =101)
 X_rus, Y_rus = rus.fit_resample(X_train, Y_train)
@@ -322,6 +345,10 @@ Y_rus.value_counts()
 print('No. of records removed:', Y_train.shape[0] - Y_rus.shape[0])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a2121dac-c4d8-4a11-819d-150b35153812)
+
+### SMOTE Technique
+Smote generates synthetic minority class examples by interpolating between existing instances. This helps in increasing the diversity of the minority class.
+SMOTE is an oversampling technique where the synthetic samples are generated for the minority class. This algorithm helps to overcome the overfitting problem posed by random oversampling. It focuses on the feature space to generate new instances with the help of interpolation between the positive instances that lie together.
 
 ``` Python
 smote = SMOTE(random_state =123)
@@ -345,7 +372,10 @@ print('No. of records added:', Y_smote.shape[0] - Y_train.shape[0])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8525e62e-3ebd-4199-8548-fbaf6da52650)
 
-#### Combination of SMOTE and Tomek Links
+#### Combination of SMOTE and Tomek Links Technique
+The process of SMOTE-Tomek Links is as follows. Start of SMOTE: choose random data from the minority class. Calculate the distance between the random data and its k nearest neighbors. Multiply the difference with a random number between 0 and 1, then add the result to the minority class as a synthetic sample. SMOTE-Tomek uses a combination of both SMOTE and the undersampling Tomek link. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority class. 
+SMOTETomek which combines both oversampling (using SMOTE for the minority class) and undersampling (using Tomek links to remove Tomek pairs). This combined approach aims to create a more balanced dataset. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority
+
 ``` Python
 smote_tomek = SMOTETomek(random_state = 20)
 X_st, Y_st = smote_tomek.fit_resample(X_train, Y_train)
@@ -363,6 +393,8 @@ print('No. of records added:', Y_st.shape[0] - Y_train.shape[0])
 ``` 
 
 #### Plotting Boxplot to visualize the outliers present in the dataframe
+When analyzing data, identifying and addressing outliers is crucial. These anomalies can skew results, leading to inaccurate insights and decisions.
+
 ``` Python
 plt.figure(figsize = (10, 10))
 X_st[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']].boxplot(vert =0)
@@ -406,7 +438,10 @@ sns.heatmap(df_num.corr(), annot =True)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3d630016-3412-415d-876c-7405555c0e7e)
 
 
-### Features Scaling using MinMax Scaler
+### Min Max Scaling
+Since  dataset contains features that have different ranges, units of measurement, or orders of magnitude.  These variation in feature values can lead to biased model performance or difficulties during the learning process. MinMax Scaling technique was employed.   this compresses all the ouliers in the narrow range between [0,1].This process enhances data analysis and modeling accuracy by mitigating the influence of varying scales on machine learning models.
+
+ 
 ``` Python
 scaler = MinMaxScaler().fit(df_num)
 print(scaler)
@@ -420,6 +455,8 @@ print(X_st_scaled)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b451034a-f5d9-4119-86ac-2d509bceb6cc)
 
 ## Random Forest Classifier
+Random forests are an ensemble method that Resamples the training data, builds many decision trees and averages predictions of trees to classify.
+
 ``` Python
 fr =RandomForestClassifier(n_estimators=500, random_state =11)
 fr.fit(X_st_scaled, Y_st)
@@ -444,12 +481,21 @@ plt.xlim([-1,X_st_scaled.shape[1]])
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/49022492-4b75-4501-a7e2-66f6b37502a1)
 
 #### Prediction
+In machine learning, to build a predictive model for either classification or regression tasks, a dataset is split into two different parts: training and testing. 
+he training part is used to train the machine learning model whereas the testing part is used for predictions by the model. These predictions are then evaluated using different evaluation methods and in this project we will be using Random forest and Decision Trees.
+
 ``` Python
 Y_pred_fr = fr.predict(X_test)
 Y_pred_fr
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/63a8358b-a649-402c-8a3f-4abb8d84f7b5)
 
+We'll be using "classification_report" to measure the quality of our predictions for each algorithm i.e. how many predictions are True and how many are False.
+Now let's define some of the terms in "classification_report" that will be used to analyze each model
+Accuracy: Fraction (or percentage) of predictions that were correct.
+Precision: Fraction (or percentage) of correct predictions among all examples predicted to be positive, meaning what percent of our predictions were correct.
+Recall: Fraction (or percentage) of correct predictions among all real positive examples. In simple terms, what percent of the positive cases did we catch properly.
+F1-Score: Weighted harmonic mean of precision and recall. In simple terms, what percent of positive predictions were correct.
 
 ### Accuracy
 ``` Python
@@ -607,6 +653,9 @@ data2.duplicated().sum()
 
 
  ### Removing the Non-biological features
+ Non-biological variables in the dataset were dropped ('id', 'Location', 'frame', 'time.ppn) becuase it will not provide any information on patients classes
+
+ 
  ``` Python
 data3 = data2.drop(['id', 'Location', 'frame', 'time.ppn'], axis=1)
 data3
@@ -614,8 +663,11 @@ data3
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/69ec5f38-6931-4c45-a113-6789adbe69c0)
 
 ### Removing the bp.2s and bp.2d as over 50% of the cells are missing.
-The threshold used for dropping is 50% of missing cells
-Note we do have bp.1s and bp.1d this provides us with the Sytolic and Diastolic blood pressure
+
+Dropping  bp.2s and bp.2d as 65% of the cells were missing.  
+1-	The threshold used: drop variables if 50% of cells are missing.
+2-	Note: The dataset has bp.1s and bp.1d, which provides information on the Systolic and Diastolic blood pressure of the patients
+
  ``` Python
 dff = data3.drop(['bp.2s', 'bp.2d'], axis=1)
 dff
@@ -623,6 +675,8 @@ dff
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3cd8aeb5-7aa5-4a3b-a7da-958860734a7f)
 
 ### Renaming bp.1s: Systolic_Blood_Pressure and bp.1d:Diastolic_Blood_Pressure
+For easy reading of the features, bp.1s and bp.1d was renamed to Systolic blood pressure and Diastolic blood pressure.
+
  ``` Python
 df1 = dff.rename(columns = {'bp.1s': 'Systolic_Blood_Pressure','bp.1d':'Diastolic_Blood_Pressure' })
 
@@ -637,7 +691,6 @@ d_class
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/21ee327a-999d-40f9-a6f4-a6ff135ac4c1)
 
-
  ``` Python
 d_Gender = df1['Gender'].value_counts()
 d_Gender
@@ -645,6 +698,10 @@ d_Gender
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7fc65a3f-9c93-4f0e-a905-7687ac8c991b)
 
 ### Encoding the Class 'N': 1, 'P' : 2, 'Y' : 3
+Models only work with numerical values. For this reason, it is necessary to convert the categorical values of the features into numerical ones, So the machine can learn from those data,   extract valuable information and gives the right model. 
+
+To ensure that Class variables and Gender were read categorical variables, the datatype was changed
+
  ``` Python
 clas_encode = {'N': 1, 'P' : 2, 'Y' : 3}
 df1['CLASS'] = df1['CLASS'].replace(clas_encode)
@@ -654,14 +711,20 @@ df1.info()
  ```
 
 ### Median value of Non-diabetes, Pre-diabetes and Diabetes
+
 1 = Non-diabetes; 2 = Pre-diabetes; 3 = Diabetes
+
+The median class for all the variables was checked. This provides information on the diabetes classes
+It was observed that:
+1- 	Prediabetes patients have a cholesterol = 204, stab.glu = 98, glyhb = 6.13, Age = 61 and Systolic_Blood_Pressure = 140
+2-	Diabetes patients have cholesterol = 218, stab.glu = 41,  glyhb =9.37 , Age = 59 and Systolic blood pressure = 146
 
 df1.groupby('CLASS').median()
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e93dda0f-9b99-4679-b138-34aed415578a)
 
 ### Ydata profile 2
-
+Another Ydata profiling was performed as the shape of the dataframe is now different because some features were removed,
  ``` Python
 profile_df1 = ProfileReport(df1)
 profile_df1
@@ -673,6 +736,7 @@ analyze_reportt = sv.analyze(df1)
 report_Vanderbilt_Data2 = sv.analyze(df1)
  ```
 ## Seperating the data and labels
+
 ``` Python
 XX = df1.drop(columns = 'CLASS', axis = 1)
 YY = df1['CLASS']
@@ -680,7 +744,18 @@ print(XX)
  ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/97b2f53e-c59b-42e9-b310-7db4c6dffce8)
 
+
+# Model Evaluation
+To evaluate models, dataset was split into training (XX_train, YY_train) and testing (XX_test, YY_test) sets.
+Before the application of the Machine Learning Algorithm, the listed observed issues will be treated
+1-	Onehot encoding of variable (Gender)
+2-	Handling missing cells 
+3-	Balancing of dataset 
+4-	Outliers’ treatment
+5-	feature scaling of dataset 
+
 ### Onehot - creating seperate column for female and male
+
 ``` Python
 XX = pd.get_dummies(XX, columns = ['Gender'], prefix = ['Gender'])
 XX.head()
@@ -716,6 +791,8 @@ plt.show()
 XX_train, XX_test, YY_train, YY_test = train_test_split(XX, YY, test_size=0.20, stratify= YY, random_state= 11)
  ```
 ## Handling missing cells
+
+Following the split of the data into training and test sets, it was discovered that some cells were missing. To address this issue, a condition was applied to the split which resulted in the missing cells being moved from the training set to the testing set. This condition was necessary to ensure that the missing cells were handled correctly during the training process, and to prevent any errors from occurring during prediction.
 
 #### Checking missing cells in training set and test set
 ``` Python
@@ -763,6 +840,8 @@ XX_test.isnull().sum()
 
 
 ### Using median and mean to replace the missing cells in the data
+The exploratory analysis helped in determining the appropriate imputation method by observing the feature distribution
+
 From the EDA above:
 chol = skewness =0.95- slightly skewed - median will be used to replace missing cells
 hdl = skewness =1.23- Highly skewed -median will be used to replace missing cells
@@ -794,6 +873,14 @@ XX_train.isnull().sum()
 
 
 ## Balancing the training sets
+
+Balancing the dataset: it was observed that the dataset was imbalanced from the exploratory data analysis carried out. Several balancing techniques were carried out.
+1-	Random Under sampling Technique.
+2-	SMOTE technique.
+3-	Combination of SMOTE and Tomek Link Technique.
+From the above technique, the Combination of SMOTE and Tomek Link Technique was selected as it combines the SMOTE ability to generate synthetic data for the minority class and Tomek Link's ability to remove the data that are identified as Tomek links from the majority class (that is, samples of data from the majority class that is closest with the minority class data).
+
+
 ``` Python
 def plot_resampling_results(YY_resampled, title):
   plt.figure(figsize = (10, 4))
@@ -829,6 +916,7 @@ print('No. of records removed:', YY_train.shape[0] - YY_russ.shape[0])
 
 #### Technique 2: SMOTE( Synthetic Minority Over-Sampling Technique)- Vanderbilt Datasets
 Smote generates synthetic minority class examples by interpolating between existing instances. This helps in increasing the diversity of the minority class.
+SMOTE is an oversampling technique where the synthetic samples are generated for the minority class. This algorithm helps to overcome the overfitting problem posed by random oversampling. It focuses on the feature space to generate new instances with the help of interpolation between the positive instances that lie together.
 
 ``` Python
 smote = SMOTE(random_state =11)
@@ -854,6 +942,7 @@ print('No. of records added:', YY_smote.shape[0] - YY_train.shape[0])
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/de0dc36e-1376-4acf-bc2d-d434c268cb71)
 
 ##### Technique 3: Combination of SMOTE and Tomek Links
+The process of SMOTE-Tomek Links is as follows. Start of SMOTE: choose random data from the minority class. Calculate the distance between the random data and its k nearest neighbors. Multiply the difference with a random number between 0 and 1, then add the result to the minority class as a synthetic sample. SMOTE-Tomek uses a combination of both SMOTE and the undersampling Tomek link. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority class. 
 SMOTETomek which combines both oversampling (using SMOTE for the minority class) and undersampling (using Tomek links to remove Tomek pairs). This combined approach aims to create a more balanced dataset. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority
 
 ``` Python
