@@ -122,7 +122,7 @@ data.head()
 
 
 ### Data Observations
-From the information shown below, the data has 1000 rows, 14 columns and has no null values which suggests that this database has been cleaned of NaN values. 
+From the information shown below, the data has 1000 rows, 14 columns and has no null values which suggests that this database does not have missing values. 
 
 Additionally the info also tells us that the column ID, No of Patients and Cr are of type int, the column Gender and CLASS are of  type object, the column Urea, HbA2c, Chol, TG, HDL,LDL, VLDL,BMI are type float. 
 
