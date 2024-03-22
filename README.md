@@ -121,7 +121,10 @@ data.head()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/96799704-fa28-4ee0-a8bd-6d9e470a25a6)
 
 
-#### Data Observations
+### Data Observations
+From the information shown below, the data has 1000 rows, 14 columns and has no null values which suggests that this database has been cleaned of NaN values. 
+
+Additionally the info also tells us that the column ID, No of Patients and Cr are of type int, the column Gender and CLASS are of  type object, the column Urea, HbA2c, Chol, TG, HDL,LDL, VLDL,BMI are type float. 
 
 ``` Python
 data.info()
@@ -228,6 +231,8 @@ df.groupby('CLASS').median()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/411cdf37-4b58-456b-bee9-691fed1fe092)
 
+It was observed that the dataset has outliers
+
 ``` Python
 df.describe()
 ```
@@ -235,6 +240,10 @@ df.describe()
 
 
 ## Seperating the data and labels
+The main objective is to determine the some of the possible factors that cause diabetes that are made available to us from this dataset and to create machine learning models that will do this for us as well. In order to get best visual results and to understand certain visual and statistical trends we would need to seperate the data into dependent variables and independent variables
+- 1 -The independent variables will be the features of diabetes patients : Gender, AGE, Urea, Cr, HbA1c, TG, Chol, HDL, VLDL, BMI.
+- 2- The independent variables will be the CLASS of diabetes patients.
+
 ``` Python
 X = df.drop(columns = 'CLASS', axis = 1)
 Y = df['CLASS']
