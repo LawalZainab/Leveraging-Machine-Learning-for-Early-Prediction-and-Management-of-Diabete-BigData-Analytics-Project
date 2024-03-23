@@ -464,7 +464,12 @@ print(X_st_scaled)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b451034a-f5d9-4119-86ac-2d509bceb6cc)
 
 ## Random Forest Classifier
-Random forests are an ensemble method that Resamples the training data, builds many decision trees and averages predictions of trees to classify.
+
+Random Forest: can be defined as a collection of tree-type classifiers. It uses simple probability to select the strongest features for its inputs. The advantages of RF include:
+1-	handling missing values (missing data) in the dataset.
+2-	producing lower error i.e. improves performance by reducing variance.
+3-	effectively handling large amounts of training data efficiently i.e. resistant to irrelevant features.
+4-	providing good classification results and avoiding overfitting
 
 ``` Python
 fr =RandomForestClassifier(n_estimators=500, random_state =11)
@@ -546,6 +551,13 @@ roc_auc_score(Y_test,Y_pred_fr_proba, multi_class='ovr')
 
 
 ## Decision Tree on Al-Kindy Diabetes Datasets
+
+Decision Tree: is a non-parametric supervised learning algorithm for classification and regression tasks. That can handle numerical & categorical data and multi-output problems. Its
+
+1-	validate a model using statistical tests. That makes it possible to account for the reliability of the model.
+2-	performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
+
+
 ``` Python
 clf_ddt = DecisionTreeClassifier(random_state =42)
 clf_ddt.fit(X_st_scaled, Y_st)
@@ -897,7 +909,7 @@ def plot_resampling_results(YY_resampled, title):
   plt.title(title)
   plt.show()
 ``` 
-#### Tecnique 1:  Random Undersampling Vanderbilt Datasets
+#### Technique 1:  Random Undersampling Vanderbilt Datasets
 ``` Python
 russ = RandomUnderSampler(random_state =101)
 XX_russ, YY_russ = russ.fit_resample(XX_train, YY_train)
@@ -1038,8 +1050,16 @@ print(XX_st_scaled)
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/68d742ad-b199-495f-b2a6-fd05e30c51ba)
 
+## Decision Tree on Vanderbilt Diabetes Datasets
 
-##### Feature selection using the embedded technique- Random Forest
+### Feature selection using the embedded technique- Random Forest
+
+Random Forest: can be defined as a collection of tree-type classifiers. It uses simple probability to select the strongest features for its inputs. The advantages of RF include:
+1-	handling missing values (missing data) in the dataset.
+2-	producing lower error i.e. improves performance by reducing variance.
+3-	effectively handling large amounts of training data efficiently i.e. resistant to irrelevant features.
+4-	providing good classification results and avoiding overfitting
+
 ``` Python
 forest = RandomForestClassifier( n_estimators=500, random_state =11)
 forest.fit(XX_st_scaled, YY_st)
@@ -1112,8 +1132,13 @@ roc_auc_score(YY_test,YY_pred_proba, multi_class='ovr')
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b219d69f-d49d-4498-bce5-70db56062b86)
 
+## Decision Tree on Vanderbilt Diabetes Datasets
 
-## Feature selection using the embedded technique- Decision Tree Classifier 
+### Feature selection using the embedded technique- Decision Tree Classifier 
+Decision Tree: is a non-parametric supervised learning algorithm for classification and regression tasks. That can handle numerical & categorical data and multi-output problems. Its
+
+1-	validate a model using statistical tests. That makes it possible to account for the reliability of the model.
+2-	performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
 
 ``` Python
 clf_dt = DecisionTreeClassifier(random_state =42)
