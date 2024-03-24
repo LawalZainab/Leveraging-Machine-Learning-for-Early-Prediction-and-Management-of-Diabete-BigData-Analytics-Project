@@ -540,7 +540,8 @@ plt.xticks(range(X_st_scaled.shape[1]),
            feat_labels[indices], rotation = 90)
 plt.xlim([-1,X_st_scaled.shape[1]])
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/49022492-4b75-4501-a7e2-66f6b37502a1)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b097df7a-a201-4138-8d03-d16bcad8c3dd)
+
 
 
 ## Evaluatiing the Performance
@@ -555,7 +556,8 @@ Performance evaluation of the trained model consists of following steps:
 Y_pred_fr = fr.predict(X_test)
 Y_pred_fr
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/63a8358b-a649-402c-8a3f-4abb8d84f7b5)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/2755b19e-19c8-4c5a-b286-0effd4448f09)
+
 
 We'll be using "classification_report" to measure the quality of our predictions for each algorithm i.e. how many predictions are True and how many are False.
 Now let's define some of the terms in "classification_report" that will be used to analyze each model
