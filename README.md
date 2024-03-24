@@ -162,24 +162,12 @@ report_Al_Kindy_Diabetes = sv.analyze(data)
 #### Checking for duplicate
 ``` Python
 data.shape[0]
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9ae06c9e-cf44-491a-8b4e-e9c649363367)
-``` Python
 data.duplicated().sum()
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/146dfe84-04da-47cc-b015-8903a6d31c9a)
-``` Python
 data['ID'].nunique()
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d9ca7200-6c89-45fb-99ba-33dc9b6ac6e7)
-``` Python
 data.shape[0] - data['ID'].nunique()
+data.duplicated(subset = ['ID']).sum() # this tally with the number we counted above
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3bab184a-6e50-4146-ad28-adffcc1892e2)
-``` Python
-data.duplicated(subset = ['ID']).sum()
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ad85bc8e-e910-4060-8e44-9f8e385c11e7)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/6c9f5331-1f6a-4245-b77f-5165eaca625f)
 
 ### Removing the Non-biological features
 Non-biological variables in the dataset were dropped ('ID', 'No_Patients') becuase it will not provide any information on patients classes.
