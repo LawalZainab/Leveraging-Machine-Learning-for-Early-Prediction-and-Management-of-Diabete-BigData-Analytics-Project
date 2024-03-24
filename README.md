@@ -567,8 +567,6 @@ print(classification_report(Y_test, Y_pred_fr))
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a1fb7026-338a-4dd7-8c96-953c49737890)
 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/41f62402-0b38-4a0f-9333-c4131d92e0bd)
-
 
 ### Confusion Matrix
 
