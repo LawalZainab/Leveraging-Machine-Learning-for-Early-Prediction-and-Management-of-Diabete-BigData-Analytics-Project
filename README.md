@@ -203,6 +203,7 @@ Label encoding involves assigning an integer value to each categorical variable.
 class_encode = {'N': 1, 'P' : 2, 'Y' : 3}
 df['CLASS'] = df['CLASS'].replace(class_encode)
 ```
+
 ### Changing the datatypes for CLASS and Gender
 ``` Python
 df['CLASS'] = df.CLASS.astype('category')
@@ -231,6 +232,7 @@ df.describe()
 
 
 ### Ydata profiling 2 was performed 
+Another exploratory analysis was performed, as the dataset has reduced from 1000 rows to 800 rows.
 
 ``` Python
 profile_df = ProfileReport(df)
@@ -319,6 +321,14 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20, strati
 ```
 
 
+### Balancing dataset
+Balancing the dataset: it was observed that the dataset was imbalanced from the exploratory data analysis carried out. Several balancing techniques were carried out.
+1.	Random Under sampling Technique.
+2.	SMOTE technique.
+3.	Combination of SMOTE and Tomek Link Technique.
+From the above technique, the Combination of SMOTE and Tomek Link Technique was selected as it combines the SMOTE ability to generate synthetic data for the minority class and Tomek Link's ability to remove the data that are identified as Tomek links from the majority class (that is, samples of data from the majority class that is closest with the minority class data).
+
+
 ``` Python
 def plot_resampling_results(Y_resampled, title):
   plt.figure(figsize = (10, 4))
@@ -326,13 +336,6 @@ def plot_resampling_results(Y_resampled, title):
   plt.title(title)
   plt.show()
 ``` 
-
-### Balancing dataset
-Balancing the dataset: it was observed that the dataset was imbalanced from the exploratory data analysis carried out. Several balancing techniques were carried out.
-1.	Random Under sampling Technique.
-2.	SMOTE technique.
-3.	Combination of SMOTE and Tomek Link Technique.
-From the above technique, the Combination of SMOTE and Tomek Link Technique was selected as it combines the SMOTE ability to generate synthetic data for the minority class and Tomek Link's ability to remove the data that are identified as Tomek links from the majority class (that is, samples of data from the majority class that is closest with the minority class data).
 
 ### Random Undersampling
 Random undersampling involves randomly selecting examples from the majority class to delete from the training dataset.
@@ -482,7 +485,7 @@ It was observed  that
 
 The embedded feature selection in the model technique will be used in selecting the most important features, so we dont have worry about the correlated features.
 
-### Min Max Scaling
+### Feature Scaling using Min Max Scaling
 Since  dataset contains features that have different ranges, units of measurement, or orders of magnitude.  These variation in feature values can lead to biased model performance or difficulties during the learning process. MinMax Scaling technique was employed.   this compresses all the ouliers in the narrow range between [0,1].This process enhances data analysis and modeling accuracy by mitigating the influence of varying scales on machine learning models.
 
 ``` Python
@@ -507,11 +510,12 @@ Random Forest: can be defined as a collection of tree-type classifiers. It uses 
 
 ### Traning the model 
 We define the parameters for the random forest training as follows:
-n_estimators: This is the number of trees in the random forest classification. We have defined 500 trees in our random forest.
-criterion: This is the loss function used to measure the quality of the split. There are two available options in sklearn — gini and entropy. We have used entropy.
-random_state: This is the seed used by the random state generator for randomizing the dataset.
+1. n_estimators: This is the number of trees in the random forest classification. We have defined 500 trees in our random forest.
+2. criterion: This is the loss function used to measure the quality of the split. There are two available options in sklearn — gini and entropy. We have used entropy.
+3. random_state: This is the seed used by the random state generator for randomizing the dataset.
 
-Next, we use the training dataset (both dependent and independent to train the random forest), as well as checking the important features
+Next, we use the training dataset (both dependent and independent to train the random forest), as well as checking the important features.
+
 ``` Python
 fr = RandomForestClassifier(n_estimators=500, criterion = 'entropy',  random_state =11)
 fr.fit(X_st_scaled, Y_st)
