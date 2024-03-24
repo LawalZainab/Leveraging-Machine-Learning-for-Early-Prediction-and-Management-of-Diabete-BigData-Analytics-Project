@@ -1,12 +1,12 @@
 # Leveraging Machine Learning for Early Prediction and Management of Diabetes -  Big Data Analytics Project 
 
-### Project Overview
+## Project Overview
 
 Diabetes is a chronic metabolic disorder characterized by elevated blood sugar levels, resulting from insufficient insulin production or ineffective utilization. This disorder is known to be one of the most common chronic diseases affecting people around the globe. 
 This research explores the application of machine learning in predicting diabetes, focusing on enhancing early detection and management. The outcomes aim to empower healthcare professionals with actionable insights, contributing to proactive healthcare strategies and improved patient outcomes. 
 
 
-### Research Questions
+## Research Questions
 - The main aim of this research is to propose a multiclass classification methodology for the prediction of diabetes.
   
 This research focuses on two datasets from the laboratory of Medical City Hospital (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital) and another dataset from Vanderbilt, which is based on a study of rural African Americans in 
@@ -18,10 +18,10 @@ This research focuses on two datasets from the laboratory of Medical City Hospit
 5.  Comparing which dataset accurately predicts diabetes.
 
    
-### Theme: 
+## Theme: 
 Supervised Learning - Classification Algorithm
 
-### Data Sources:
+## Data Sources:
  This research paper mainly uses two datasets:
  
 1- The Diabetes Dataset of 1000 Iraqi patients, acquired from the laboratory of Medical City Hospital and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital). 
@@ -33,7 +33,7 @@ Supervised Learning - Classification Algorithm
  https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
 [[Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)](https://data.mendeley.com/datasets/wj9rwkp9c2/1/files/2eb60cac-96b8-46ea-b971-6415e972afc9)
 
-### Al-Kindy Daibetes Data Description
+## Al-Kindy Daibetes Data Description
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/92540bb0-8c76-4e27-bcd2-196c0d4141a2)
 
@@ -52,26 +52,26 @@ Supervised Learning - Classification Algorithm
   
       - Weight- 2 sets of Weight data was provided in the original datasets : Weight1 and Weigh2,  The avergae weights was used in the calcaulation of BMI 
 
-#### Vanderbilt Diabetes Data Description
+### Vanderbilt Diabetes Data Description
 
    ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f33de591-140d-42e0-8343-bc50f8b4cabf)
 
      
-### Techniques:
+## Techniques:
 - Machine Learning Algorithms that will be used are:  Decision Tree and Random Forest.
   
 
-### Relevant tools:
+## Relevant tools:
 - Python- for data analysis and visual representation of the datasets.
 
 
-#### 1- Data Downloading and Inspection
+### 1- Data Downloading and Inspection
    
 Downloading datasets:
 
 
 
-#### Libraries Used
+### Libraries Used
 1. Data-profiling
 2. Sweetviz
 3. Pandas
@@ -105,7 +105,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 ```
 
-#### Storing the  Al-Kindy Diabetes dataset
+### Storing the  Al-Kindy Diabetes dataset
 
 ``` Python
 from google.colab import files
@@ -149,7 +149,7 @@ data.describe()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ef95d59d-5038-472b-869e-5e2ee77447ec)
 
 
-#### 2- Exploratory Data Analysis and Data Visualization - Al- Kindy Diabetes Datasets
+### 2- Exploratory Data Analysis and Data Visualization - Al- Kindy Diabetes Datasets
 1. Ydata Profiling
 2. Sweetviz
 
@@ -195,7 +195,7 @@ df
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5c700a9e-30c9-4844-abf9-0d99e9d6ab5f)
 
 
-#### Checking the Class count and Gender Count
+### Checking the Class count and Gender Count
 This provide insights on the numbers of Males and Females in the diabetes classes
 ``` Python
 dd_class = df['CLASS'].value_counts()# show the counts of Non-diabetes Pre-diabetes and Diabetes
@@ -209,7 +209,7 @@ dd_Gender
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a69b1928-01fe-483a-94e3-b2613efe5cb1)
 
-#### Encoding the Class 'N': 1, 'P' : 2, 'Y' : 3
+### Encoding the Class 'N': 1, 'P' : 2, 'Y' : 3
 
 ``` Python
 class_encode = {'N': 1, 'P' : 2, 'Y' : 3}
@@ -224,8 +224,7 @@ df.info()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b85127a0-c580-446a-b30e-8e181385f2d1)
 
 
-
-#### Median value of Non-diabetes, Pre-diabetes and Diabetes
+### Median value of Non-diabetes, Pre-diabetes and Diabetes
 ``` Python
 df.groupby('CLASS').median()
 ```
@@ -254,7 +253,7 @@ print(X)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e1cb1586-c3d0-49e4-91b6-dfc709202791)
 
-#### Ydata profiling 2 was performed 
+### Ydata profiling 2 was performed 
 
 ``` Python
 profile_df = ProfileReport(df)
@@ -272,7 +271,7 @@ df[dups]
 dups.shape
 ```
 
-#### Onehot ecoding Gender
+### Onehot ecoding Gender
 One hot encoding:  was performed on the feature ‘Gender’ because it is a categorical variable containing label (Males and Females) values rather than numeric values. One hot encoding is performed because machine learning algorithms cannot operate on label data directly. They require all input variables and output variables to be numeric.
 
 ``` Python
@@ -286,7 +285,7 @@ print(Y)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/25cb1be2-4693-4f7f-8841-9681ec8f9244)
 
-#### Class Distribution Before Resampling( Pie Chart and Count Plot)
+### Class Distribution Before Resampling( Pie Chart and Count Plot)
 ``` Python
 df['CLASS'].value_counts()
 ```
@@ -308,21 +307,15 @@ plt.show()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5f24b6b9-c739-44fc-b387-ce839323381e)
 
-#### Using Dummies to represent Gender in the datasets
-``` Python
-X = pd.get_dummies(X, columns = ['Gender'], prefix = ['Gender'])
-X.head()
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/39963e1c-9669-4275-8d13-049f308fd058)
 
-# Models Evaluation
+## Models Evaluation
 To evaluate models, data frame will be split into training (XX_train, YY_train) and testing (XX_test, YY_test) sets.
 Before the application of the Machine Learning Algorithm, the listed observed issues will be treated:
 1-	Balancing of data frame
 2-	Outlier treatment
 3-	Feature scaling of the data frame
 
-####  Splitting datasets
+###  Splitting datasets
 Splitting the data into two parts, the first part contains 80% of the data whereas the second part of the data contains the remaining 20% of the data. We do this to avoid over-fitting, the two parts are called training and test splits, which gives us a better idea as to how our algorithm performed during the testing phase.The training split gets 80% of the data and the test split has 20% of the data.
 1.  Stratify = Y, this data-splitting strategy that ensures that the proportion of each class in the training and test sets is the same as that in the original dataset.Stratified sampling helps to ensure that the model is trained and evaluated on a representative 
     sample of the data, and it can improve the model's overall performance.
@@ -341,14 +334,14 @@ def plot_resampling_results(Y_resampled, title):
   plt.show()
 ``` 
 
-#### Balancing dataset
+### Balancing dataset
 Balancing the dataset: it was observed that the dataset was imbalanced from the exploratory data analysis carried out. Several balancing techniques were carried out.
 1.	Random Under sampling Technique.
 2.	SMOTE technique.
 3.	Combination of SMOTE and Tomek Link Technique.
 From the above technique, the Combination of SMOTE and Tomek Link Technique was selected as it combines the SMOTE ability to generate synthetic data for the minority class and Tomek Link's ability to remove the data that are identified as Tomek links from the majority class (that is, samples of data from the majority class that is closest with the minority class data).
 
-#### Random Undersampling
+### Random Undersampling
 Random undersampling involves randomly selecting examples from the majority class to delete from the training dataset.
 This has the effect of reducing the number of examples in the majority class in the transformed version of the training dataset. This process can be repeated until the desired class distribution is achieved, such as an equal number of examples for each class.
 This approach may be more suitable for those datasets where there is a class imbalance although a sufficient number of examples in the minority class, such a useful model can be fit.
@@ -404,7 +397,7 @@ print('No. of records added:', Y_smote.shape[0] - Y_train.shape[0])
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8525e62e-3ebd-4199-8548-fbaf6da52650)
 
-#### Combination of SMOTE and Tomek Links Technique
+### Combination of SMOTE and Tomek Links Technique
 The process of SMOTE-Tomek Links is as follows. Start of SMOTE: choose random data from the minority class. Calculate the distance between the random data and its k nearest neighbors. Multiply the difference with a random number between 0 and 1, then add the result to the minority class as a synthetic sample. SMOTE-Tomek uses a combination of both SMOTE and the undersampling Tomek link. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority class. 
 SMOTETomek which combines both oversampling (using SMOTE for the minority class) and undersampling (using Tomek links to remove Tomek pairs). This combined approach aims to create a more balanced dataset. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority
 
@@ -425,14 +418,15 @@ print('No. of records added:', Y_st.shape[0] - Y_train.shape[0])
 ``` 
 1056 were added to the datasets when SMOTET technique was applied.
 
-#### checking number of cells in the X_st dataframe.
+### checking number of cells in the X_st dataframe.
 X_st = X dataframe when SMOTET was applied
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/4a71a9d5-7889-4b15-bdcb-80ab719a4e9e)
 
 Note: X_st was selected out of the 3 techniques as it employed both undersampling and oversampling
 
-## Plotting Boxplot to visualize the outliers present in the dataframe( X_st)
+### Plotting Boxplot to visualize the outliers present in the dataframe( X_st)
+
 #### Approaches to identify outliers and influential observations
 Box plots identify interesting data points, or outliers. Its  a graphical approach that displays the distribution of data and indicates which observations might be outliers. Points that are beyond 1.5 times the IQR are beyond the expected range of variation of the data.
 When analyzing data, identifying and addressing outliers is crucial. These anomalies can skew results, leading to inaccurate insights and decisions.
@@ -445,7 +439,7 @@ X_st[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']].b
 
 
 
-## Treating the Outliers
+### Treating the Outliers
 If a value is higher than the 1.5*IQR above the upper quartile (Q3), the value will be considered as outlier. Similarly, if a value is lower than the 1.5*IQR below the lower quartile (Q1), the value will be considered as outlier.
 QR is interquartile range. It measures dispersion or variation. IQR = Q3 -Q1.
 Lower limit of acceptable range = Q1 - 1.5* (Q3-Q1)
@@ -469,7 +463,7 @@ for i in df_num.columns:
   df_num[i] = np.where(df_num[i] < LL, LL, df_num[i])  # Winsorization - Capping and Flooring
 ``` 
 
-#### Plotting Boxplot to visualize the dataframe after treating the Outliers
+### Plotting Boxplot to visualize the dataframe after treating the Outliers
 ``` Python
 plt.figure(figsize = (15, 10))
 df_num.boxplot(vert=0)
@@ -477,7 +471,7 @@ df_num.boxplot(vert=0)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8e4315b7-e088-4193-9ca6-175f5c173be4)
 
 
-#### Plotting the Correlation heatmap to see the relatonship between the features
+### Plotting the Correlation heatmap to see the relatonship between the features
 A correlation heatmap is a visual graphic that shows how each variable in the dataset are correlated to one another. -1 signifies zero correlation, while 1 signifies a perfect correlation. Correlation heatmaps are important because it helps identify which variables may potentially result in multicolinarity, which would compromise the integrity of the model. Multicolinearity happens when two or more features in a model are correlated with one another
 
 
@@ -518,7 +512,7 @@ Random Forest: can be defined as a collection of tree-type classifiers. It uses 
 3.	effectively handling large amounts of training data efficiently i.e. resistant to irrelevant features.
 4.	providing good classification results and avoiding overfitting
 
-#### Traning the model 
+### Traning the model 
 We define the parameters for the random forest training as follows:
 n_estimators: This is the number of trees in the random forest classification. We have defined 500 trees in our random forest.
 criterion: This is the loss function used to measure the quality of the split. There are two available options in sklearn — gini and entropy. We have used entropy.
@@ -554,7 +548,7 @@ plt.xlim([-1,X_st_scaled.shape[1]])
 
 ## Evaluatiing the Performance
 
-#### Prediction
+### Prediction
 Performance evaluation of the trained model consists of following steps:
 1. Predicting the species class of the test data using test feature set (X_st). We will use the predict function of the random forest classifier to predict classes.
 2. Evaluating the performance of the classifier using Accuracy, Precision, Recall, Confusion Matrix, ROC Curve, F1 Score
@@ -573,7 +567,7 @@ Precision: Fraction (or percentage) of correct predictions among all examples pr
 Recall: Fraction (or percentage) of correct predictions among all real positive examples. In simple terms, what percent of the positive cases did we catch properly.
 F1-Score: Weighted harmonic mean of precision and recall. In simple terms, what percent of positive predictions were correct.
 
-#### Accuracy
+### Accuracy
 ``` Python
 print(metrics.accuracy_score(Y_test, Y_pred_fr ))
 ```
@@ -586,7 +580,7 @@ print(f'F1 Score:{f1:.2f}')
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3564dacb-903d-4364-b5ba-fc5558cbc40f)
 
-#### Confusion Matrix
+### Confusion Matrix
 ``` Python
 cm = confusion_matrix(Y_test,Y_pred_fr)
 print("Confusion Matrix:")
@@ -601,7 +595,7 @@ cm_disp.plot()
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8253257f-0e3d-48f7-8f01-ae353e17b108)
 
-#### ROC CURVE 
+### ROC CURVE 
 ``` Python
 Y_pred_fr_proba = fr.predict_proba(X_test)
 Y_pred_fr_proba.shape
@@ -650,7 +644,7 @@ Y_pred_ddt
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/edcdac83-675c-49bd-bc91-eeca2eaeee3b)
 
-#### f1 score
+### f1 score
 ``` Python
 f1_ddt = f1_score(Y_test,Y_pred_ddt, average= 'weighted')
 print(f'F1 Score:{f1:.2f}')
@@ -658,7 +652,7 @@ print(f'F1 Score:{f1:.2f}')
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ac90fc43-ad28-4c1f-a400-7ccb10120585)
 
 
-#### ROC CURVE
+### ROC CURVE
 ``` Python
 Y_pred_ddt_proba = clf_ddt.predict_proba(X_test)
 Y_pred_ddt_proba.shape
@@ -667,7 +661,7 @@ roc_auc_score(Y_test,Y_pred_ddt_proba, multi_class='ovr')
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3aaf868c-980b-41dc-ab98-9bb82f1b1ebb)
 
-#### Confusion matrix
+### Confusion matrix
 ``` Python
 cm_ddt = confusion_matrix(Y_test,Y_pred_ddt)
 print("Confusion Matrix:")
@@ -695,7 +689,7 @@ data2
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/30d95773-5c34-4d04-a73d-5db3a7df7686)
 
-## Data  Observations
+### Data  Observations
 ``` Python
 data2.info()
 ```
@@ -720,7 +714,7 @@ data2.describe()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/547700c6-9e8f-400f-a104-5b1767f967ee)
 
 
-## Checking for duplicate
+### Checking for duplicate
 ``` Python
 data2.shape[0]
 ``` 
@@ -767,7 +761,7 @@ df1 = dff.rename(columns = {'bp.1s': 'Systolic_Blood_Pressure','bp.1d':'Diastoli
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c82d727e-8496-4018-9fa5-2bf2d0d6aa4a)
 
-#### Checking the Class count and Gender Count
+### Checking the Class count and Gender Count
  ``` Python
 d_class = df1['CLASS'].value_counts()
 d_class
@@ -828,7 +822,7 @@ print(XX)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/97b2f53e-c59b-42e9-b310-7db4c6dffce8)
 
 
-# Model Evaluation
+## Model Evaluation
 To evaluate models, dataset was split into training (XX_train, YY_train) and testing (XX_test, YY_test) sets.
 Before the application of the Machine Learning Algorithm, the listed observed issues will be treated
 1-	Onehot encoding of variable (Gender)
@@ -877,7 +871,7 @@ XX_train, XX_test, YY_train, YY_test = train_test_split(XX, YY, test_size=0.20, 
 
 Following the split of the data into training and test sets, it was discovered that some cells were missing. To address this issue, a condition was applied to the split which resulted in the missing cells being moved from the training set to the testing set. This condition was necessary to ensure that the missing cells were handled correctly during the training process, and to prevent any errors from occurring during prediction.
 
-#### Checking missing cells in training set and test set
+### Checking missing cells in training set and test set
 ``` Python
 XX_train.isnull().sum()
  ```
@@ -887,26 +881,26 @@ XX_test.isnull().sum()
  ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/82ba4b52-f702-4629-a031-b7c2a5efe3d6)
 
-##### Identify missing cell in testing set
+#### Identify missing cell in testing set
 ``` Python
 missing_cells_mask =  XX_test.isnull().any(axis =1)
  ```
-##### Moving missing cells to training sets
+#### Moving missing cells to training sets
 ``` Python
 XX_train_missing = XX_test[missing_cells_mask]
 YY_train_missing = YY_test[XX_train_missing.index]
 ``` 
-##### Removing rows with missing values from the testing set
+#### Removing rows with missing values from the testing set
 ``` Python
 XX_test = XX_test.dropna()
 YY_test = YY_test.loc[XX_test.index]
  ```
-##### Concatenate the training set with the row containing missing values
+#### Concatenate the training set with the row containing missing values
 ``` Python
 XX_train = pd.concat([XX_train, XX_train_missing])
 YY_train = pd.concat([YY_train, YY_train_missing])
 ```
-##### Confirming all missing cells are in training sets
+#### Confirming all missing cells are in training sets
 ``` Python
 XX_train.isnull().sum()
 XX_test.isnull().sum()
@@ -915,7 +909,7 @@ XX_test.isnull().sum()
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/03ff071c-e56a-415e-9c5b-e279e8a44a25)
 
-#### Confirming test set does not have missing cells
+### Confirming test set does not have missing cells
 ``` Python
 XX_test.isnull().sum()
 ```
@@ -955,7 +949,7 @@ XX_train.isnull().sum()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/551804a2-eb49-4643-8931-b11768365a1d)
 
 
-## Balancing the training sets
+### Balancing the training sets
 
 Balancing the dataset: it was observed that the dataset was imbalanced from the exploratory data analysis carried out. Several balancing techniques were carried out.
 1-	Random Under sampling Technique.
@@ -971,7 +965,7 @@ def plot_resampling_results(YY_resampled, title):
   plt.title(title)
   plt.show()
 ``` 
-#### Technique 1:  Random Undersampling Vanderbilt Datasets
+### Technique 1:  Random Undersampling Vanderbilt Datasets
 ``` Python
 russ = RandomUnderSampler(random_state =101)
 XX_russ, YY_russ = russ.fit_resample(XX_train, YY_train)
@@ -997,7 +991,7 @@ print('No. of records removed:', YY_train.shape[0] - YY_russ.shape[0])
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/08a51f15-b5a9-405b-a121-85795db50122)
 
 
-#### Technique 2: SMOTE( Synthetic Minority Over-Sampling Technique)- Vanderbilt Datasets
+### Technique 2: SMOTE( Synthetic Minority Over-Sampling Technique)- Vanderbilt Datasets
 Smote generates synthetic minority class examples by interpolating between existing instances. This helps in increasing the diversity of the minority class.
 SMOTE is an oversampling technique where the synthetic samples are generated for the minority class. This algorithm helps to overcome the overfitting problem posed by random oversampling. It focuses on the feature space to generate new instances with the help of interpolation between the positive instances that lie together.
 
@@ -1024,7 +1018,7 @@ print('No. of records added:', YY_smote.shape[0] - YY_train.shape[0])
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/de0dc36e-1376-4acf-bc2d-d434c268cb71)
 
-##### Technique 3: Combination of SMOTE and Tomek Links
+### Technique 3: Combination of SMOTE and Tomek Links
 The process of SMOTE-Tomek Links is as follows. Start of SMOTE: choose random data from the minority class. Calculate the distance between the random data and its k nearest neighbors. Multiply the difference with a random number between 0 and 1, then add the result to the minority class as a synthetic sample. SMOTE-Tomek uses a combination of both SMOTE and the undersampling Tomek link. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority class. 
 SMOTETomek which combines both oversampling (using SMOTE for the minority class) and undersampling (using Tomek links to remove Tomek pairs). This combined approach aims to create a more balanced dataset. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority
 
@@ -1053,11 +1047,11 @@ print('No. of records added:', YY_st.shape[0] - YY_train.shape[0])
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/29658632-51f5-4047-a0df-3c0db412853c)
 
 
-#### Plotting Boxplot to visualize the outliers present in the dataframe
+### Plotting Boxplot to visualize the outliers present in the dataframe
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/79dc8abe-2d8c-42b0-82e9-599b0e8fa465)
 
-#### Treating the Outliers
+### Treating the Outliers
 ``` Python
 def  replace_outlier(col):
   Q1, Q3 =np.quantile(col, [.25, .75])
@@ -1075,7 +1069,7 @@ for i in df_num.columns:
   df_num[i] = np.where(df_num[i]> UL, UL, df_num[i])
   df_num[i] = np.where(df_num[i] < LL, LL, df_num[i])  # Winsorization - Capping and Flooring
 ```
-##### Plotting Boxplot to visualize the dataframe after treating the Outliers
+### Plotting Boxplot to visualize the dataframe after treating the Outliers
 
 ``` Python
 plt.figure(figsize = (15, 10))
@@ -1083,7 +1077,7 @@ df_num.boxplot(vert=0)
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cd617cc3-7e09-4923-bb2e-c32f97c3b874)
 
-#### Plotting the heatmap to see the relatonship between the features
+### Plotting the heatmap to see the relatonship between the features
 ``` Python
 plt.figure(figsize= (7,7))
 sns.set(font_scale = 0.7)
@@ -1096,7 +1090,7 @@ BMI and Weight are  highly positively correlated
 ratio and hdl are highly negatively correlated
 
 there is a relationship between 
-##### Features Scaling using MinMax Scaler
+### Features Scaling using MinMax Scaler
 
 ``` Python
 scalerr = MinMaxScaler().fit(df_num)
@@ -1148,27 +1142,27 @@ plt.xlim([-1,XX_st_scaled.shape[1]])
 
 The first five important features are Gylhb, stab.glu, Age, chol,and Systolic Blood pressure
 
-#### Prediction 
+### Prediction 
 ``` Python
 YY_pred_forest = forest.predict(XX_test)
 YY_pred_forest 
 ```
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/32087755-0e89-49c5-8ed8-da0734f3532d)
- ### checking accuracy
+### checking accuracy
  ``` Python
  print(metrics.accuracy_score(YY_test, YY_pred_forest ))
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/dd4095f1-0946-47c3-9488-84afe791d2a7)
  Accuracy score is very low
- #### f1 score
+### f1 score
 ``` Python
 f1 = f1_score(YY_test,YY_pred_forest, average= 'weighted')
 print(f'F1 Score:{f1:.2f}')
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/03b36c41-7711-410d-9907-aad96af98a42)
 f1 score is extremely low
-#### Confusion matrix
+### Confusion matrix
 ``` Python
 cm = confusion_matrix(YY_test,YY_pred_forest)
 print("Confusion Matrix:")
@@ -1248,7 +1242,7 @@ print(f'F1 Score:{f1:.2f}')
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/75a6e70d-7b3b-4905-9a3b-3897d2b2638a)
 
 f1 score is also low
-#### ROC Curve
+### ROC Curve
 ``` Python
 YY_pred_dt_proba = clf_tr.predict_proba(XX_test)
 YY_pred_dt_proba.shape
@@ -1261,7 +1255,7 @@ YY_pred_dt.shape
 ``` Python
 roc_auc_score(YY_test,YY_pred_dt_proba, multi_class='ovr')
 ```
-#### Confusion Matrix
+### Confusion Matrix
 ``` Python
 cm_dt = confusion_matrix(YY_test,YY_pred_dt)
 print("Confusion Matrix:")
