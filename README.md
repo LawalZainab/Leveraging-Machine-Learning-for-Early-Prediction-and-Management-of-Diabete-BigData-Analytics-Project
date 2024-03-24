@@ -280,11 +280,13 @@ print(Y)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/25cb1be2-4693-4f7f-8841-9681ec8f9244)
 
-### Class Distribution Before Resampling( Pie Chart and Count Plot)
+
 ``` Python
 df['CLASS'].value_counts()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ff32a0c9-b6c2-4132-88e6-e12f3048b39c)
+
+### Class Distribution Before Resampling( Pie Chart and Count Plot)
 
 ``` Python
 fig, axes =plt.subplots(nrows =1, ncols=2, figsize =(10, 4))
