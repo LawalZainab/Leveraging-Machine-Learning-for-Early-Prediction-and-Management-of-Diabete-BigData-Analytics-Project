@@ -186,7 +186,7 @@ data.duplicated(subset = ['ID']).sum()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ad85bc8e-e910-4060-8e44-9f8e385c11e7)
 
 ### Removing the Non-biological features
-Non-biological variables in the dataset were dropped ('id', 'Location', 'frame', 'time.ppn) becuase it will not provide any information on patients classes.
+Non-biological variables in the dataset were dropped ('ID', 'No_Patients') becuase it will not provide any information on patients classes.
 
 ``` Python
 df = data.drop(['ID', 'No_Patients'], axis=1)
@@ -231,7 +231,8 @@ df.groupby('CLASS').median()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/411cdf37-4b58-456b-bee9-691fed1fe092)
 
-It was observed that the dataset has outliers
+It was observed that the dataset has outliers, there is a High gap difference between the minimum values and the first quartile of the Age, Urea, Cr, Chol, HbA1c. Furthermore, the considerable discrepancy between the maximum values and the third quartile of the 
+Age, Urea, Cr, HbA1c
 
 ``` Python
 df.describe()
@@ -258,7 +259,19 @@ print(X)
 ``` Python
 profile_df = ProfileReport(df)
 profile_df
-``` 
+```
+From the 2nd Ydata profiling above, it shows that we have duplicates row. Note we have dealt with duplicate previously using the patients ID, the duplcate row could be patients have similar age and sex attribute. Hence, nothing will be done
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b5cec27d-3a9a-45ec-af89-a84b4fd5f915)
+
+``` Python
+dups = df.duplicated()
+print('Number of duplicate row = %d' % (dups.sum()))
+df[dups]
+```
+``` Python
+dups.shape
+```
+
 #### Onehot ecoding Gender
 One hot encoding:  was performed on the feature ‘Gender’ because it is a categorical variable containing label (Males and Females) values rather than numeric values. One hot encoding is performed because machine learning algorithms cannot operate on label data directly. They require all input variables and output variables to be numeric.
 
@@ -273,7 +286,7 @@ print(Y)
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/25cb1be2-4693-4f7f-8841-9681ec8f9244)
 
-#### Pie Chart of CLASS features
+#### Class Distribution Before Resampling( Pie Chart and Count Plot)
 ``` Python
 df['CLASS'].value_counts()
 ```
@@ -311,10 +324,14 @@ Before the application of the Machine Learning Algorithm, the listed observed is
 
 ####  Splitting datasets
 Splitting the data into two parts, the first part contains 80% of the data whereas the second part of the data contains the remaining 20% of the data. We do this to avoid over-fitting, the two parts are called training and test splits, which gives us a better idea as to how our algorithm performed during the testing phase.The training split gets 80% of the data and the test split has 20% of the data.
-
+1- Stratify = Y, this data-splitting strategy that ensures that the proportion of each class in the training and test sets is the same as that in the original dataset.Stratified sampling helps to ensure that the model is trained and evaluated on a representative sample of the data, and it can improve the model's overall performance.
+2- Random = 11, This ensure the reproducibility of our results
+ 
 ``` Python
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20, stratify= Y, random_state= 11)
 ```
+
+
 ``` Python
 def plot_resampling_results(Y_resampled, title):
   plt.figure(figsize = (10, 4))
@@ -352,7 +369,9 @@ Y_rus.value_counts()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e7948829-abdf-4e10-a072-812d101e130d)
 ``` Python
 print('No. of records removed:', Y_train.shape[0] - Y_rus.shape[0])
-``` 
+```
+556 records were moved from the data, when random undersampling was applied
+
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a2121dac-c4d8-4a11-819d-150b35153812)
 
 ### SMOTE Technique
@@ -378,7 +397,10 @@ Y_smote.value_counts()
 
 ``` Python
 print('No. of records added:', Y_smote.shape[0] - Y_train.shape[0])
-``` 
+```
+
+1058 records were added to the dataset when SMOTE oversampling technique was applied
+
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8525e62e-3ebd-4199-8548-fbaf6da52650)
 
 #### Combination of SMOTE and Tomek Links Technique
@@ -400,8 +422,18 @@ Y_st.value_counts()
 ``` Python
 print('No. of records added:', Y_st.shape[0] - Y_train.shape[0])
 ``` 
+1056 were added to the datasets when SMOTET technique was applied.
 
-#### Plotting Boxplot to visualize the outliers present in the dataframe
+#### checking number of cells in the X_st dataframe.
+X_st = X dataframe when SMOTET was applied
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/4a71a9d5-7889-4b15-bdcb-80ab719a4e9e)
+
+Note: X_st was selected out of the 3 techniques as it employed both undersampling and oversampling
+
+## Plotting Boxplot to visualize the outliers present in the dataframe( X_st)
+#### Approaches to identify outliers and influential observations
+Box plots identify interesting data points, or outliers. Its  a graphical approach that displays the distribution of data and indicates which observations might be outliers. Points that are beyond 1.5 times the IQR are beyond the expected range of variation of the data.
 When analyzing data, identifying and addressing outliers is crucial. These anomalies can skew results, leading to inaccurate insights and decisions.
 
 ``` Python
@@ -412,7 +444,14 @@ X_st[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']].b
 
 
 
-#### Treating the Outliers
+## Treating the Outliers
+If a value is higher than the 1.5*IQR above the upper quartile (Q3), the value will be considered as outlier. Similarly, if a value is lower than the 1.5*IQR below the lower quartile (Q1), the value will be considered as outlier.
+QR is interquartile range. It measures dispersion or variation. IQR = Q3 -Q1.
+Lower limit of acceptable range = Q1 - 1.5* (Q3-Q1)
+Upper limit of acceptable range = Q3 + 1.5* (Q3-Q1)
+
+Outliers were handled by employing Winsorisation technique. This process  of replace a specified number of extreme values with a smaller data value  involve chnaging the values of the ouliers. This is done to limit the effect of outliers or abnormal extreme values, or outliers, on the calculation.
+ 
 ``` Python
 def  replace_outlier(col):
   Q1, Q3 =np.quantile(col, [.25, .75])
@@ -437,7 +476,10 @@ df_num.boxplot(vert=0)
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8e4315b7-e088-4193-9ca6-175f5c173be4)
 
 
-#### Plotting the heatmap to see the relatonship between the features
+#### Plotting the Correlation heatmap to see the relatonship between the features
+A correlation heatmap is a visual graphic that shows how each variable in the dataset are correlated to one another. -1 signifies zero correlation, while 1 signifies a perfect correlation. Correlation heatmaps are important because it helps identify which variables may potentially result in multicolinarity, which would compromise the integrity of the model. Multicolinearity happens when two or more features in a model are correlated with one another
+
+
 ``` Python
 plt.figure(figsize= (10,10))
 sns.set(font_scale = 1.0)
@@ -446,11 +488,15 @@ sns.heatmap(df_num.corr(), annot =True)
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3d630016-3412-415d-876c-7405555c0e7e)
 
+It was observed  that
+1- 	TG and VLDL are highly positively correlated
+2- 	BMI and HbA1c are highly positively correlated
+
+The embedded feature selection in the model technique will be used in selecting the most important features, so we dont have worry about the correlated features.
 
 ### Min Max Scaling
 Since  dataset contains features that have different ranges, units of measurement, or orders of magnitude.  These variation in feature values can lead to biased model performance or difficulties during the learning process. MinMax Scaling technique was employed.   this compresses all the ouliers in the narrow range between [0,1].This process enhances data analysis and modeling accuracy by mitigating the influence of varying scales on machine learning models.
 
- 
 ``` Python
 scaler = MinMaxScaler().fit(df_num)
 print(scaler)
@@ -471,14 +517,23 @@ Random Forest: can be defined as a collection of tree-type classifiers. It uses 
 3-	effectively handling large amounts of training data efficiently i.e. resistant to irrelevant features.
 4-	providing good classification results and avoiding overfitting
 
+#### Traning the model 
+We define the parameters for the random forest training as follows:
+n_estimators: This is the number of trees in the random forest classification. We have defined 500 trees in our random forest.
+criterion: This is the loss function used to measure the quality of the split. There are two available options in sklearn — gini and entropy. We have used entropy.
+random_state: This is the seed used by the random state generator for randomizing the dataset.
+
+Next, we use the training dataset (both dependent and independent to train the random forest), as well as checking the important features
 ``` Python
-fr =RandomForestClassifier(n_estimators=500, random_state =11)
+fr = RandomForestClassifier(n_estimators=500, criterion = 'entropy',  random_state =11)
 fr.fit(X_st_scaled, Y_st)
 importances = fr.feature_importances_
 print(importances)
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1badcd17-af80-46dd-92c5-ca83db8009f3)
 
+Argsort function was used  to perform an indirect sort along the given axis using the algorithm specified by the kind keyword,  It means indices of value arranged in ascending order.
+Next was plotting the important features in ascending order. 
 ``` Python
 indices = np.argsort(importances)[::-1]
 
