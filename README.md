@@ -405,13 +405,19 @@ plot_resampling_results(Y_st, 'Classification After SMOTE and Tomek Links')
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/fd300379-b5d8-4a86-824f-121460225733)
 ``` Python
 Y_train.value_counts()
-``` 
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3eea3548-53cd-45e2-bf69-45567c182642)
+
 ``` Python
 Y_st.value_counts()
-``` 
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3059866d-1a86-455f-9b0a-0d5ac3fdf1a8)
+
 ``` Python
 print('No. of records added:', Y_st.shape[0] - Y_train.shape[0])
-``` 
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/4a812901-96a9-43a2-b89a-e2a17e797e91)
+
 1056 were added to the datasets when SMOTET technique was applied.
 
 ### checking number of cells in the X_st dataframe.
