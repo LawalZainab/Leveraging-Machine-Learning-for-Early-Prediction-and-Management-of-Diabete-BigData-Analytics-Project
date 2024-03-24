@@ -559,27 +559,21 @@ Y_pred_fr
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/2755b19e-19c8-4c5a-b286-0effd4448f09)
 
 
-We'll be using "classification_report" to measure the quality of our predictions for each algorithm i.e. how many predictions are True and how many are False.
+We'll be using "classification_report" to measure the quality of our predictions for each algorithm 
 Now let's define some of the terms in "classification_report" that will be used to analyze each model
-Accuracy: Fraction (or percentage) of predictions that were correct.
-Precision: Fraction (or percentage) of correct predictions among all examples predicted to be positive, meaning what percent of our predictions were correct.
-Recall: Fraction (or percentage) of correct predictions among all real positive examples. In simple terms, what percent of the positive cases did we catch properly.
-F1-Score: Weighted harmonic mean of precision and recall. In simple terms, what percent of positive predictions were correct.
-
-### Accuracy
-``` Python
-print(metrics.accuracy_score(Y_test, Y_pred_fr ))
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a9fc3684-9eae-4ea9-802d-30d9acd60366)
-
+1. Accuracy: Fraction (or percentage) of predictions that were correct.
+2. Precision: Fraction (or percentage) of correct predictions among all examples predicted to be positive, meaning what percent of our predictions were correct.
+3. Recall: Fraction (or percentage) of correct predictions among all real positive examples. In simple terms, what percent of the positive cases did we catch properly.
+4. F1-Score: Weighted harmonic mean of precision and recall. In simple terms, what percent of positive predictions were correct.
 
 ``` Python
-f1 = f1_score(Y_test,Y_pred_fr, average= 'weighted')
-print(f'F1 Score:{f1:.2f}')
+print(classification_report(Y_test, Y_pred_fr))
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3564dacb-903d-4364-b5ba-fc5558cbc40f)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a1fb7026-338a-4dd7-8c96-953c49737890)
+
 
 ### Confusion Matrix
+
 ``` Python
 cm = confusion_matrix(Y_test,Y_pred_fr)
 print("Confusion Matrix:")
@@ -595,6 +589,8 @@ cm_disp.plot()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8253257f-0e3d-48f7-8f01-ae353e17b108)
 
 ### ROC CURVE 
+A graphical plot illustrating the trade-off between True Positive Rate and False Positive Rate at various classification thresholds.
+
 ``` Python
 Y_pred_fr_proba = fr.predict_proba(X_test)
 Y_pred_fr_proba.shape
