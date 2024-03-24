@@ -33,12 +33,15 @@ Supervised Learning - Classification Algorithm
  https://data.world/informatics-edu/diabetes-prediction   Diabetes.csv
 [[Diabetes Dataset - Mendeley Data](https://data.mendeley.com/datasets/wj9rwkp9c2/1)](https://data.mendeley.com/datasets/wj9rwkp9c2/1/files/2eb60cac-96b8-46ea-b971-6415e972afc9)
 
-## Al-Kindy Daibetes Data Description
+## Al-Kindy Diabetes Data Description
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/92540bb0-8c76-4e27-bcd2-196c0d4141a2)
 
+## Vanderbilt Diabetes Data Description
 
- ### Data Preperation: Vanderbilt Diabetes
+   ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f33de591-140d-42e0-8343-bc50f8b4cabf)
+
+### Data Preperation: Vanderbilt Diabetes
 
 -  Two(2) additional features(columns) has been added to the Vanderbilt datasets: CLASS and BMI
  
@@ -50,16 +53,10 @@ Supervised Learning - Classification Algorithm
    
   2.  BMI  was calculated using  =  703 x weight (lbs)/ [height(inches]2  
   
-      - Weight- 2 sets of Weight data was provided in the original datasets : Weight1 and Weigh2,  The avergae weights was used in the calcaulation of BMI 
+      - Weight- 2 sets of Weight data was provided in the original datasets : Weight1 and Weigh2,  The avergae weights was used in the calcaulation of BMI   
 
-### Vanderbilt Diabetes Data Description
-
-   ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f33de591-140d-42e0-8343-bc50f8b4cabf)
-
-     
 ## Techniques:
-- Machine Learning Algorithms that will be used are:  Decision Tree and Random Forest.
-  
+- Machine Learning Algorithms that will be used are:  Random Forest and Decision Tree.
 
 ## Relevant tools:
 - Python- for data analysis and visual representation of the datasets.
@@ -67,8 +64,7 @@ Supervised Learning - Classification Algorithm
 
 ### 1- Data Downloading and Inspection
    
-Downloading datasets:
-
+Downloading datasets: datasets were downloaded from the open source websites
 
 
 ### Libraries Used
@@ -124,7 +120,7 @@ data.head()
 ### Data Observations
 From the information shown below, the data has 1000 rows, 14 columns and has no null values which suggests that this database does not have missing values. 
 
-Additionally the info also tells us that the column ID, No of Patients and Cr are of type int, the column Gender and CLASS are of  type object, the column Urea, HbA2c, Chol, TG, HDL,LDL, VLDL,BMI are type float. 
+Additionally the info also tells us that the column ID, No of Patients and Cr are of data type int, the column Gender and CLASS are of  data type object, the column Urea, HbA2c, Chol, TG, HDL,LDL, VLDL,BMI are data type float. 
 
 ``` Python
 data.info()
@@ -149,7 +145,7 @@ data.describe()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ef95d59d-5038-472b-869e-5e2ee77447ec)
 
 
-### 2- Exploratory Data Analysis and Data Visualization - Al- Kindy Diabetes Datasets
+###  Exploratory Data Analysis and Data Visualization - Al- Kindy Diabetes Datasets
 1. Ydata Profiling
 2. Sweetviz
 
@@ -195,8 +191,11 @@ df
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5c700a9e-30c9-4844-abf9-0d99e9d6ab5f)
 
 
-### Checking the Class count and Gender Count
-This provide insights on the numbers of Males and Females in the diabetes classes
+### Checking Class count and Gender Count
+This provide insights on the:
+1. numbers of Nondiabetes, Prediabetes and Diabetes in the datasets
+2. numbers of Males and Females in the dataset
+   
 ``` Python
 dd_class = df['CLASS'].value_counts()# show the counts of Non-diabetes Pre-diabetes and Diabetes
 dd_class
@@ -209,8 +208,9 @@ dd_Gender
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a69b1928-01fe-483a-94e3-b2613efe5cb1)
 
-### Encoding the Class 'N': 1, 'P' : 2, 'Y' : 3
-
+###  Label encoding the Class 'N': 1, 'P' : 2, 'Y' : 3
+Label encoding involves assigning an integer value to each categorical variable.
+ 
 ``` Python
 class_encode = {'N': 1, 'P' : 2, 'Y' : 3}
 df['CLASS'] = df['CLASS'].replace(class_encode)
@@ -239,6 +239,31 @@ df.describe()
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5a9cf075-c0d1-4cae-9e3d-87b3a0632575)
 
 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e1cb1586-c3d0-49e4-91b6-dfc709202791)
+
+
+### Ydata profiling 2 was performed 
+
+``` Python
+profile_df = ProfileReport(df)
+profile_df
+```
+From the 2nd Ydata profiling above, it shows that we have duplicates row. Note we have dealt with duplicate previously using the patients ID, the duplcate row could be patients have similar features. Hence, nothing will be done
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b5cec27d-3a9a-45ec-af89-a84b4fd5f915)
+
+This shows the numbers of duplicated row
+``` Python
+dups = df.duplicated()
+print('Number of duplicate row = %d' % (dups.sum()))
+df[dups]
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/00784dd2-0ec3-46f8-b502-468efbd0ee2d)
+
+``` Python
+dups.shape
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b20dc562-48d6-4b42-97aa-9320ffc48ec8)
+
 ## Seperating the data and labels
 The main objective is to determine the some of the possible factors that cause diabetes that are made available to us from this dataset and to create machine learning models that will do this for us as well. In order to get best visual results and to understand certain visual and statistical trends we would need to seperate the data into dependent variables and independent variables
 - 1 -The independent variables will be the features of diabetes patients : Gender, AGE, Urea, Cr, HbA1c, TG, Chol, HDL, VLDL, BMI.
@@ -251,26 +276,6 @@ Y = df['CLASS']
 ``` Python
 print(X)
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e1cb1586-c3d0-49e4-91b6-dfc709202791)
-
-### Ydata profiling 2 was performed 
-
-``` Python
-profile_df = ProfileReport(df)
-profile_df
-```
-From the 2nd Ydata profiling above, it shows that we have duplicates row. Note we have dealt with duplicate previously using the patients ID, the duplcate row could be patients have similar age and sex attribute. Hence, nothing will be done
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b5cec27d-3a9a-45ec-af89-a84b4fd5f915)
-
-``` Python
-dups = df.duplicated()
-print('Number of duplicate row = %d' % (dups.sum()))
-df[dups]
-```
-``` Python
-dups.shape
-```
-
 ### Onehot ecoding Gender
 One hot encoding:  was performed on the feature ‘Gender’ because it is a categorical variable containing label (Males and Females) values rather than numeric values. One hot encoding is performed because machine learning algorithms cannot operate on label data directly. They require all input variables and output variables to be numeric.
 
