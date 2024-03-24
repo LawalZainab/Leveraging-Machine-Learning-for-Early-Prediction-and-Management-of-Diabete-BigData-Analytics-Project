@@ -324,8 +324,9 @@ Before the application of the Machine Learning Algorithm, the listed observed is
 
 ####  Splitting datasets
 Splitting the data into two parts, the first part contains 80% of the data whereas the second part of the data contains the remaining 20% of the data. We do this to avoid over-fitting, the two parts are called training and test splits, which gives us a better idea as to how our algorithm performed during the testing phase.The training split gets 80% of the data and the test split has 20% of the data.
-1- Stratify = Y, this data-splitting strategy that ensures that the proportion of each class in the training and test sets is the same as that in the original dataset.Stratified sampling helps to ensure that the model is trained and evaluated on a representative sample of the data, and it can improve the model's overall performance.
-2- Random = 11, This ensure the reproducibility of our results
+1.  Stratify = Y, this data-splitting strategy that ensures that the proportion of each class in the training and test sets is the same as that in the original dataset.Stratified sampling helps to ensure that the model is trained and evaluated on a representative 
+    sample of the data, and it can improve the model's overall performance.
+2. Random = 11, This ensure the reproducibility of our results
  
 ``` Python
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20, stratify= Y, random_state= 11)
@@ -342,9 +343,9 @@ def plot_resampling_results(Y_resampled, title):
 
 #### Balancing dataset
 Balancing the dataset: it was observed that the dataset was imbalanced from the exploratory data analysis carried out. Several balancing techniques were carried out.
-1-	Random Under sampling Technique.
-2-	SMOTE technique.
-3-	Combination of SMOTE and Tomek Link Technique.
+1.	Random Under sampling Technique.
+2.	SMOTE technique.
+3.	Combination of SMOTE and Tomek Link Technique.
 From the above technique, the Combination of SMOTE and Tomek Link Technique was selected as it combines the SMOTE ability to generate synthetic data for the minority class and Tomek Link's ability to remove the data that are identified as Tomek links from the majority class (that is, samples of data from the majority class that is closest with the minority class data).
 
 #### Random Undersampling
@@ -512,10 +513,10 @@ print(X_st_scaled)
 ## Random Forest Classifier
 
 Random Forest: can be defined as a collection of tree-type classifiers. It uses simple probability to select the strongest features for its inputs. The advantages of RF include:
-1-	handling missing values (missing data) in the dataset.
-2-	producing lower error i.e. improves performance by reducing variance.
-3-	effectively handling large amounts of training data efficiently i.e. resistant to irrelevant features.
-4-	providing good classification results and avoiding overfitting
+1.	handling missing values (missing data) in the dataset.
+2.	producing lower error i.e. improves performance by reducing variance.
+3.	effectively handling large amounts of training data efficiently i.e. resistant to irrelevant features.
+4.	providing good classification results and avoiding overfitting
 
 #### Traning the model 
 We define the parameters for the random forest training as follows:
@@ -532,8 +533,9 @@ print(importances)
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1badcd17-af80-46dd-92c5-ca83db8009f3)
 
-Argsort function was used  to perform an indirect sort along the given axis using the algorithm specified by the kind keyword,  It means indices of value arranged in ascending order.
+Argsort function was used  to perform an indirect sort along the given axis using the algorithm specified by the kind keyword,  It returns an array of indices of the same shape as arr that would sort the array.  It means indices of value arranged in ascending order.
 Next was plotting the important features in ascending order. 
+
 ``` Python
 indices = np.argsort(importances)[::-1]
 
@@ -549,9 +551,14 @@ plt.xlim([-1,X_st_scaled.shape[1]])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/49022492-4b75-4501-a7e2-66f6b37502a1)
 
+
+## Evaluatiing the Performance
+
 #### Prediction
-In machine learning, to build a predictive model for either classification or regression tasks, a dataset is split into two different parts: training and testing. 
-he training part is used to train the machine learning model whereas the testing part is used for predictions by the model. These predictions are then evaluated using different evaluation methods and in this project we will be using Random forest and Decision Trees.
+Performance evaluation of the trained model consists of following steps:
+1. Predicting the species class of the test data using test feature set (X_st). We will use the predict function of the random forest classifier to predict classes.
+2. Evaluating the performance of the classifier using Accuracy, Precision, Recall, Confusion Matrix, ROC Curve, F1 Score
+
 
 ``` Python
 Y_pred_fr = fr.predict(X_test)
@@ -566,7 +573,7 @@ Precision: Fraction (or percentage) of correct predictions among all examples pr
 Recall: Fraction (or percentage) of correct predictions among all real positive examples. In simple terms, what percent of the positive cases did we catch properly.
 F1-Score: Weighted harmonic mean of precision and recall. In simple terms, what percent of positive predictions were correct.
 
-### Accuracy
+#### Accuracy
 ``` Python
 print(metrics.accuracy_score(Y_test, Y_pred_fr ))
 ```
