@@ -433,8 +433,6 @@ X_st[['AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI']].b
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f9f12bf3-437f-485b-b7ec-f26d4f09f8b8)
 
-
-
 ### Treating the Outliers
 If a value is higher than the 1.5*IQR above the upper quartile (Q3), the value will be considered as outlier. Similarly, if a value is lower than the 1.5*IQR below the lower quartile (Q1), the value will be considered as outlier.
 QR is interquartile range. It measures dispersion or variation. IQR = Q3 -Q1.
@@ -542,8 +540,6 @@ plt.xlim([-1,X_st_scaled.shape[1]])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b097df7a-a201-4138-8d03-d16bcad8c3dd)
 
-
-
 ## Evaluatiing the Performance
 
 ### Prediction
@@ -570,6 +566,8 @@ Now let's define some of the terms in "classification_report" that will be used 
 print(classification_report(Y_test, Y_pred_fr))
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a1fb7026-338a-4dd7-8c96-953c49737890)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/41f62402-0b38-4a0f-9333-c4131d92e0bd)
 
 
 ### Confusion Matrix
@@ -598,7 +596,6 @@ Y_pred_fr .shape
 roc_auc_score(Y_test,Y_pred_fr_proba, multi_class='ovr')
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/07bd77f2-c839-4eb9-84e6-ab349f837e75)
-
 
 
 ## Decision Tree on Al-Kindy Diabetes Datasets
