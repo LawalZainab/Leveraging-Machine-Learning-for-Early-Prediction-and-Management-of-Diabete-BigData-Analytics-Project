@@ -270,10 +270,11 @@ print(X)
 One hot encoding:  was performed on the feature ‘Gender’ because it is a categorical variable containing label (Males and Females) values rather than numeric values. One hot encoding is performed because machine learning algorithms cannot operate on label data directly. They require all input variables and output variables to be numeric.
 
 ``` Python
-X = pd.get_dummies(X, columns = ['Gender'], prefix = ['Gender'])
+X = pd.get_dummies(X, dtype='int')
 X.head()
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3c9da75d-806b-4398-98c7-0d2089750c37)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d721eb3d-a636-46ce-b1b0-be0840c86393)
+
 
 ``` Python
 print(Y)
