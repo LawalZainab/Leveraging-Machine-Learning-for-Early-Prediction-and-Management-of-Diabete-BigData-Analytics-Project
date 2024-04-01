@@ -98,7 +98,13 @@ from sklearn.feature_selection import VarianceThreshold,  SelectFromModel
 from sklearn.preprocessing import  MinMaxScaler
 from sklearn.tree import DecisionTreeClassifier, plot_tree # Decision Treefrom sklearn.metrics import make_scorer, f1_score,precision_score, recall_score, roc_auc_score, auc, roc_curve, ConfusionMatrixDisplay
 from sklearn.ensemble import RandomForestClassifier
-
+from sklearn.ensemble import GradientBoostingClassifier
+# Tree Visualisation
+from sklearn.tree import export_graphviz
+from IPython.display import Image
+import graphviz
+from scipy.stats import randint
+from sklearn.metrics import brier_score_loss
 ```
 
 ### Storing the  Al-Kindy Diabetes dataset
@@ -2607,7 +2613,7 @@ plt.show()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/07c1f4e4-d826-4930-9ccb-bc55a5112a3d)
 
- # Calculate effectiveness metrics
+ #### Calculate effectiveness metrics
  ``` Python
 accuracy_ddtt = np.mean(cv_scores_ddtt)
 precision_ddtt = np.mean(cross_val_score(ddtt, XX_st_scaled, YY_st, cv=5, scoring='precision_weighted'))
