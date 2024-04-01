@@ -767,6 +767,7 @@ df1['CLASS'] = df1.CLASS.astype('category')
 df1['Gender'] = df1.Gender.astype('category')
 df1.info()
  ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/85b63d33-c66e-4f03-8cb1-97077509bb88)
 
 ### Median value of Non-diabetes, Pre-diabetes and Diabetes
 
@@ -802,6 +803,10 @@ print(XX)
  ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/97b2f53e-c59b-42e9-b310-7db4c6dffce8)
 
+``` Python
+print(YY)
+ ```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/46626e93-9587-4f1f-9679-b0d7d82c6c82)
 
 ## Model Evaluation
 To evaluate models, dataset was split into training (XX_train, YY_train) and testing (XX_test, YY_test) sets.
@@ -815,14 +820,11 @@ Before the application of the Machine Learning Algorithm, the listed observed is
 ### Onehot - creating seperate column for female and male
 
 ``` Python
-XX = pd.get_dummies(XX, columns = ['Gender'], prefix = ['Gender'])
+XX = pd.get_dummies(XX, dtype ='int')
 XX.head()
  ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/db1fc9fb-9674-4262-88db-35569ede2435)
-``` Python
-print(YY)
- ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/46626e93-9587-4f1f-9679-b0d7d82c6c82)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9fefca42-e412-44c6-8ec3-7f4aa9a84f39)
+
 
 ### Pie Cahart of the CLASS
 
@@ -846,7 +848,7 @@ plt.show()
 
 ### Splitting datasets
 ``` Python
-XX_train, XX_test, YY_train, YY_test = train_test_split(XX, YY, test_size=0.20, stratify= YY, random_state= 11)
+XX_train, XX_test, YY_train, YY_test = train_test_split(XX, YY, test_size=0.30, stratify= YY,shuffle =True, random_state= 11)
  ```
 ## Handling missing cells
 
@@ -936,7 +938,7 @@ Balancing the dataset: it was observed that the dataset was imbalanced from the 
 1-	Random Under sampling Technique.
 2-	SMOTE technique.
 3-	Combination of SMOTE and Tomek Link Technique.
-From the above technique, the Combination of SMOTE and Tomek Link Technique was selected as it combines the SMOTE ability to generate synthetic data for the minority class and Tomek Link's ability to remove the data that are identified as Tomek links from the majority class (that is, samples of data from the majority class that is closest with the minority class data).
+
 
 
 ``` Python
@@ -971,6 +973,129 @@ print('No. of records removed:', YY_train.shape[0] - YY_russ.shape[0])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/08a51f15-b5a9-405b-a121-85795db50122)
 
+### Box plot under random undersampling
+``` Python
+plt.figure(figsize = (15, 15))
+XX_russ[[ 'chol', 'stab.glu', 'hdl','ratio', 'glyhb', 'Age', 'Height', 'Weight', 'BMI', 'Systolic_Blood_Pressure', 'Diastolic_Blood_Pressure','waist', 'hip', 'Gender_female', 'Gender_male']].boxplot(vert =0)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/661cb2e5-2ee6-4648-a8e0-7d9498984121)
+``` Python
+def  replace_outlier(col):
+  Q1r, Q3r =np.quantile(col, [.25, .75])
+  IQRr =Q3r -Q1r
+  LLr =Q1r -1.5*IQRr
+  ULr = Q3r + 1.5*IQRr
+  return LLr, ULr # Winsorization -UL - Capping, LL - Flooring
+
+  df_numr = XX_russ[[ 'chol', 'stab.glu', 'hdl','ratio', 'glyhb', 'Age', 'Height', 'Weight', 'BMI', 'Systolic_Blood_Pressure', 'Diastolic_Blood_Pressure','waist', 'hip', 'Gender_female', 'Gender_male']]
+
+for i in df_numr.columns:
+  LLr, ULr = replace_outlier(df_numr[i])
+  df_numr[i] = np.where(df_numr[i]> ULr, ULr, df_numr[i])
+  df_numr[i] = np.where(df_numr[i] < LLr, LLr, df_numr[i])  # Winsorization - Capping and Flooring
+
+  plt.figure(figsize = (15, 10))
+df_numr.boxplot(vert=0)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c42e211b-a5f2-4037-9bf5-32bda10a6e7c)
+``` Python
+plt.figure(figsize= (7,7))
+sns.set(font_scale = 0.5)
+sns.heatmap(df_numr.corr(), annot =True)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e7549068-6751-4c00-a2bc-ad78c9964045)
+``` Python
+scalerrr = MinMaxScaler().fit(df_numr)
+print(scalerrr)
+scalerrr.transform(df_numr)
+XX_russ_scaled = scalerrr.transform(df_numr)
+print(XX_russ_scaled)
+```
+### Gradient Boosting Machine
+
+``` Python
+gbmr = GradientBoostingClassifier()
+gbmr.fit(XX_russ_scaled, YY_russ)
+feature_importancesr = gbmr.feature_importances_
+indices_gb_r = np.argsort(feature_importancesr)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_russ_scaled.shape[1]),
+feature_importancesr[indices_gb_r],
+align ='center')
+
+feat_labels = XX_russ.columns
+plt.xticks(range(XX_russ_scaled.shape[1]),
+           feat_labels[indices_gb_r], rotation = 90)
+plt.xlim([-1,XX_russ_scaled.shape[1]])
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/25e33889-c619-4fed-a8c1-5a37a6314760)
+
+####  Cross-Validation
+``` Python
+cv_scores_gb_r = cross_val_score(gbmr, XX_russ_scaled, YY_russ, cv=5)
+print("Cross-validation Scores:", cv_scores_gb_r)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3eb183a0-25b7-43ea-b08a-e900f1c0e6e9)
+``` Python
+mean_cv_score_gb_r = cv_scores_gb_r.mean()
+std_cv_score_gb_r = cv_scores_gb_r.std()
+print("Mean Cross-validation Score:", mean_cv_score_gb_r)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_gb_r)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a7c74ba0-fce0-4b3b-b139-65fabf4b0b81)
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_gb_r) + 1), cv_scores_gb_r, marker='o', linestyle='-')
+plt.title('Cross-validation Scores- Random Undersampling')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_gb_r) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/af1e1a04-d8ad-4b6f-89a4-d80f6bdfe057)
+
+#### Confusion Matrix
+``` Python
+YY_pred_gb_r = gbmr.predict(XX_test)
+conf_matrix_gb_r = confusion_matrix(YY_test, YY_pred_gb_r)
+cm_disp_gb_r = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_gb_r, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_gb_r.plot()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7af8a944-3726-4ea0-821e-01fb63a82824)
+
+#### Calculate effectiveness metrics
+``` Python
+accuracy_gb_r = np.mean(cv_scores_gb_r)
+precision_gb_r = np.mean(cross_val_score(gbmr, XX_russ_scaled, YY_russ, cv=5, scoring='precision_weighted'))
+recall_gb_r = np.mean(cross_val_score(gbmr,XX_russ_scaled, YY_russ, cv=5, scoring='recall_weighted'))
+f1_gb_r = np.mean(cross_val_score(gbmr,XX_russ_scaled, YY_russ, cv=5, scoring='f1_weighted'))
+
+# Print results
+#print("Brier Score:", brier_score_r)
+print("Accuracy:", accuracy_gb_r)
+print("Precision:", precision_gb_r)
+print("Recall:", recall_gb_r)
+print("F1 Score:", f1_gb_r)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/936f8aff-2ce6-4ffb-8044-34a371b3b22c)
+
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_gb_r = time.time()
+gbmr.fit(XX_russ_scaled, YY_russ)
+end_time_gb_r= time.time()
+training_time_gb_r = end_time_gb_r - start_time_gb_r
+
+inference_start_time_gb_r = time.time()
+YY_pred_inference_gb_r = gbmr.predict(XX_test)
+inference_end_time_gb_r = time.time()
+inference_time_gb_r = inference_end_time_gb_r - inference_start_time_gb_r
+
+print(f"Training Time: {training_time_gb_r:.4f} seconds")
+print(f"Inference Speed: {inference_time_gb_r:.4f} seconds per prediction")
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/4d99ae41-683c-4b3c-b9d7-f16e244c977b)
 
 ### Technique 2: SMOTE( Synthetic Minority Over-Sampling Technique)- Vanderbilt Datasets
 Smote generates synthetic minority class examples by interpolating between existing instances. This helps in increasing the diversity of the minority class.
@@ -998,6 +1123,135 @@ YY_smote.value_counts()
 print('No. of records added:', YY_smote.shape[0] - YY_train.shape[0])
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/de0dc36e-1376-4acf-bc2d-d434c268cb71)
+``` Python
+plt.figure(figsize = (15, 15))
+XX_smote[[ 'chol', 'stab.glu', 'hdl','ratio', 'glyhb', 'Age', 'Height', 'Weight', 'BMI', 'Systolic_Blood_Pressure', 'Diastolic_Blood_Pressure','waist', 'hip', 'Gender_female', 'Gender_male']].boxplot(vert =0)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7df2d16e-d56c-41d8-a58f-7c1b48306c81)
+``` Python
+def  replace_outlier(col):
+  Q1s, Q3s =np.quantile(col, [.25, .75])
+  IQRs =Q3s -Q1s
+  LLs =Q1s -1.5*IQRs
+  ULs = Q3s + 1.5*IQRs
+  return LLs, ULs # Winsorization -UL - Capping, LL - Flooring
+
+df_nums = XX_smote[[ 'chol', 'stab.glu', 'hdl','ratio', 'glyhb', 'Age', 'Height', 'Weight', 'BMI', 'Systolic_Blood_Pressure', 'Diastolic_Blood_Pressure','waist', 'hip', 'Gender_female', 'Gender_male']]
+
+for i in df_nums.columns:
+  LLs, ULs = replace_outlier(df_nums[i])
+  df_nums[i] = np.where(df_nums[i]> ULs, ULs, df_nums[i])
+  df_nums[i] = np.where(df_nums[i] < LLs, LLs, df_nums[i])  # Winsorization - Capping and Flooring
+
+plt.figure(figsize = (15, 10))
+df_nums.boxplot(vert=0)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/fa7ddfec-4c88-4b75-a82e-eae93e78811e)
+``` Python
+plt.figure(figsize= (7,7))
+sns.set(font_scale = 0.5)
+sns.heatmap(df_nums.corr(), annot =True)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cf3e3f44-1a61-4c02-893a-d34bf11f59c5)
+``` Python
+scalers = MinMaxScaler().fit(df_nums)
+print(scalers)
+scalers.transform(df_nums)
+XX_smote_scaled = scalers.transform(df_nums)
+print(XX_smote_scaled)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3c313065-65f9-46c0-901e-61d0a39f8cb2)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/14ab28b8-b059-46db-832b-b2e71ccf0580)
+
+``` Python
+gbms = GradientBoostingClassifier()
+gbms.fit(XX_smote_scaled, YY_smote)
+feature_importancess = gbms.feature_importances_
+print(feature_importancess)
+indices_gb_s = np.argsort(feature_importancess)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_smote_scaled.shape[1]),
+feature_importancess[indices_gb_s],
+align ='center')
+
+feat_labels = XX_smote.columns
+plt.xticks(range(XX_smote_scaled.shape[1]),
+           feat_labels[indices_gb_s], rotation = 90)
+plt.xlim([-1,XX_smote_scaled.shape[1]])
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8fca8610-e3e7-4347-be71-0ab8b9f59ea6)
+
+#### Cross-Validation
+``` Python
+cv_scores_gb_s = cross_val_score(gbms, XX_smote_scaled, YY_smote, cv=5)
+print("Cross-validation Scores:", cv_scores_gb_s)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d64b266f-2bfc-4544-9f38-bec49a7109c2)
+``` Python
+mean_cv_score_gb_s = cv_scores_gb_s.mean()
+std_cv_score_gb_s = cv_scores_gb_s.std()
+print("Mean Cross-validation Score:", mean_cv_score_gb_s)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_gb_s)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/2a83c652-2580-46af-97a2-d9da530b5ab1)
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_gb_s) + 1), cv_scores_gb_s, marker='o', linestyle='-')
+plt.title('Cross-validation Scores- Smote')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_gb_s) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9e0ef098-3585-4288-92b3-7c34872a12d0)
+
+#### Confusion Matrix
+``` Python
+YY_pred_gbs = gbms.predict(XX_test)
+conf_matrix_gbs = confusion_matrix(YY_test, YY_pred_gbs)
+conf_matrix_gbs 
+cm_disp_gb_s = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_gbs, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_gb_s.plot()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c64c6aa0-865a-4a68-a59e-e2d1d46e8b9d)
+``` Python
+report_gb_s = classification_report(YY_test,YY_pred_gbs, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_gb_s)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ee29d089-342d-47e3-ba9b-39d008d534f1)
+
+#### Calculate effectiveness metrics
+``` Python
+accuracy_gb_s = np.mean(cv_scores_gb_s)
+precision_gb_s = np.mean(cross_val_score(gbms, XX_smote_scaled, YY_smote, cv=5, scoring='precision_weighted'))
+recall_gb_s = np.mean(cross_val_score(gbms,XX_smote_scaled, YY_smote, cv=5, scoring='recall_weighted'))
+f1_gb_s = np.mean(cross_val_score(gbms,XX_smote_scaled, YY_smote, cv=5, scoring='f1_weighted'))
+``` 
+#### Print results
+``` Python
+#print("Brier Score:", brier_score_gb)
+print("Accuracy:", accuracy_gb_s)
+print("Precision:", precision_gb_s)
+print("Recall:", recall_gb_s)
+print("F1 Score:", f1_gb_s)
+```
+#### Measure efficiency (training time and inference speed)
+``` Python
+
+start_time_gb_s = time.time()
+gbms.fit(XX_smote_scaled, YY_smote)
+end_time_gb_s= time.time()
+training_time_gb_s = end_time_gb_s - start_time_gb_s
+
+inference_start_time_gb_s = time.time()
+Y_pred_inference_gb_s = gbms.predict(XX_test)
+inference_end_time_gb_s = time.time()
+inference_time_gb_s = inference_end_time_gb_s - inference_start_time_gb_s
+
+print(f"Training Time: {training_time_gb_s:.4f} seconds")
+print(f"Inference Speed: {inference_time_gb_s:.4f} seconds per prediction")
+```
 
 ### Technique 3: Combination of SMOTE and Tomek Links
 The process of SMOTE-Tomek Links is as follows. Start of SMOTE: choose random data from the minority class. Calculate the distance between the random data and its k nearest neighbors. Multiply the difference with a random number between 0 and 1, then add the result to the minority class as a synthetic sample. SMOTE-Tomek uses a combination of both SMOTE and the undersampling Tomek link. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority class. 
@@ -1026,148 +1280,866 @@ YY_st.value_counts()
 print('No. of records added:', YY_st.shape[0] - YY_train.shape[0])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/29658632-51f5-4047-a0df-3c0db412853c)
+``` Python
+plt.figure(figsize = (15, 15))
+XX_st[[ 'chol', 'stab.glu', 'hdl','ratio', 'glyhb', 'Age', 'Height', 'Weight', 'BMI', 'Systolic_Blood_Pressure', 'Diastolic_Blood_Pressure','waist', 'hip', 'Gender_female', 'Gender_male']].boxplot(vert =0)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8e2800e7-88ad-4735-b375-51fb16b1c329)
 
 
-### Plotting Boxplot to visualize the outliers present in the dataframe
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/79dc8abe-2d8c-42b0-82e9-599b0e8fa465)
-
-### Treating the Outliers
 ``` Python
 def  replace_outlier(col):
-  Q1, Q3 =np.quantile(col, [.25, .75])
-  IQR =Q3 -Q1
-  LL =Q1 -1.5*IQR
-  UL = Q3 + 1.5*IQR
-  return LL, UL # Winsorization -UL - Capping, LL - Flooring
-```
+  Q1st, Q3st =np.quantile(col, [.25, .75])
+  IQRst =Q3st -Q1st
+  LLst =Q1st -1.5*IQRst
+  ULst = Q3st + 1.5*IQRst
+  return LLst, ULst # Winsorization -UL - Capping, LL - Flooring
 
-``` Python
-df_num = XX_st[[ 'chol', 'stab.glu', 'hdl','ratio', 'glyhb', 'Age', 'Height', 'Weight', 'BMI', 'Systolic_Blood_Pressure', 'Diastolic_Blood_Pressure','waist', 'hip', 'Gender_female', 'Gender_male']]
+df_numst = XX_st[[ 'chol', 'stab.glu', 'hdl','ratio', 'glyhb', 'Age', 'Height', 'Weight', 'BMI', 'Systolic_Blood_Pressure', 'Diastolic_Blood_Pressure','waist', 'hip', 'Gender_female', 'Gender_male']]
 
-for i in df_num.columns:
-  LL, UL = replace_outlier(df_num[i])
-  df_num[i] = np.where(df_num[i]> UL, UL, df_num[i])
-  df_num[i] = np.where(df_num[i] < LL, LL, df_num[i])  # Winsorization - Capping and Flooring
-```
-### Plotting Boxplot to visualize the dataframe after treating the Outliers
+for i in df_numst.columns:
+  LLst, ULst = replace_outlier(df_numst[i])
+  df_numst[i] = np.where(df_numst[i]> ULst, ULst, df_numst[i])
+  df_numst[i] = np.where(df_numst[i] < LLst, LLst, df_numst[i])  # Winsorization - Capping and Flooring
 
-``` Python
 plt.figure(figsize = (15, 10))
-df_num.boxplot(vert=0)
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cd617cc3-7e09-4923-bb2e-c32f97c3b874)
+df_numst.boxplot(vert=0)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/33488ce3-31c7-4fec-b1f9-1b3e610814f4)
 
-### Plotting the heatmap to see the relatonship between the features
 ``` Python
 plt.figure(figsize= (7,7))
-sns.set(font_scale = 0.7)
-sns.heatmap(df_num.corr(), annot =True)
+sns.set(font_scale = 0.5)
+sns.heatmap(df_numst.corr(), annot =True)
+
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/33484669-66c9-4309-9bc0-38bf735c8a5b)
-
-waist and hip are highly positively correlated
-BMI and Weight are  highly positively correlated
-ratio and hdl are highly negatively correlated
-
-there is a relationship between 
-### Features Scaling using MinMax Scaler
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/55af98e0-a4a2-4dc8-bbf9-c07ef0283cbb)
 
 ``` Python
-scalerr = MinMaxScaler().fit(df_num)
-print(scalerr)
-scalerr.transform(df_num)
-``` 
+scalerst = MinMaxScaler().fit(df_numst)
+print(scalerst)
 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b764cd56-6f72-4743-8122-80aa7c229edd)
-
-``` Python
-XX_st_scaled = scalerr.transform(df_num)
+scalerst.transform(df_numst)
+XX_st_scaled = scalerst.transform(df_numst)
 print(XX_st_scaled)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f45f81ed-ff5d-4793-8355-2f2b178b5c56)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ea2f9396-3495-4a28-8261-5cc23cc33252)
+
+``` Python
+gbmst = GradientBoostingClassifier()
+gbmst.fit(XX_st_scaled, YY_st)
+feature_importances_st = gbmst.feature_importances_
+print(feature_importances_st)
+indices_gb_st = np.argsort(feature_importances_st)[::-1]
+
+plt.ylabel('Feature importance')
+plt.bar(range(XX_st_scaled.shape[1]),
+feature_importances_st[indices_gb_st],
+align ='center')
+
+feat_labels = XX_st.columns
+plt.xticks(range(XX_st_scaled.shape[1]),
+           feat_labels[indices_gb_st], rotation = 90)
+plt.xlim([-1,XX_st_scaled.shape[1]])
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1a5b1d1c-02c0-4b8f-8b60-7bb15b3429a5)
+#### Cross-Validation
+``` Python
+
+cv_scores_gb_st = cross_val_score(gbmst, XX_st_scaled, YY_st, cv=5)
+print("Cross-validation Scores:", cv_scores_gb_st)
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/68d742ad-b199-495f-b2a6-fd05e30c51ba)
 
-## Decision Tree on Vanderbilt Diabetes Datasets
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/16a1e154-7308-444f-9111-4e3c5db00f2f)
+``` Python
 
-### Feature selection using the embedded technique- Random Forest
+mean_cv_score_gb_st = cv_scores_gb_st.mean()
+std_cv_score_gb_st = cv_scores_gb_st.std()
+print("Mean Cross-validation Score:", mean_cv_score_gb_st)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_gb_st)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3bd7fb6c-29a6-48af-a1b7-1505d3473be2)
 
+``` Python
+
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_gb_st) + 1), cv_scores_gb_st, marker='o', linestyle='-')
+plt.title('Cross-validation Scores- Smote +Tomek  Gradient Boosting Machine')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_gb_st) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0cced37e-b756-405c-a665-c2034f9b7cd5)
+
+#### Confusion Matrix
+``` Python
+
+YY_pred_gb_st = gbmst.predict(XX_test)
+conf_matrix_gb_st = confusion_matrix(YY_test, YY_pred_gb_st)
+
+cm_disp_gb_st = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_gb_st, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_gb_st.plot()
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/6c828847-e7b8-4ad5-a9f2-e122c3874b76)
+#### Calculate effectiveness metrics
+``` Python
+ 
+accuracy_gb_st = np.mean(cv_scores_gb_st)
+precision_gb_st = np.mean(cross_val_score(gbmst, XX_st_scaled, YY_st, cv=5, scoring='precision_weighted'))
+recall_gb_st = np.mean(cross_val_score(gbmst,XX_st_scaled, YY_st, cv=5, scoring='recall_weighted'))
+f1_gb_st = np.mean(cross_val_score(gbmst,XX_st_scaled, YY_st, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_gb_st)
+print("Precision:", precision_gb_st)
+print("Recall:", recall_gb_st)
+print("F1 Score:", f1_gb_st)
+
+```
+``` Python
+reportst = classification_report(YY_test,YY_pred_gb_st, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(reportst)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1ae34fe7-60bb-4348-9bac-9c888b0367ba)
+
+``` Python
+
+# Measure efficiency (training time and inference speed)
+start_time_gb_st = time.time()
+gbmst.fit(XX_st_scaled, YY_st)
+end_time_gb_st= time.time()
+training_time_gb_st = end_time_gb_st - start_time_gb_st
+
+inference_start_time_gb_st = time.time()
+YY_pred_inference_gb_st = gbmst.predict(XX_test)
+inference_end_time_gb_st = time.time()
+inference_time_gb_st = inference_end_time_gb_st- inference_start_time_gb_st
+
+print(f"Training Time: {training_time_gb_st:.4f} seconds")
+print(f"Inference Speed: {inference_time_gb_st:.4f} seconds per prediction")
+```
+## Random Forest
 Random Forest: can be defined as a collection of tree-type classifiers. It uses simple probability to select the strongest features for its inputs. The advantages of RF include:
 1-	handling missing values (missing data) in the dataset.
 2-	producing lower error i.e. improves performance by reducing variance.
 3-	effectively handling large amounts of training data efficiently i.e. resistant to irrelevant features.
 4-	providing good classification results and avoiding overfitting
 
+### Random undersampling on Random forest - Entropy
 ``` Python
-forest = RandomForestClassifier( n_estimators=500, random_state =11)
-forest.fit(XX_st_scaled, YY_st)
-importances = forest.feature_importances_
-print(importances)
+
+fr =RandomForestClassifier(n_estimators=50,  criterion = 'entropy', random_state =11)
+fr.fit(XX_russ_scaled, YY_russ)
+importancesr = fr.feature_importances_
+print(importancesr)
+
+indicesr = np.argsort(importancesr)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_russ_scaled.shape[1]),
+importancesr[indicesr],
+align ='center')
+
+feat_labels = XX_russ.columns
+plt.xticks(range(XX_russ_scaled.shape[1]),
+           feat_labels[indicesr], rotation = 90)
+plt.xlim([-1,XX_russ_scaled.shape[1]])
+
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/6392e7a2-4dbc-429d-9916-cebeb4611ed2)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/62d81468-0a24-46ad-98a7-b4b82a105710)
+#### Cross-Validation
+``` Python
+
+cv_scores_fr = cross_val_score(fr, XX_russ_scaled, YY_russ, cv=5)
+print("Cross-validation Scores:", cv_scores_fr)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3824d58a-22f0-42fa-b43d-57d8312fb125)
+``` Python
+mean_cv_score_fr = cv_scores_fr.mean()
+std_cv_score_fr = cv_scores_fr.std()
+print("Mean Cross-validation Score:", mean_cv_score_fr)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_fr)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c7c3a673-9712-47f0-8f3c-7b8de677063e)
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_fr) + 1), cv_scores_fr, marker='o', linestyle='-')
+plt.title('Cross-validation Scores-Random Forest- Entropy')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_fr) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0bada448-c465-44d3-a120-3ee3c6afc104)
+
+
+#### Confusion Matrix
+``` Python
+YY_pred_fr = fr.predict(XX_test)
+conf_matrix_fr = confusion_matrix(YY_test, YY_pred_fr)
+
+cm_disp_fr = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_fr, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_fr.plot()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d4700b6b-e7b2-4dcb-a1ff-64763d104f15)
+
+``` Python
+ # Calculate effectiveness metrics
+accuracy_fr = np.mean(cv_scores_fr)
+precision_fr = np.mean(cross_val_score(fr, XX_russ_scaled, YY_russ, cv=5, scoring='precision_weighted'))
+recall_fr = np.mean(cross_val_score(fr, XX_russ_scaled, YY_russ, cv=5, scoring='recall_weighted'))
+f1_fr = np.mean(cross_val_score(fr,XX_russ_scaled, YY_russ, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_fr)
+print("Precision:", precision_fr)
+print("Recall:", recall_fr)
+print("F1 Score:", f1_fr)
+``` 
+
+``` Python
+report_fr = classification_report(YY_test,YY_pred_fr, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_fr)
+```
+#### Measure efficiency (training time and inference speed)
+``` Python
+
+start_time_fr = time.time()
+fr.fit(XX_russ_scaled, YY_russ)
+end_time_fr= time.time()
+training_time_fr = end_time_fr - start_time_fr
+
+inference_start_time_fr = time.time()
+YY_pred_inference_fr = fr.predict(XX_test)
+inference_end_time_fr = time.time()
+inference_time_fr = inference_end_time_fr- inference_start_time_fr
+
+print(f"Training Time: {training_time_fr:.4f} seconds")
+print(f"Inference Speed: {inference_time_fr:.4f} seconds per prediction")
+```
+``` Python
+for i in range(3):
+    tree = fr.estimators_[i]
+    dot_data = export_graphviz(tree,
+                               feature_names=XX_st.columns,
+                               filled=True,
+                               max_depth=2,
+                               impurity=False,
+                               proportion=True)
+    graph = graphviz.Source(dot_data)
+    display(graph)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/6323d857-f87e-48b6-9c58-9f3bb40bdbdf)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8f36cbe0-d17e-446f-a1ec-154b134c59ac)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/19f28a46-766e-4d86-9eca-5b6e7dfbc698)
+
+
+### Random undersampling on Random forest - Gini
+
+``` Python
+fr1 =RandomForestClassifier(n_estimators=50,  criterion = 'gini', random_state =11)
+fr1.fit(XX_russ_scaled, YY_russ)
+importancessr = fr1.feature_importances_
+print(importancessr)
+
+indices_sr = np.argsort(importancessr)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_russ_scaled.shape[1]),
+importancessr[indices_sr],
+align ='center')
+
+feat_labels = XX_russ.columns
+plt.xticks(range(XX_russ_scaled.shape[1]),
+           feat_labels[indices_sr], rotation = 90)
+plt.xlim([-1,XX_russ_scaled.shape[1]])
+
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/04a282af-20df-4737-a942-86cb9b49e65c)
+
+#### Cross-Validation
+
+``` Python
+cv_scores_fr1 = cross_val_score(fr1, XX_russ_scaled, YY_russ, cv=5)
+print("Cross-validation Scores:", cv_scores_fr1)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/22ad0584-da10-4979-a46a-3b8e7617e462)
 
 
 ``` Python
-indices = np.argsort(importances)[::-1]
+mean_cv_score_fr1 = cv_scores_fr1.mean()
+std_cv_score_fr1 = cv_scores_fr1.std()
+print("Mean Cross-validation Score:", mean_cv_score_fr1)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_fr1)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5d48e1dc-6a0e-43cf-ab79-96172b751f61)
+
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_fr1) + 1), cv_scores_fr1, marker='o', linestyle='-')
+plt.title('Cross-validation Scores-Random Forest-Gini')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_fr1) + 1))
+plt.grid(True)
+plt.show()
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5d2c46cf-5f1a-41a7-8883-b2b3e8a36f67)
+
+#### Confusion Matrix
+``` Python
+YY_pred_fr1 = fr1.predict(XX_test)
+conf_matrix_fr1 = confusion_matrix(YY_test, YY_pred_fr1)
+
+cm_disp_fr1 = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_fr1, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_fr1.plot()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/aece0da2-7900-4273-8cbb-5c47ecb4efc3)
+
+### Plotting Boxplot to visualize the outliers present in the dataframe
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/79dc8abe-2d8c-42b0-82e9-599b0e8fa465)
+#### Calculate effectiveness metrics
+``` Python
+ 
+accuracy_fr1 = np.mean(cv_scores_fr1)
+precision_fr1 = np.mean(cross_val_score(fr1, XX_russ_scaled, YY_russ, cv=5, scoring='precision_weighted'))
+recall_fr1 = np.mean(cross_val_score(fr1, XX_russ_scaled, YY_russ, cv=5, scoring='recall_weighted'))
+f1_fr1 = np.mean(cross_val_score(fr1,XX_russ_scaled, YY_russ, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_fr1)
+print("Precision:", precision_fr1)
+print("Recall:", recall_fr1)
+print("F1 Score:", f1_fr1)
+``` 
+
+``` Python
+report_fr1 = classification_report(YY_test,YY_pred_fr1, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_fr1)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f4df75af-48e4-4308-ba51-db22dce13e28)
+
+``` Python
+# Measure efficiency (training time and inference speed)
+start_time_fr1 = time.time()
+fr1.fit(XX_russ_scaled, YY_russ)
+end_time_fr1= time.time()
+training_time_fr1 = end_time_fr1 - start_time_fr1
+
+inference_start_time_fr1 = time.time()
+y_pred_inference_fr1 = fr1.predict(XX_test)
+inference_end_time_fr1 = time.time()
+inference_time_fr1 = inference_end_time_fr1- inference_start_time_fr1
+
+print(f"Training Time: {training_time_fr1:.4f} seconds")
+print(f"Inference Speed: {inference_time_fr1:.4f} seconds per prediction")
+
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/4ba8e736-2aca-444a-a6bd-0dbf109a7f87)
+
+``` Python
+for i in range(3):
+    tree1 = fr1.estimators_[i]
+    dot_data1 = export_graphviz(tree1,
+                               feature_names=XX_russ.columns,
+                               filled=True,
+                               max_depth=2,
+                               impurity=False,
+                               proportion=True)
+    graph1 = graphviz.Source(dot_data1)
+    display(graph1)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/60ca6568-8b91-4a5f-b4a7-e814f3520b40)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cc4cd7b5-4ed5-46d6-9695-23c576d97322)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/50152cca-4a79-4ab2-89bd-a57a6e60d7ae)
+
+### SMOTE on Random forest - Entropy
+
+``` Python
+frs =RandomForestClassifier(n_estimators=50,  criterion = 'entropy',  random_state =11)
+frs.fit(XX_smote_scaled, YY_smote)
+importancessmt = frs.feature_importances_
+print(importancessmt)
+indicessmt = np.argsort(importancessmt)[::-1]
+
+plt.ylabel('Feature importance')
+plt.bar(range(XX_smote_scaled.shape[1]),
+importancessmt[indicessmt],
+align ='center')
+
+feat_labels = XX_smote.columns
+plt.xticks(range(XX_smote_scaled.shape[1]),
+           feat_labels[indicessmt], rotation = 90)
+plt.xlim([-1,XX_smote_scaled.shape[1]])
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c3d554db-9705-45d2-b109-c0f9073ee91f)
+
+#### Cross-Validation
+``` Python
+cv_scores_frs = cross_val_score(frs, XX_smote_scaled, YY_smote, cv=5)
+print("Cross-validation Scores:", cv_scores_frs)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0915a8a9-c2e0-4026-81db-9af9145842ca)
+
+``` Python
+mean_cv_score_frs = cv_scores_frs.mean()
+std_cv_score_frs = cv_scores_frs.std()
+print("Mean Cross-validation Score:", mean_cv_score_frs)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_frs)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d2e005de-9567-4d23-a441-14771ef57127)
+
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_frs) + 1), cv_scores_frs, marker='o', linestyle='-')
+plt.title('Cross-validation Scores')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_frs) + 1))
+plt.grid(True)
+plt.show()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b148666b-6ec9-4507-ad23-f3ddcafee8a2)
+
+
+#### Confusion Matrix
+``` Python
+YY_pred_frs = frs.predict(XX_test)
+conf_matrix_frs = confusion_matrix(YY_test, YY_pred_frs)
+
+cm_disp_frs = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_frs, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_frs.plot()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3d23ec0a-fef9-4276-88b4-be433111b8f7)
+
+
+``` Python
+report_frs = classification_report(YY_test,YY_pred_frs, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_frs)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/50b0dea3-70a4-48bc-a4c4-e0565b05dcd1)
+
+#### Calculate effectiveness metrics
+``` Python
+accuracy_frs = np.mean(cv_scores_frs)
+precision_frs = np.mean(cross_val_score(frs, XX_smote_scaled, YY_smote, cv=5, scoring='precision_weighted'))
+recall_frs = np.mean(cross_val_score(frs, XX_smote_scaled, YY_smote, cv=5, scoring='recall_weighted'))
+f1_frs = np.mean(cross_val_score(frs,XX_smote_scaled, YY_smote, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_frs)
+print("Precision:", precision_frs)
+print("Recall:", recall_frs)
+print("F1 Score:", f1_frs)
+``` 
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_frs = time.time()
+frs.fit(XX_smote_scaled, YY_smote)
+end_time_frs = time.time()
+training_time_frs = end_time_frs - start_time_frs
+
+inference_start_time_frs = time.time()
+y_pred_inference_frs = frs.predict(XX_test)
+inference_end_time_frs = time.time()
+inference_time_frs = inference_end_time_frs - inference_start_time_frs
+
+
+print(f"Training Time: {training_time_frs:.4f} seconds")
+print(f"Inference Speed: {inference_time_frs:.4f} seconds per prediction")
+```
+
+### SMOTE on Random forest - Gini
+``` Python
+fr2 =RandomForestClassifier(n_estimators=50,  criterion = 'gini',  random_state =11)
+fr2.fit(XX_smote_scaled, YY_smote)
+importances_2 = fr2.feature_importances_
+
+print(importances_2)
+
+indices_2 = np.argsort(importances_2)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_smote_scaled.shape[1]),
+importances_2[indices_2],
+align ='center')
+
+feat_labels = XX_smote.columns
+plt.xticks(range(XX_smote_scaled.shape[1]),
+           feat_labels[indices_2], rotation = 90)
+plt.xlim([-1,XX_smote_scaled.shape[1]])
+
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/73cc3e73-5246-4389-b6a7-f9b96f173f6e)
+
+
+#### Cross-Validation
+``` Python
+cv_scores_fr2 = cross_val_score(fr2, XX_smote_scaled, YY_smote, cv=5)
+print("Cross-validation Scores:", cv_scores_fr2)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e090d714-7a93-4ed0-a6b4-0894b47701ec)
+
+``` Python
+mean_cv_score_fr2 = cv_scores_fr2.mean()
+std_cv_score_fr2 = cv_scores_fr2.std()
+print("Mean Cross-validation Score:", mean_cv_score_fr2)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_fr2)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5032a12e-c033-4fb2-9093-5e28a8d1ba30)
+
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_fr2) + 1), cv_scores_fr2, marker='o', linestyle='-')
+plt.title('Cross-validation Scores')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_fr2) + 1))
+plt.grid(True)
+plt.show()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/fa774e08-133a-45d6-9555-656528a7f0c2)
+
+#### Confusion Matrix
+``` Python
+YY_pred_fr2 = fr2.predict(XX_test)
+conf_matrix_fr2 = confusion_matrix(YY_test, YY_pred_fr2)
+
+cm_disp_fr2 = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_fr2, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_fr2.plot()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/582770d9-2b4e-4da4-a68b-e9154a1e2115)
+
+``` Python
+report_fr2 = classification_report(YY_test,YY_pred_fr2, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_fr2)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8c4fe8f6-d6a9-44f3-8f74-3695dce8d6a5)
+
+
+#### Calculate effectiveness metrics
+ ``` Python
+accuracy_fr2 = np.mean(cv_scores_fr2)
+precision_fr2 = np.mean(cross_val_score(fr2, XX_smote_scaled, YY_smote, cv=5, scoring='precision_weighted'))
+recall_fr2 = np.mean(cross_val_score(fr2, XX_smote_scaled, YY_smote, cv=5, scoring='recall_weighted'))
+f1_fr2 = np.mean(cross_val_score(fr2,XX_smote_scaled, YY_smote, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_fr2)
+print("Precision:", precision_fr2)
+print("Recall:", recall_fr2)
+print("F1 Score:", f1_fr2)
+``` 
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_fr2 = time.time()
+fr2.fit(XX_smote_scaled, YY_smote)
+end_time_fr2 = time.time()
+training_time_fr2 = end_time_fr2 - start_time_fr2
+
+inference_start_time_fr2 = time.time()
+y_pred_inference_fr2 = fr2.predict(XX_test)
+inference_end_time_fr2 = time.time()
+inference_time_fr2 = inference_end_time_fr2 - inference_start_time_fr2
+
+print(f"Training Time: {training_time_fr2:.4f} seconds")
+print(f"Inference Speed: {inference_time_fr2:.4f} seconds per prediction")
+```
+``` Python
+for i in range(3):
+    tree2 = fr2.estimators_[i]
+    dot_data2 = export_graphviz(tree2,
+                               feature_names=XX_st.columns,
+                               filled=True,
+                               max_depth=2,
+                               impurity=False,
+                               proportion=True)
+    graph2 = graphviz.Source(dot_data2)
+    display(graph2)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/dd4b0a30-75a0-4666-be4c-a79582220ec3)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/56cd0a8d-d886-4f59-866f-0da0b41c05b9)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f9b291f8-fe89-4710-bce3-bc1deb020be9)
+
+
+### SMOTE + Tomek on Random forest - Entropy
+
+``` Python
+fr3 =RandomForestClassifier(n_estimators=50,  criterion = 'entropy', random_state =11)
+
+fr3.fit(XX_st_scaled, YY_st)
+importancesfrst = fr3.feature_importances_
+print(importancesfrst)
+
+indicesfrst = np.argsort(importancesfrst)[::-1]
+
 plt.ylabel('Feature importance')
 plt.bar(range(XX_st_scaled.shape[1]),
-importances[indices],
+importancesfrst[indicesfrst],
 align ='center')
 
 feat_labels = XX.columns
 plt.xticks(range(XX_st_scaled.shape[1]),
-           feat_labels[indices], rotation = 90)
+           feat_labels[indicesfrst], rotation = 90)
 plt.xlim([-1,XX_st_scaled.shape[1]])
-
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ac86b832-08a7-4433-b243-7576c44d1fc2)
-
-The first five important features are Gylhb, stab.glu, Age, chol,and Systolic Blood pressure
-
-### Prediction 
-``` Python
-YY_pred_forest = forest.predict(XX_test)
-YY_pred_forest 
-```
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/32087755-0e89-49c5-8ed8-da0734f3532d)
-### checking accuracy
- ``` Python
- print(metrics.accuracy_score(YY_test, YY_pred_forest ))
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/dd4095f1-0946-47c3-9488-84afe791d2a7)
- Accuracy score is very low
-### f1 score
-``` Python
-f1 = f1_score(YY_test,YY_pred_forest, average= 'weighted')
-print(f'F1 Score:{f1:.2f}')
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/03b36c41-7711-410d-9907-aad96af98a42)
-f1 score is extremely low
-### Confusion matrix
-``` Python
-cm = confusion_matrix(YY_test,YY_pred_forest)
-print("Confusion Matrix:")
-print(cm)
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1c069ceb-ce2a-464b-8844-cdf08fe6a699)
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d1c1ff8c-d701-4c08-bf06-eee8c4c4dfc6)
-
-### ROC Curve
-``` Python
-YY_pred_proba = forest.predict_proba(XX_test)
-YY_pred_proba.shape
 ``` 
 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/4f6d58be-84f0-496c-a160-ded13de01b78)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ef40d0d7-77c3-4b93-a241-5b0233e113f0)
+
+#### Cross-Validation
 ``` Python
-YY_pred.shape
+
+cv_scores_fr3 = cross_val_score(fr3, XX_st_scaled, YY_st, cv=5)
+print("Cross-validation Scores:", cv_scores_fr3)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3fd7a9be-dcdc-48eb-8684-41a90cab2b01)
+
+``` Python
+mean_cv_score_fr3 = cv_scores_fr3.mean()
+std_cv_score_fr3 = cv_scores_fr3.std()
+print("Mean Cross-validation Score:", mean_cv_score_fr3)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_fr3)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e3ca3845-fe64-4e33-9d24-a7700c441426)
+
+
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_fr3) + 1), cv_scores_fr3, marker='o', linestyle='-')
+plt.title('Cross-validation Scores Random Forest Smote + Tomek')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_fr3) + 1))
+plt.grid(True)
+plt.show()
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8c6f3c45-1cfc-491f-a94b-7302c58ba668)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3074f431-6696-4592-87b8-477f75e184a9)
+
+#### Confusion Matrix
+
+
 ``` Python
-roc_auc_score(YY_test,YY_pred_proba, multi_class='ovr')
+YY_pred_fr3 = fr3.predict(XX_test)
+conf_matrix_fr3 = confusion_matrix(YY_test, YY_pred_fr3)
+
+cm_disp_fr3 = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_fr3, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_fr3.plot()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0d9fd47d-4ea1-44db-a5f6-c6c182ad8348)
+
+``` Python
+report_fr3 = classification_report(YY_test,YY_pred_fr3, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_fr3)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/31cb4b7a-b6f8-4b89-aef4-51bb7a827596)
+
+#### Calculate effectiveness metrics
+``` Python
+
+accuracy_fr3 = np.mean(cv_scores_fr3)
+precision_fr3 = np.mean(cross_val_score(fr3, XX_st_scaled, YY_st, cv=5, scoring='precision_weighted'))
+recall_fr3 = np.mean(cross_val_score(fr3, XX_st_scaled, YY_st, cv=5, scoring='recall_weighted'))
+f1_fr3 = np.mean(cross_val_score(fr3,XX_st_scaled, YY_st, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_fr3)
+print("Precision:", precision_fr3)
+print("Recall:", recall_fr3)
+print("F1 Score:", f1_fr3)
+
+```
+
+#### Measure efficiency (training time and inference speed)
+
+``` Python
+start_time_fr3 = time.time()
+fr3.fit(XX_st_scaled, YY_st)
+end_time_fr3 = time.time()
+training_time_fr3 = end_time_fr3 - start_time_fr3
+
+inference_start_time_fr3 = time.time()
+y_pred_inference_fr3 = fr3.predict(XX_test)
+inference_end_time_fr3 = time.time()
+inference_time_fr3 = inference_end_time_fr3 - inference_start_time_fr3
+
+print(f"Training Time: {training_time_fr3:.4f} seconds")
+print(f"Inference Speed: {inference_time_fr3:.4f} seconds per prediction")
+
+```
+#### Visualizing the first three trees
+``` Python
+for i in range(3):
+    tree3 = fr3.estimators_[i]
+    dot_data3 = export_graphviz(tree3,
+                               feature_names=XX_st.columns,
+                               filled=True,
+                               max_depth=2,
+                               impurity=False,
+                               proportion=True)
+    graph3 = graphviz.Source(dot_data3)
+    display(graph3)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0db773fd-9765-4fb7-af3b-1c05b43a3948)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c2a0e308-8448-4f68-a2ef-6c95d715560b)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b3d477d0-1347-4720-ac88-ec8246d63626)
+
+#### SMOTE + Tomek on Random forest - Gini
+``` Python
+fr4 =RandomForestClassifier(n_estimators=50,  criterion = 'gini',  random_state =11)
+fr4.fit(XX_st_scaled, YY_st)
+importances_4 = fr4.feature_importances_
+print(importances_4)
+
+indices_4 = np.argsort(importances_4)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_st_scaled.shape[1]),
+importances_4[indices_4],
+align ='center')
+
+feat_labels = XX_st.columns
+plt.xticks(range(XX_st_scaled.shape[1]),
+           feat_labels[indices_4], rotation = 90)
+plt.xlim([-1,XX_st_scaled.shape[1]])
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7d3eb1e7-6f61-4fa3-99ce-668301ec3b40)
+
+#### Cross-Validation
+``` Python
+
+cv_scores_fr4 = cross_val_score(fr4, XX_st_scaled, YY_st, cv=5)
+print("Cross-validation Scores:", cv_scores_fr4)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5ac6e985-74f3-4711-bbf7-210ea9aa287b)
+
+``` Python
+mean_cv_score_fr4 = cv_scores_fr4.mean()
+std_cv_score_fr4 = cv_scores_fr4.std()
+print("Mean Cross-validation Score:", mean_cv_score_fr4)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_fr4)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ccec011e-636d-445f-84d1-c3d7bac7a340)
+
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_fr4) + 1), cv_scores_fr4, marker='o', linestyle='-')
+plt.title('Cross-validation Scores Smote + Tomek Random Forest')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_fr4) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/78f33db5-4f0c-4efd-a41a-1821641c40d2)
+
+#### Confusion Matrix
+``` Python
+YY_pred_fr4 = fr4.predict(XX_test)
+conf_matrix_fr4 = confusion_matrix(YY_test, YY_pred_fr4)
+
+cm_disp_fr4 = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_fr4, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_fr4.plot()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1e952a3b-abe1-41e5-ab0a-13001efe3a09)
+
+``` Python
+report_fr4 = classification_report(YY_test,YY_pred_fr4, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_fr4)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7a59bcbf-e7b3-47dd-b13a-fc7c5af5ef28)
+
+``` Python
+ # Calculate effectiveness metrics
+accuracy_fr4 = np.mean(cv_scores_fr3)
+precision_fr4 = np.mean(cross_val_score(fr4, XX_st_scaled, YY_st, cv=5, scoring='precision_weighted'))
+recall_fr4 = np.mean(cross_val_score(fr4, XX_st_scaled, YY_st, cv=5, scoring='recall_weighted'))
+f1_fr4 = np.mean(cross_val_score(fr4,XX_st_scaled, YY_st, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_fr4)
+print("Precision:", precision_fr4)
+print("Recall:", recall_fr4)
+print("F1 Score:", f1_fr4)
+``` 
+
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_fr4 = time.time()
+fr4.fit(XX_st_scaled, YY_st)
+end_time_fr4 = time.time()
+training_time_fr4 = end_time_fr4 - start_time_fr4
+
+
+inference_start_time_fr4 = time.time()
+y_pred_inference_fr4 = fr4.predict(XX_test)
+inference_end_time_fr4 = time.time()
+inference_time_fr4 = inference_end_time_fr4 - inference_start_time_fr4
+
+print(f"Training Time: {training_time_fr4:.4f} seconds")
+print(f"Inference Speed: {inference_time_fr4:.4f} seconds per prediction")
+
+```
+
+#### Visualizing the first three trees
+``` Python
+for i in range(3):
+    tree4 = fr4.estimators_[i]
+    dot_data4 = export_graphviz(tree4,
+                               feature_names=XX_st.columns,
+                               filled=True,
+                               max_depth=2,
+                               impurity=False,
+                               proportion=True)
+    graph = graphviz.Source(dot_data4)
+    display(graph)
 
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b219d69f-d49d-4498-bce5-70db56062b86)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/5b4897bc-40f9-46f1-82f9-d7b3b7c4cf23)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/96a59432-713d-481f-bc91-1074491871be)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0a4ea775-b51b-42e9-ab9e-53bbab3c8c1c)
+
+
+
+
 
 ## Decision Tree on Vanderbilt Diabetes Datasets
 
@@ -1177,71 +2149,495 @@ Decision Tree: is a non-parametric supervised learning algorithm for classificat
 1-	validate a model using statistical tests. That makes it possible to account for the reliability of the model.
 2-	performs well even if its assumptions are somewhat violated by the true model from which the data were generated.
 
-``` Python
-clf_dt = DecisionTreeClassifier(random_state =42)
-clf_dt.fit(XX_st_scaled, YY_st)
-importances_dt = clf_dt.feature_importances_
-print(importances)
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e1b3673a-8e16-4ffd-bcd8-9a63e262bd34)
 
+#### Decision Trees Random UnderSampling Entropy
 ``` Python
+dt = DecisionTreeClassifier(criterion = 'entropy',  random_state =42)
+dt.fit(XX_russ_scaled, YY_russ)
+importances_dt = dt.feature_importances_
+print(importances_dt)
+
 indices_dt = np.argsort(importances_dt)[::-1]
-
 plt.ylabel('Feature importance')
-plt.bar(range(XX_st_scaled.shape[1]),
+plt.bar(range(XX_russ_scaled.shape[1]),
 importances_dt[indices_dt],
 align ='center')
 
-feat_labels = XX.columns
-plt.xticks(range(XX_st_scaled.shape[1]),
+feat_labels = XX_russ.columns
+plt.xticks(range(XX_russ_scaled.shape[1]),
            feat_labels[indices_dt], rotation = 90)
+plt.xlim([-1,XX_russ_scaled.shape[1]])
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c768bc71-e48e-446b-8d48-9ffc1d377144)
+
+#### Cross Validation 
+``` Python
+
+cv_scores_dt = cross_val_score(dt, XX_russ_scaled, YY_russ, cv=5)
+print("Cross-validation Scores:", cv_scores_dt)
+``` 
+``` Python
+mean_cv_score_dt = cv_scores_dt.mean()
+std_cv_score_dt = cv_scores_dt.std()
+print("Mean Cross-validation Score:", mean_cv_score_dt)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_dt)
+``` 
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_dt) + 1), cv_scores_dt, marker='o', linestyle='-')
+plt.title('Cross-validation Scores Decision Trees UnderSampling')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_dt) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0696b1e9-e6ca-4d63-92fe-9daa88454021)
+
+``` Python
+ # Calculate effectiveness metrics
+accuracy_dt = np.mean(cv_scores_dt)
+precision_dt = np.mean(cross_val_score(dt, XX_russ_scaled, YY_russ, cv=5, scoring='precision_weighted'))
+recall_dt = np.mean(cross_val_score(dt, XX_russ_scaled, YY_russ, cv=5, scoring='recall_weighted'))
+f1_dt = np.mean(cross_val_score(dt,XX_russ_scaled, YY_russ, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_dt)
+print("Precision:", precision_dt)
+print("Recall:", recall_dt)
+print("F1 Score:", f1_dt)
+
+``` 
+``` Python
+# Measure efficiency (training time and inference speed)
+start_time_dt  = time.time()
+dt .fit(XX_russ_scaled, YY_russ)
+end_time_dt  = time.time()
+training_time_dt  = end_time_dt - start_time_dt
+
+inference_start_time_dt = time.time()
+y_pred_inference_dt = dt.predict(XX_test)
+inference_end_time_dt = time.time()
+inference_time_dt = inference_end_time_dt- inference_start_time_dt
+
+print(f"Training Time: {training_time_dt :.4f} seconds")
+print(f"Inference Speed: {inference_time_dt:.4f} seconds per prediction")
+
+```
+#### Decision Trees Random UnderSampling Gini
+``` Python
+dtt = DecisionTreeClassifier(criterion = 'gini',  random_state =42)
+dtt.fit(XX_russ_scaled, YY_russ)
+importances_dtt = dt.feature_importances_
+
+print(importances_dtt)
+
+indices_dtt = np.argsort(importances_dt)[::-1]
+
+plt.ylabel('Feature importance')
+plt.bar(range(XX_russ_scaled.shape[1]),
+importances_dtt[indices_dt],
+align ='center')
+
+feat_labels = XX_russ.columns
+plt.xticks(range(XX_russ_scaled.shape[1]),
+           feat_labels[indices_dt], rotation = 90)
+plt.xlim([-1,XX_russ_scaled.shape[1]])
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/1101a5bd-e431-429a-a07e-bd573baa3079)
+
+#### Cross Validation
+``` Python
+cv_scores_dtt = cross_val_score(dtt, XX_russ_scaled, YY_russ, cv=5)
+print("Cross-validation Scores:", cv_scores_dtt)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/051a998b-afa4-4f43-b046-85e320b5077a)
+
+``` Python
+mean_cv_score_dtt = cv_scores_dtt.mean()
+std_cv_score_dtt = cv_scores_dtt.std()
+print("Mean Cross-validation Score:", mean_cv_score_dtt)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_dtt)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f83de22a-ddb4-47ae-8cd2-431c00565f56)
+
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_dtt) + 1), cv_scores_dtt, marker='o', linestyle='-')
+plt.title('Cross-validation Scores Decision Trees UnderSampling Gini')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_dtt) + 1))
+plt.grid(True)
+plt.show()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7eaaa68b-cb9c-4122-9f1f-4dff1288c18e)
+
+
+#### Calculate effectiveness metrics
+``` Python
+accuracy_dtt = np.mean(cv_scores_dtt)
+precision_dtt = np.mean(cross_val_score(dtt, XX_russ_scaled, YY_russ, cv=5, scoring='precision_weighted'))
+recall_dtt = np.mean(cross_val_score(dtt, XX_russ_scaled, YY_russ, cv=5, scoring='recall_weighted'))
+f1_dtt = np.mean(cross_val_score(dtt,XX_russ_scaled, YY_russ, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_dtt)
+print("Precision:", precision_dtt)
+print("Recall:", recall_dtt)
+print("F1 Score:", f1_dtt)
+```
+
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_dtt  = time.time()
+dtt .fit(XX_russ_scaled, YY_russ)
+end_time_dtt  = time.time()
+training_time_dtt  = end_time_dtt - start_time_dtt
+
+inference_start_time_dtt = time.time()
+y_pred_inference_dtt = dtt.predict(XX_test)
+inference_end_time_dtt = time.time()
+inference_time_dtt = inference_end_time_dtt- inference_start_time_dtt
+
+print(f"Training Time: {training_time_dtt :.4f} seconds")
+print(f"Inference Speed: {inference_time_dtt:.4f} seconds per prediction")
+```
+
+#### Decision Trees SMOTE Entropy
+``` Python
+dsmt = DecisionTreeClassifier(criterion = 'entropy',  random_state =42)
+dsmt.fit(XX_smote_scaled, YY_smote)
+importances_dsmt = dsmt.feature_importances_
+
+print(importances_dsmt )
+indices_dsmt = np.argsort(importances_dsmt)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_smote_scaled.shape[1]),
+importances_dsmt[indices_dsmt],
+align ='center')
+
+feat_labels = XX_smote.columns
+plt.xticks(range(XX_smote_scaled.shape[1]),
+           feat_labels[indices_dsmt], rotation = 90)
+plt.xlim([-1,XX_smote_scaled.shape[1]])
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d1e8a8b8-bed1-4b32-b429-fa4818d13e9c)
+
+ #### Cross Validation
+``` Python
+cv_scores_dsmt = cross_val_score(dsmt, XX_smote_scaled, YY_smote, cv=5)
+print("Cross-validation Scores:", cv_scores_dsmt)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/519aa082-0f0b-4375-a216-dc5174a301be)
+``` Python
+mean_cv_score_dsmt = cv_scores_dsmt.mean()
+std_cv_score_dsmt = cv_scores_dsmt.std()
+print("Mean Cross-validation Score:", mean_cv_score_dsmt)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_dsmt)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9e30b986-c364-4a2c-ac06-74569fc43d05)
+
+
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_dsmt) + 1), cv_scores_dsmt, marker='o', linestyle='-')
+plt.title('Cross-validation Scores')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_dsmt) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/6170ac27-9895-48a8-a29f-61be8c2f3a25)
+
+#### Calculate effectiveness metrics
+``` Python
+accuracy_dsmt = np.mean(cv_scores_dsmt)
+precision_dsmt = np.mean(cross_val_score(dsmt, XX_smote_scaled, YY_smote, cv=5, scoring='precision_weighted'))
+recall_dsmt = np.mean(cross_val_score(dsmt, XX_smote_scaled, YY_smote, cv=5, scoring='recall_weighted'))
+f1_dsmt = np.mean(cross_val_score(dsmt,XX_smote_scaled, YY_smote, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_dsmt)
+print("Precision:", precision_dsmt)
+print("Recall:", recall_dsmt)
+print("F1 Score:", f1_dsmt)
+```
+
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_dsmt  = time.time()
+dsmt .fit(XX_smote_scaled, YY_smote)
+end_time_dsmt  = time.time()
+training_time_dsmt  = end_time_dsmt - start_time_dsmt
+
+inference_start_time_dsmt = time.time()
+y_pred_inference_dsmt = dsmt.predict(XX_test)
+inference_end_time_dsmt = time.time()
+inference_time_dsmt= inference_end_time_dsmt- inference_start_time_dsmt
+
+print(f"Training Time: {training_time_dsmt :.4f} seconds")
+print(f"Inference Speed: {inference_time_dsmt:.4f} seconds per prediction")
+```
+
+#### Decision Trees SMOTE Gini
+
+``` Python
+dsm = DecisionTreeClassifier(criterion = 'gini',  random_state =42)
+dsm.fit(XX_smote_scaled, YY_smote)
+importances_dsm = dsm.feature_importances_
+
+print(importances_dsm )
+
+indices_dsm = np.argsort(importances_dsm)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_smote_scaled.shape[1]),
+importances_dsm[indices_dsm],
+align ='center')
+
+feat_labels = XX_smote.columns
+plt.xticks(range(XX_smote_scaled.shape[1]),
+           feat_labels[indices_dsm], rotation = 90)
+plt.xlim([-1,XX_smote_scaled.shape[1]])
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3e9e3952-9896-43af-b988-2bcf8797d076)
+
+
+#### Cross Validation
+``` Python
+
+cv_scores_dsm = cross_val_score(dsm, XX_smote_scaled, YY_smote, cv=5)
+print("Cross-validation Scores:", cv_scores_dsm)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a5cc6d8f-f9d6-4b89-9868-65f864266fe9)
+
+``` Python
+mean_cv_score_dsm = cv_scores_dsm.mean()
+std_cv_score_dsm = cv_scores_dsm.std()
+print("Mean Cross-validation Score:", mean_cv_score_dsm)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_dsm)
+```
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_dsm) + 1), cv_scores_dsmt, marker='o', linestyle='-')
+plt.title('Cross-validation Scores')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_dsm) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/25cfc0fd-9216-494f-806d-e01bc2118636)
+
+
+#### Calculate effectiveness metrics
+``` Python
+accuracy_dsm = np.mean(cv_scores_dsm)
+precision_dsm = np.mean(cross_val_score(dsm, XX_smote_scaled, YY_smote, cv=5, scoring='precision_weighted'))
+recall_dsm = np.mean(cross_val_score(dsm, XX_smote_scaled, YY_smote, cv=5, scoring='recall_weighted'))
+f1_dsm = np.mean(cross_val_score(dsm,XX_smote_scaled, YY_smote, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_dsm)
+print("Precision:", precision_dsm)
+print("Recall:", recall_dsm)
+print("F1 Score:", f1_dsm)
+```
+
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_dsm  = time.time()
+dsm .fit(XX_smote_scaled, YY_smote)
+end_time_dsm = time.time()
+training_time_dsm  = end_time_dsm - start_time_dsm
+
+inference_start_time_dsm = time.time()
+y_pred_inference_dsm = dsm.predict(XX_test)
+inference_end_time_dsm = time.time()
+inference_time_dsm= inference_end_time_dsm- inference_start_time_dsm
+
+print(f"Training Time: {training_time_dsm :.4f} seconds")
+print(f"Inference Speed: {inference_time_dsm:.4f} seconds per prediction")
+```
+
+#### Decision Trees SMOTE + Tomek Entropy
+
+``` Python
+ddt = DecisionTreeClassifier(criterion = 'entropy',  random_state =42)
+ddt.fit(XX_st_scaled, YY_st)
+importances_ddt = ddt.feature_importances_
+
+print(importances_ddt)
+indices_ddt = np.argsort(importances_ddt)[::-1]
+
+plt.ylabel('Feature importance')
+plt.bar(range(XX_st_scaled.shape[1]),
+importances_ddt[indices_ddt],
+align ='center')
+
+feat_labels = XX_st.columns
+plt.xticks(range(XX_st_scaled.shape[1]),
+           feat_labels[indices_ddt], rotation = 90)
 plt.xlim([-1,XX_st_scaled.shape[1]])
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/99dd59d8-d01e-42e2-8278-9c72534c5c0d)
 
-the importance features are : glyhb and chol
-### Prediction
-``` Python
-YY_pred_dt = clf_dt.predict(XX_test)
-YY_pred_dt
-```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/59343f12-4f4f-4c04-8556-bc8e545ea17c)
-
-### Accuracy
-``` Python
-print(metrics.accuracy_score(YY_test, YY_pred_dt ))
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a6e18687-403f-4e07-8388-7faf0198400b)
-
-Accuracy is same as random forest, extemeely low
-``` Python
-f1_dt = f1_score(YY_test,YY_pred_dt, average= 'weighted')
-print(f'F1 Score:{f1:.2f}')
 
 ```
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/75a6e70d-7b3b-4905-9a3b-3897d2b2638a)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/c28372a3-5f9e-45ae-a482-9ad12f5f9b1d)
+ #### Cross Validation
+``` Python
+cv_scores_ddt = cross_val_score(ddt, XX_st_scaled, YY_st, cv=5)
+print("Cross-validation Scores:", cv_scores_ddt)
 
-f1 score is also low
-### ROC Curve
-``` Python
-YY_pred_dt_proba = clf_tr.predict_proba(XX_test)
-YY_pred_dt_proba.shape
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/02e8b94f-50ca-4ad3-a51a-80d3808c238d)
-``` Python
-YY_pred_dt.shape
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cb7c750a-85bd-4b0d-bfd2-823ea61a1829)
-``` Python
-roc_auc_score(YY_test,YY_pred_dt_proba, multi_class='ovr')
 ```
-### Confusion Matrix
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a90e35b0-db8a-46f4-938b-53ade01bdd3b)
+
 ``` Python
-cm_dt = confusion_matrix(YY_test,YY_pred_dt)
-print("Confusion Matrix:")
-print(cm_dt)
+mean_cv_score_ddt = cv_scores_ddt.mean()
+std_cv_score_ddt = cv_scores_ddt.std()
+print("Mean Cross-validation Score:", mean_cv_score_ddt)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_ddt)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f83e5592-5b5a-4145-a9f5-1540eb624d68)
+
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_ddt) + 1), cv_scores_ddt, marker='o', linestyle='-')
+plt.title('Cross-validation Scores')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_ddt) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d32b9995-73f8-43db-8328-cb4b2d20f74c)
+
+#### Calculate effectiveness metrics
+``` Python
+accuracy_ddt = np.mean(cv_scores_ddt)
+precision_ddt = np.mean(cross_val_score(ddt, XX_st_scaled, YY_st, cv=5, scoring='precision_weighted'))
+recall_ddt = np.mean(cross_val_score(ddt, XX_st_scaled, YY_st, cv=5, scoring='recall_weighted'))
+f1_ddt = np.mean(cross_val_score(ddt,XX_st_scaled, YY_st, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_ddt)
+print("Precision:", precision_ddt)
+print("Recall:", recall_ddt)
+print("F1 Score:", f1_ddt)
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/dbb9f616-2685-44b4-8cea-c993bc579b98)
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b00f071a-e3dc-4544-909d-fd0a273966cf)
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_ddt  = time.time()
+ddt.fit(XX_st_scaled, YY_st)
+end_time_ddt = time.time()
+training_time_ddt  = end_time_ddt- start_time_ddt
+
+inference_start_time_ddt = time.time()
+y_pred_inference_ddt = ddt.predict(XX_test)
+inference_end_time_ddt = time.time()
+inference_time_ddt= inference_end_time_ddt- inference_start_time_ddt
+
+print(f"Training Time: {training_time_ddt :.4f} seconds")
+print(f"Inference Speed: {inference_time_ddt:.4f} seconds per prediction")
+``` 
+
+#### Decision Trees SMOTE + Tomek Gini
+
+``` Python
+ddtt = DecisionTreeClassifier(criterion = 'gini',  random_state =42)
+ddtt.fit(XX_st_scaled, YY_st)
+importances_ddtt = ddtt.feature_importances_
+
+print(importances_ddtt)
+indices_ddtt = np.argsort(importances_ddtt)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(XX_st_scaled.shape[1]),
+importances_ddtt[indices_ddtt],
+align ='center')
+
+feat_labels = XX_st.columns
+plt.xticks(range(XX_st_scaled.shape[1]),
+           feat_labels[indices_ddtt], rotation = 90)
+plt.xlim([-1,XX_st_scaled.shape[1]])
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0837c7df-df50-487c-9cc7-6f756f73b942)
+
+#### Cross Validation
+``` Python
+cv_scores_ddtt = cross_val_score(ddtt, XX_st_scaled, YY_st, cv=5)
+print("Cross-validation Scores:", cv_scores_ddtt)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/eebbf168-f66c-4f86-bfe3-8dc6fe180cf2)
+ 
+``` Python
+mean_cv_score_ddtt = cv_scores_ddtt.mean()
+std_cv_score_ddtt = cv_scores_ddtt.std()
+print("Mean Cross-validation Score:", mean_cv_score_ddtt)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_ddtt)
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/227f4d42-1708-4635-953b-23fe512a8d0b)
+
+``` Python
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_ddtt) + 1), cv_scores_ddtt, marker='o', linestyle='-')
+plt.title('Cross-validation Scores')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_ddtt) + 1))
+plt.grid(True)
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/07c1f4e4-d826-4930-9ccb-bc55a5112a3d)
+
+ # Calculate effectiveness metrics
+ ``` Python
+accuracy_ddtt = np.mean(cv_scores_ddtt)
+precision_ddtt = np.mean(cross_val_score(ddtt, XX_st_scaled, YY_st, cv=5, scoring='precision_weighted'))
+recall_ddtt = np.mean(cross_val_score(ddtt, XX_st_scaled, YY_st, cv=5, scoring='recall_weighted'))
+f1_ddtt = np.mean(cross_val_score(ddtt,XX_st_scaled, YY_st, cv=5, scoring='f1_weighted'))
+
+# Print results
+
+#print("Brier Score:", brier_score_gb_st)
+
+print("Accuracy:", accuracy_ddtt)
+print("Precision:", precision_ddtt)
+print("Recall:", recall_ddtt)
+print("F1 Score:", f1_ddtt)
+```
+
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_ddtt  = time.time()
+ddtt.fit(XX_st_scaled, YY_st)
+end_time_ddtt = time.time()
+training_time_ddtt  = end_time_ddtt- start_time_ddtt
+
+
+inference_start_time_ddtt = time.time()
+y_pred_inference_ddtt = ddtt.predict(XX_test)
+inference_end_time_ddtt = time.time()
+inference_time_ddtt= inference_end_time_ddtt- inference_start_time_ddtt
+
+print(f"Training Time: {training_time_ddtt :.4f} seconds")
+print(f"Inference Speed: {inference_time_ddtt:.4f} seconds per prediction")
+``` 
 
