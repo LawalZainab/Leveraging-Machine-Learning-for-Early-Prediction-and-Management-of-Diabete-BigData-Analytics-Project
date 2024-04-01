@@ -326,7 +326,7 @@ Splitting the data into two parts, the first part contains 80% of the data where
 2. Random = 11, This ensure the reproducibility of our results
  
 ``` Python
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20, stratify= Y, random_state= 11)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.30, stratify= Y,  shuffle =True, random_state= 11)
 ```
 
 
@@ -335,7 +335,6 @@ Balancing the dataset: it was observed that the dataset was imbalanced from the 
 1.	Random Under sampling Technique.
 2.	SMOTE technique.
 3.	Combination of SMOTE and Tomek Link Technique.
-From the above technique, the Combination of SMOTE and Tomek Link Technique was selected as it combines the SMOTE ability to generate synthetic data for the minority class and Tomek Link's ability to remove the data that are identified as Tomek links from the majority class (that is, samples of data from the majority class that is closest with the minority class data).
 
 
 ``` Python
@@ -357,7 +356,8 @@ X_rus, Y_rus = rus.fit_resample(X_train, Y_train)
 plot_resampling_results(Y_rus, 'Class Distribution After Random Undersampling')
 ``` 
 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/97b8ccba-20dc-4a27-996f-f2480d6315b9)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/146c5e29-8761-431a-a2ad-9f34cc616b06)
+
 ``` Python
 Y_train.value_counts()
 ``` 
@@ -372,6 +372,136 @@ print('No. of records removed:', Y_train.shape[0] - Y_rus.shape[0])
 556 records were moved from the data, when random undersampling was applied
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a2121dac-c4d8-4a11-819d-150b35153812)
+
+#### Outliers Treatment
+``` Python
+plt.figure(figsize = (15, 15))
+X_rus[[ 'AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI', 'Gender_F', 'Gender_M']].boxplot(vert =0)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a764d93d-b6b6-402c-a281-79c57dcd1ea4)
+
+``` Python
+def  replace_outlier(col):
+  Q1r, Q3r =np.quantile(col, [.25, .75])
+  IQRr =Q3r -Q1r
+  LLr =Q1r -1.5*IQRr
+  ULr = Q3r + 1.5*IQRr
+  return LLr, ULr # Winsorization -UL - Capping, LL - Flooring
+
+df_numr = X_rus[[  'AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI', 'Gender_F', 'Gender_M']]
+
+for i in df_numr.columns:
+  LLr, ULr = replace_outlier(df_numr[i])
+  df_numr[i] = np.where(df_numr[i]> ULr, ULr, df_numr[i])
+  df_numr[i] = np.where(df_numr[i] < LLr, LLr, df_numr[i])  # Winsorization - Capping and Flooring
+
+plt.figure(figsize = (15, 10))
+df_numr.boxplot(vert=0)
+
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/dde363c9-2687-41a7-9537-541d759ae39a)
+
+``` Python
+plt.figure(figsize= (7,7))
+sns.set(font_scale = 0.5)
+sns.heatmap(df_numr.corr(), annot =True)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/251ea0b4-c95b-42fb-a43c-121f2c5ca604)
+
+``` Python
+scalerrr = MinMaxScaler().fit(df_numr)
+print(scalerrr)
+scalerrr.transform(df_numr)
+
+X_rus_scaled = scalerrr.transform(df_numr)
+print(X_rus_scaled)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f63c0537-dc2b-4dcd-87dd-fff06fd32744)
+
+#### Gradient Boosting Machines
+``` Python
+gbmr = GradientBoostingClassifier()
+gbmr.fit(X_rus_scaled, Y_rus)
+feature_importancesr = gbmr.feature_importances_
+print(feature_importancesr)
+indices_gb_r = np.argsort(feature_importancesr)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(X_rus_scaled.shape[1]),
+feature_importancesr[indices_gb_r],
+align ='center')
+
+feat_labels = X_rus.columns
+plt.xticks(range(X_rus_scaled.shape[1]),
+           feat_labels[indices_gb_r], rotation = 90)
+plt.xlim([-1,X_rus_scaled.shape[1]])
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/528c045c-9b6a-4c44-85d6-063e42e00f4a)
+#### Cross-Validation
+``` Python
+
+cv_scores_gb_r = cross_val_score(gbmr, X_rus_scaled, Y_rus, cv=5)
+print("Cross-validation Scores:", cv_scores_gb_r)
+mean_cv_score_gb_r = cv_scores_gb_r.mean()
+std_cv_score_gb_r = cv_scores_gb_r.std()
+print("Mean Cross-validation Score:", mean_cv_score_gb_r)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_gb_r)
+
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_gb_r) + 1), cv_scores_gb_r, marker='o', linestyle='-')
+plt.title('Cross-validation Scores- Random Undersampling')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_gb_r) + 1))
+plt.grid(True)
+plt.show()
+```
+#### Confusion Matrix
+``` Python
+
+Y_pred_gb_r = gbmr.predict(X_test)
+conf_matrix_gb_r = confusion_matrix(Y_test, Y_pred_gb_r)
+conf_matrix_gb_r
+cm_disp_gb_r = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_gb_r, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_gb_r.plot()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/833e1b81-ee57-4427-ae59-e68c26ac322d)
+
+
+#### Calculate effectiveness metrics
+accuracy_gb_r = np.mean(cv_scores_gb_r)
+precision_gb_r = np.mean(cross_val_score(gbmr, X_rus_scaled, Y_rus, cv=5, scoring='precision_weighted'))
+recall_gb_r = np.mean(cross_val_score(gbmr,X_rus_scaled, Y_rus, cv=5, scoring='recall_weighted'))
+f1_gb_r = np.mean(cross_val_score(gbmr,X_rus_scaled, Y_rus, cv=5, scoring='f1_weighted'))
+
+# Print results
+``` Python
+#print("Brier Score:", brier_score_r)
+print("Accuracy:", accuracy_gb_r)
+print("Precision:", precision_gb_r)
+print("Recall:", recall_gb_r)
+print("F1 Score:", f1_gb_r)
+``` 
+
+#### Measure efficiency (training time and inference speed)
+``` Python
+start_time_gb_r = time.time()
+gbmr.fit(X_rus_scaled, Y_rus)
+end_time_gb_r= time.time()
+training_time_gb_r = end_time_gb_r - start_time_gb_r
+
+inference_start_time_gb_r = time.time()
+Y_pred_inference_gb_r = gbmr.predict(X_test)
+inference_end_time_gb_r = time.time()
+inference_time_gb_r = inference_end_time_gb_r - inference_start_time_gb_r
+
+print(f"Training Time: {training_time_gb_r:.4f} seconds")
+print(f"Inference Speed: {inference_time_gb_r:.4f} seconds per prediction")
+```
+
+
+
+
 
 ### SMOTE Technique
 Smote generates synthetic minority class examples by interpolating between existing instances. This helps in increasing the diversity of the minority class.
@@ -401,6 +531,47 @@ print('No. of records added:', Y_smote.shape[0] - Y_train.shape[0])
 1058 records were added to the dataset when SMOTE oversampling technique was applied
 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8525e62e-3ebd-4199-8548-fbaf6da52650)
+
+``` Python
+plt.figure(figsize = (15, 15))
+X_smote[[ 'AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI', 'Gender_F', 'Gender_M']].boxplot(vert =0)
+
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ad4d53e4-8fa6-48bb-b107-ec76fc51c11d)
+
+``` Python
+def  replace_outlier(col):
+  Q1sm, Q3sm =np.quantile(col, [.25, .75])
+  IQRsm =Q3sm -Q1sm
+  LLsm =Q1sm -1.5*IQRsm
+  ULsm = Q3sm + 1.5*IQRsm
+  return LLsm, ULsm # Winsorization -UL - Capping, LL - Flooring
+
+df_numsm = X_smote[[  'AGE', 'Urea', 'Cr','HbA1c', 'Chol', 'TG', 'HDL', 'LDL', 'VLDL', 'BMI', 'Gender_F', 'Gender_M']]
+
+for i in df_numsm.columns:
+  LLsm, ULsm = replace_outlier(df_numsm[i])
+  df_numsm[i] = np.where(df_numsm[i]> ULsm, ULsm, df_numsm[i])
+  df_numsm[i] = np.where(df_numsm[i] < LLsm, LLsm, df_numsm[i])  # Winsorization - Capping and Flooring
+
+plt.figure(figsize = (15, 10))
+df_numsm.boxplot(vert=0)
+``` 
+
+``` Python
+plt.figure(figsize= (7,7))
+sns.set(font_scale = 0.5)
+sns.heatmap(df_numsm.corr(), annot =True)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ed3cf142-b083-4a4a-9893-adc19d24dd2f)
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7b2bc1cc-37c7-4543-b7ba-f53716742b8f)
+
+``` Python
+
+``` Python
+``` Python
+``` Python
+``` Python
 
 ### Combination of SMOTE and Tomek Links Technique
 The process of SMOTE-Tomek Links is as follows. Start of SMOTE: choose random data from the minority class. Calculate the distance between the random data and its k nearest neighbors. Multiply the difference with a random number between 0 and 1, then add the result to the minority class as a synthetic sample. SMOTE-Tomek uses a combination of both SMOTE and the undersampling Tomek link. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority class. 
