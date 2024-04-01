@@ -593,16 +593,6 @@ cm_disp.plot()
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8253257f-0e3d-48f7-8f01-ae353e17b108)
 
-### ROC CURVE 
-A graphical plot illustrating the trade-off between True Positive Rate and False Positive Rate at various classification thresholds.
-
-``` Python
-Y_pred_fr_proba = fr.predict_proba(X_test)
-Y_pred_fr_proba.shape
-Y_pred_fr .shape
-roc_auc_score(Y_test,Y_pred_fr_proba, multi_class='ovr')
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/07bd77f2-c839-4eb9-84e6-ab349f837e75)
 
 
 ## Decision Tree on Al-Kindy Diabetes Datasets
@@ -651,14 +641,6 @@ print(f'F1 Score:{f1:.2f}')
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ac90fc43-ad28-4c1f-a400-7ccb10120585)
 
 
-### ROC CURVE
-``` Python
-Y_pred_ddt_proba = clf_ddt.predict_proba(X_test)
-Y_pred_ddt_proba.shape
-Y_pred_ddt.shape
-roc_auc_score(Y_test,Y_pred_ddt_proba, multi_class='ovr')
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/3aaf868c-980b-41dc-ab98-9bb82f1b1ebb)
 
 ### Confusion matrix
 ``` Python
