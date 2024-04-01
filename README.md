@@ -557,21 +557,116 @@ for i in df_numsm.columns:
 plt.figure(figsize = (15, 10))
 df_numsm.boxplot(vert=0)
 ``` 
-
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ed3cf142-b083-4a4a-9893-adc19d24dd2f)
 ``` Python
 plt.figure(figsize= (7,7))
 sns.set(font_scale = 0.5)
 sns.heatmap(df_numsm.corr(), annot =True)
 ``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ed3cf142-b083-4a4a-9893-adc19d24dd2f)
+
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/7b2bc1cc-37c7-4543-b7ba-f53716742b8f)
 
 ``` Python
+scalersm = MinMaxScaler().fit(df_numsm)
+print(scalersm)
+scalersm.transform(df_numsm)
+X_smote_scaled = scalersm.transform(df_numsm)
+print(X_smote_scaled)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/889a984f-9196-4ffd-9b40-930d58746ab2)
+
+### GradientBoostingClassifier - SMOTE
 
 ``` Python
+gbmsm = GradientBoostingClassifier()
+gbmsm.fit(X_smote_scaled, Y_smote)
+feature_importancessm = gbmsm.feature_importances_
+print(feature_importancessm)
+indices_gb_sm = np.argsort(feature_importancessm)[::-1]
+plt.ylabel('Feature importance')
+plt.bar(range(X_smote_scaled.shape[1]),
+feature_importancessm[indices_gb_sm],
+align ='center')
+
+feat_labels = X_smote.columns
+plt.xticks(range(X_smote_scaled.shape[1]),
+           feat_labels[indices_gb_sm], rotation = 90)
+plt.xlim([-1,X_smote_scaled.shape[1]])
+
+
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/f941d842-c202-4aa9-8af8-8acebc657940)
+#### Cross-Validation
 ``` Python
+
+cv_scores_gb_sm = cross_val_score(gbmsm, X_smote_scaled, Y_smote, cv=5)
+print("Cross-validation Scores:", cv_scores_gb_sm)
+
+mean_cv_score_gb_sm = cv_scores_gb_sm.mean()
+std_cv_score_gb_sm = cv_scores_gb_sm.std()
+print("Mean Cross-validation Score:", mean_cv_score_gb_sm)
+print("Standard Deviation of Cross-validation Scores:", std_cv_score_gb_sm)
+
+plt.figure(figsize=(8, 6))
+plt.plot(range(1, len(cv_scores_gb_sm) + 1), cv_scores_gb_sm, marker='o', linestyle='-')
+plt.title('Cross-validation Scores- Smote')
+plt.xlabel('Fold')
+plt.ylabel('Score')
+plt.xticks(range(1, len(cv_scores_gb_sm) + 1))
+plt.grid(True)
+plt.show()
+
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/91abd427-4ba2-467e-9ff0-de5f9c685a96)
+
 ``` Python
+# Confusion Matrix
+Y_pred_gbsm = gbmsm.predict(X_test)
+conf_matrix_gbsm = confusion_matrix(Y_test, Y_pred_gbsm)
+conf_matrix_gbsm
+cm_disp_gb_sm = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_gbsm, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_gb_sm.plot()
+
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/803da8ef-c86d-438f-af48-3bf03599706e)
+
 ``` Python
+report_gb_sm = classification_report(Y_test,Y_pred_gbsm, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_gb_sm)
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a1b48d39-d004-404f-96a8-14f6b0091c41)
+
+``` Python
+# Calculate effectiveness metrics
+accuracy_gb_sm = np.mean(cv_scores_gb_sm)
+precision_gb_sm = np.mean(cross_val_score(gbmsm, X_smote_scaled, Y_smote, cv=5, scoring='precision_weighted'))
+recall_gb_sm = np.mean(cross_val_score(gbmsm,X_smote_scaled, Y_smote, cv=5, scoring='recall_weighted'))
+f1_gb_sm = np.mean(cross_val_score(gbmsm,X_smote_scaled, Y_smote, cv=5, scoring='f1_weighted'))
+
+# Print results
+#print("Brier Score:", brier_score_gb)
+print("Accuracy:", accuracy_gb_sm)
+print("Precision:", precision_gb_sm)
+print("Recall:", recall_gb_sm)
+print("F1 Score:", f1_gb_sm)
+``` 
+
+``` Python
+# Measure efficiency (training time and inference speed)
+start_time_gb_sm = time.time()
+gbmsm.fit(X_smote_scaled, Y_smote)
+end_time_gb_sm= time.time()
+training_time_gb_sm = end_time_gb_sm - start_time_gb_sm
+
+inference_start_time_gb_sm = time.time()
+Y_pred_inference_gb_sm = gbmsm.predict(X_test)
+inference_end_time_gb_sm = time.time()
+inference_time_gb_sm = inference_end_time_gb_sm - inference_start_time_gb_sm
+
+print(f"Training Time: {training_time_gb_sm:.4f} seconds")
+print(f"Inference Speed: {inference_time_gb_sm:.4f} seconds per prediction")
+``` 
 
 ### Combination of SMOTE and Tomek Links Technique
 The process of SMOTE-Tomek Links is as follows. Start of SMOTE: choose random data from the minority class. Calculate the distance between the random data and its k nearest neighbors. Multiply the difference with a random number between 0 and 1, then add the result to the minority class as a synthetic sample. SMOTE-Tomek uses a combination of both SMOTE and the undersampling Tomek link. Tomek link is a cleaning data way to remove the majority class that was overlapping with the minority class. 
