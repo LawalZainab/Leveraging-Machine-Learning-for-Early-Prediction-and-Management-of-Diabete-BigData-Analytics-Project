@@ -149,7 +149,22 @@ d_class
 data.describe()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ef95d59d-5038-472b-869e-5e2ee77447ec)
+``` Python
+fig, axes =plt.subplots(nrows =1, ncols=2, figsize =(10, 4))
 
+pie_colors = ['skyblue', 'lightcoral', 'Green']
+axes[0].pie(data['CLASS'].value_counts(), labels =data['CLASS'].value_counts().index, autopct='%1.1f%%', startangle=90, colors=pie_colors)
+axes[0].set_title('Class Distribution (Pie Chart)')
+
+
+countplot_colors = sns.color_palette(pie_colors)
+sns.countplot(x='CLASS', data=data, palette=countplot_colors, ax=axes[1])
+axes[1].set_title('Class Distribution (count plot)')
+
+plt.tight_layout()
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0b9665fe-fb04-47fb-a192-d732a7f0e411)
 
 ###  Exploratory Data Analysis and Data Visualization - Al- Kindy Diabetes Datasets
 1. Ydata Profiling
