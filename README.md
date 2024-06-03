@@ -466,6 +466,31 @@ plt.xlim([-1,X_rus_scaled.shape[1]])
 
 
 
+#### Confusion Matrix
+``` Python
+
+Y_pred_gb_r = gbmr.predict(X_test)
+conf_matrix_gb_r = confusion_matrix(Y_test, Y_pred_gb_r)
+conf_matrix_gb_r
+cm_disp_gb_r = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_gb_r, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
+cm_disp_gb_r.plot()
+``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/833e1b81-ee57-4427-ae59-e68c26ac322d)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ee0e8425-0558-4bb8-b752-60453d770cbe)
+
+#### Prediction
+``` Python
+Y_pred_gb_r = gbmr.predict(X_test)## Predicting
+Y_pred_gb_r
+```
+``` Python
+
+report_gb_r = classification_report(Y_test,Y_pred_gb_r, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_gb_r)
+``` 
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/9ee11722-401a-4ab0-b45c-d3d1446e9a39)
 
 #### Cross-Validation
 ``` Python
@@ -486,35 +511,39 @@ plt.xticks(range(1, len(cv_scores_gb_r) + 1))
 plt.grid(True)
 plt.show()
 ```
-#### Confusion Matrix
-``` Python
-
-Y_pred_gb_r = gbmr.predict(X_test)
-conf_matrix_gb_r = confusion_matrix(Y_test, Y_pred_gb_r)
-conf_matrix_gb_r
-cm_disp_gb_r = ConfusionMatrixDisplay(confusion_matrix=conf_matrix_gb_r, display_labels=["Nondiabetes", "Prediabetes", "Diabetes"])
-cm_disp_gb_r.plot()
-``` 
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/833e1b81-ee57-4427-ae59-e68c26ac322d)
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ee0e8425-0558-4bb8-b752-60453d770cbe)
 
 #### Calculate effectiveness metrics
-accuracy_gb_r = np.mean(cv_scores_gb_r)
-precision_gb_r = np.mean(cross_val_score(gbmr, X_rus_scaled, Y_rus, cv=5, scoring='precision_weighted'))
-recall_gb_r = np.mean(cross_val_score(gbmr,X_rus_scaled, Y_rus, cv=5, scoring='recall_weighted'))
-f1_gb_r = np.mean(cross_val_score(gbmr,X_rus_scaled, Y_rus, cv=5, scoring='f1_weighted'))
-
-# Print results
 ``` Python
-print("Accuracy:", accuracy_gb_r)
-print("Precision:", precision_gb_r)
-print("Recall:", recall_gb_r)
-print("F1 Score:", f1_gb_r)
+# Print the classification report
+print("Classification Report:")
+print(classification_report(Y_rus, Y_pred_val, target_names=["Nondiabetes", "Prediabetes", "Diabetes"]))
+```
+
+
+#### Confusion Matrix after cross validation
+
+#Plotting the confusion matrix
+plt.figure(figsize=(5,4))
+sns.heatmap(cm_df_val, annot=True, cbar=False, cmap='Blues')
+plt.title('Confusion Matrix')
+plt.ylabel('Actal Values')
+plt.xlabel('Predicted Values')
+plt.show()
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/763e704a-b06f-4310-8da1-aa60d88ed907)
+
+
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/fdde32dc-6c20-4ed0-8a83-63fab4f40c26)
+
+#### Prediction after cross validation
+``` Python
+from sklearn.model_selection import cross_val_predict, StratifiedKFold
+clf = GradientBoostingClassifier()
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+Y_pred_val = cross_val_predict(clf, X_rus_scaled, Y_rus, cv=cv)
+Y_pred_val
 ``` 
-
-![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/94742bca-1195-47fc-bb5d-f20d985f8383)
-
 
 #### Measure efficiency (training time and inference speed)
 ``` Python
@@ -671,22 +700,59 @@ print(report_gb_sm)
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/a1b48d39-d004-404f-96a8-14f6b0091c41)
 
+#### Prediction
 ``` Python
-# Calculate effectiveness metrics
-accuracy_gb_sm = np.mean(cv_scores_gb_sm)
-precision_gb_sm = np.mean(cross_val_score(gbmsm, X_smote_scaled, Y_smote, cv=5, scoring='precision_weighted'))
-recall_gb_sm = np.mean(cross_val_score(gbmsm,X_smote_scaled, Y_smote, cv=5, scoring='recall_weighted'))
-f1_gb_sm = np.mean(cross_val_score(gbmsm,X_smote_scaled, Y_smote, cv=5, scoring='f1_weighted'))
+report_gb_sm = classification_report(Y_test,Y_pred_gbsm, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_gb_sm)
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/e48e841e-113e-43d8-94af-6c6e5f5c5312)
 
-# Print results
-#print("Brier Score:", brier_score_gb)
-print("Accuracy:", accuracy_gb_sm)
-print("Precision:", precision_gb_sm)
-print("Recall:", recall_gb_sm)
-print("F1 Score:", f1_gb_sm)
+#### Cross validation 
+``` Python
+clf1.fit(X_smote_scaled, Y_smote)
+cv1 = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+Y_pred_val1 = cross_val_predict(clf1, X_smote_scaled, Y_smote, cv=cv1)
+Y_pred_val1
+
+```
+
+### Confusion Matrix
+``` Python
+cm_df_val1 = pd.DataFrame(conf_matrix_val1,
+                     index = ['Nondiabetes','Prediabetes',' Diabetes'],
+                     columns = ['Nondiabetes','Prediabetes','Diabetes'])
+
+#Plotting the confusion matrix
+plt.figure(figsize=(5,4))
+sns.heatmap(cm_df_val1, annot=True, cbar=False, cmap='Blues')
+plt.title('Confusion Matrix')
+plt.ylabel('Actal Values')
+plt.xlabel('Predicted Values')
+plt.show()
+```
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/d59b7cef-b6cc-47c5-b7ca-9b151de69760)
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/8c333966-d5bf-47f2-aa2f-d5db5009053d)
+
+
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/dc5da716-0599-497e-a3ab-3b0c3dbe9af1)
+
+                     
+#### Calculate effectiveness metrics
+``` Python
+print("Classification Report:")
+print(classification_report(Y_smote, Y_pred_val1, target_names=["Nondiabetes", "Prediabetes", "Diabetes"]))
+```
+#### Calculate effectiveness metrics
+
+``` Python 
+report_gb_sm = classification_report(Y_test,Y_pred_gbsm, labels=[1,2,3],  target_names=["Nondiabetes", "Prediabetes", "Diabetes"])
+print(report_gb_sm)
+#### Calculate effectiveness metrics
 ``` 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/0803d95e-a1f7-4025-a7ce-82e627abbfd8)
 
-``` Python
 # Measure efficiency (training time and inference speed)
 start_time_gb_sm = time.time()
 gbmsm.fit(X_smote_scaled, Y_smote)
