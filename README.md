@@ -275,6 +275,15 @@ dups.shape
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/b20dc562-48d6-4b42-97aa-9320ffc48ec8)
 
+##### Boxplot showing theoutlier present in the datasets
+``` Python
+sns.boxplot(data=df)
+sns.set(font_scale = 0.5)
+```
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/afed7bca-c6ca-4df0-a02c-4ad25629d120)
+
+
 ## Seperating the data and labels
 The main objective is to determine the some of the possible factors that cause diabetes that are made available to us from this dataset and to create machine learning models that will do this for us as well. In order to get best visual results and to understand certain visual and statistical trends we would need to seperate the data into dependent variables and independent variables
 - 1 -The independent variables will be the features of diabetes patients : Gender, AGE, Urea, Cr, HbA1c, TG, Chol, HDL, VLDL, BMI.
@@ -308,7 +317,9 @@ df['CLASS'].value_counts()
 ```
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ff32a0c9-b6c2-4132-88e6-e12f3048b39c)
 
-### Class Distribution Before Resampling( Pie Chart and Count Plot)
+# Balancing and Splitting Datasets
+
+#### Class Distribution Before Resampling( Pie Chart and Count Plot)
 
 ``` Python
 fig, axes =plt.subplots(nrows =1, ncols=2, figsize =(10, 4))
@@ -452,6 +463,10 @@ plt.xticks(range(X_rus_scaled.shape[1]),
 plt.xlim([-1,X_rus_scaled.shape[1]])
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/528c045c-9b6a-4c44-85d6-063e42e00f4a)
+
+
+
+
 #### Cross-Validation
 ``` Python
 
@@ -482,6 +497,7 @@ cm_disp_gb_r.plot()
 ``` 
 ![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/833e1b81-ee57-4427-ae59-e68c26ac322d)
 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/ee0e8425-0558-4bb8-b752-60453d770cbe)
 
 #### Calculate effectiveness metrics
 accuracy_gb_r = np.mean(cv_scores_gb_r)
@@ -491,12 +507,14 @@ f1_gb_r = np.mean(cross_val_score(gbmr,X_rus_scaled, Y_rus, cv=5, scoring='f1_we
 
 # Print results
 ``` Python
-#print("Brier Score:", brier_score_r)
 print("Accuracy:", accuracy_gb_r)
 print("Precision:", precision_gb_r)
 print("Recall:", recall_gb_r)
 print("F1 Score:", f1_gb_r)
 ``` 
+
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/94742bca-1195-47fc-bb5d-f20d985f8383)
+
 
 #### Measure efficiency (training time and inference speed)
 ``` Python
@@ -514,6 +532,7 @@ print(f"Training Time: {training_time_gb_r:.4f} seconds")
 print(f"Inference Speed: {inference_time_gb_r:.4f} seconds per prediction")
 ```
 
+![image](https://github.com/LawalZainab/Leveraging-Machine-Learning-for-Early-Prediction-and-Management-of-Diabetes-BigDataAnalytics-Project/assets/157916270/cc2e8eec-5e60-4cd7-a61b-7be87931d98c)
 
 
 
